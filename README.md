@@ -5,8 +5,7 @@ Pour ce projet de développement web, nous avons trouvé un client qui aimerait 
 
  ## Fonctionnalités
  - L'utilisateur devra pouvoir se créer un compte et se connecter au site avec celui-ci.
- - L'utilisateur devra remplir un formulaire pour valider sa présence lors du mariage et à quel moment de celui-ci il sera présent (toute la journée,juste au soir,...).
- - L'utilisateur pourra informer de ses allergies, s'il en a.
+ - L'utilisateur devra remplir un formulaire pour valider sa présence lors du mariage. Dans ce formulaire l'invité pourra mentionner à quel moment il sera présent (toute la journée,juste au soir,...), avertir de ses allergies, indiquer s'il sera accompagné (par qui ? enfant ?)
  - Une map sera mise à disposition pour savoir le lieu exact du mariage.
  - Un onglet de contact permettra de contacter les mariés via un formulaire de mail.
  - Un onglet sera disponible pour que chaque invité puisse partager ses photos après le mariage.
