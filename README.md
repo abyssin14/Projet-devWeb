@@ -11,6 +11,7 @@ Pour ce projet de développement web, nous avons trouvé un client qui aimerait 
  - Un onglet de contact permettra de contacter les mariés via un formulaire de mail.
  - Un onglet sera disponible pour que chaque invité puisse partager ses photos après le mariage.
  - Une liste de cadeaux (faite pas les mariés) sera présente sur le site et chaque invité pourra choisir de participer à l'achat d'un ou      plusieurs cadeaux de la liste. Il pourra soit : - faire un virement avec la somme du cadeau
+ 
                                                    - indiquer qu'il offrira ce cadeau lors du mariage (ou donnera l'argent lors du mariage)
   
   ## Aspect technique
