@@ -3,8 +3,17 @@
 
 {% block body %}
     <div class="jumbotron text-center">
-        <div class="container">
+
             <h1>Mariage Stephanie et Nicolas</h1>
+    </div>
+    <div class="container">
+        <h2>premier utilisateur  dans la base de données : </h2>
+        <div class="row flex">
+            {% for utilisateur in utilisateurs %}
+            <div>
+                <h4>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h4>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
