@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Utilisateur;
 
+
 class DescriptionController extends AbstractController
 {
 
@@ -28,6 +29,16 @@ class DescriptionController extends AbstractController
         $em->persist($testUser);
         $em->flush();
         */
-        return $this->render('pages/description.html.twig', ['current_menu' => 'description']);
+        return $this->render('pages/Description/index.html.twig',
+                                ['current_menu' => 'description']);
+    }
+
+    public function show(Utilisateur $utilisateur, string $slug): Response{
+        if($utilisateur->getSlug() !== $slug){
+            return $this->redirectToRoute('description.slug',
+                                    ['id' => $utilisateur->getId(), 'slug' => $utilisateur->getSlug()],301);
+        }
+        return $this->render('pages/Description/slug.html.twig',
+            ['utilisateur' => $utilisateur, 'current_menu' => 'test']);
     }
 }

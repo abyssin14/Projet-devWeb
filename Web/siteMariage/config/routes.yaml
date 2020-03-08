@@ -3,8 +3,17 @@ home:
     controller: App\Controller\HomeController::index
 
 description:
-    path: /descritpion
+    path: /description
     controller: App\Controller\DescriptionController::index
+
+description.slug:
+    path: /description/{slug}-{id}
+    controller: App\Controller\DescriptionController::show
+
+
+cadeaux.index:
+    path: /cadeaux
+    controller: App\Controller\CadeauController::index
 
 #index:
 #    path: /

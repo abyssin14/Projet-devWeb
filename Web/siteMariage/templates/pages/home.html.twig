@@ -11,7 +11,7 @@
         <div class="row flex">
             {% for utilisateur in utilisateurs %}
             <div>
-                <h4>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h4>
+                <h4><a href="{{ path('description.slug', {id: utilisateur.id, slug: utilisateur.slug}) }}">{{ utilisateur.nom }}</a>{{ utilisateur.prenom }}</h4>
             </div>
             {% endfor %}
         </div>

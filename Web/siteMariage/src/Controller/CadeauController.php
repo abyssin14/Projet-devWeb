@@ -1,0 +1,28 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Tristan
+ * Date: 08-03-20
+ * Time: 12:13
+ */
+
+namespace App\Controller;
+use App\Repository\CadeauRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Cadeau;
+
+class CadeauController extends AbstractController
+{
+    private $repository;
+
+    public function __construct(CadeauRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    public function index(){
+        return $this->render('pages/Cadeaux/index.html.twig',
+            ['current_menu' => 'cadeaux']);
+    }
+}

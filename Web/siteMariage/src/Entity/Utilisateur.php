@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UtilisateurRepository")
@@ -53,5 +55,11 @@ class Utilisateur
         $this->prenom = $prenom;
 
         return $this;
+    }
+
+    public function  getSlug(): string
+    {
+        $slugify = new Slugify();
+        return $slugify->slugify($this->nom);
     }
 }
