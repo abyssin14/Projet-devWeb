@@ -4,6 +4,11 @@
 {% block body %}
     <div class="container">
         <h1>Liste des cadeaux : </h1>
+        <div class="row flex">
+            {% for cadeau in cadeaux %}
+               <h4>{{ cadeau.nom }} prix : {{ cadeau.prix }} description : {{ cadeau.description }}</h4>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

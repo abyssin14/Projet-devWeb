@@ -22,7 +22,23 @@ class CadeauController extends AbstractController
     }
 
     public function index(){
+
+
+        /*$cadeau = new Cadeau();
+        $cadeau->setNom('Lampe');
+        $cadeau->setPrix('45.99');
+        $cadeau->setDescription('Lampe de la marque toto');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($cadeau);
+        $em->flush();
+        $listeCadeaux = $this->repository->findAll();
+        dump($listeCadeaux);*/
+
+        $listeCadeaux = $this->repository->findAll();
+
+
         return $this->render('pages/Cadeaux/index.html.twig',
-            ['current_menu' => 'cadeaux']);
+            ['current_menu' => 'cadeaux',
+                'cadeaux' => $listeCadeaux]);
     }
 }
