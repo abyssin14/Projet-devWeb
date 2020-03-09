@@ -41,4 +41,13 @@ class CadeauController extends AbstractController
             ['current_menu' => 'cadeaux',
                 'cadeaux' => $listeCadeaux]);
     }
+
+    public function show(Cadeau $cadeau, string $slug){
+        if($cadeau->getSlug() !== $slug){
+            return $this->redirectToRoute('cadeaux.info',
+                ['id' => $cadeau->getId(), 'slug' => $cadeau->getSlug()],301);
+        }
+         return $this->render('pages/Cadeaux/infos.html.twig',
+            ['cadeau' => $cadeau, 'current_menu' => 'cadeaux']);
+    }
 }

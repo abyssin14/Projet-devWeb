@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ cadeau.nom }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>La description du cadeau : </h1>
+        <h1>{{  cadeau.description }}</h1>
+    </div>
+
+{% endblock %}

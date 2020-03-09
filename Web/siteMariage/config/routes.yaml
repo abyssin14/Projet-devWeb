@@ -15,6 +15,31 @@ cadeaux.index:
     path: /cadeaux
     controller: App\Controller\CadeauController::index
 
+cadeaux.info:
+    path: /cadeaux/{slug}-{id}
+    controller: App\Controller\CadeauController::show
+
+admin.cadeau.index:
+    path: /admin/cadeau
+    controller: App\Controller\Admin\AdminCadeauController::index
+
+admin.cadeau.new:
+    path: /admin/cadeau/nouveau
+    controller: App\Controller\Admin\AdminCadeauController::nouveau
+
+admin.cadeau.delete:
+    path: /admin/cadeau/{id}
+    methods: DELETE
+    controller: App\Controller\Admin\AdminCadeauController::delete
+
+
+admin.cadeau.edit:
+    path: /admin/cadeau/{id}
+    methods: GET|POST
+    controller: App\Controller\Admin\AdminCadeauController::edit
+
+
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index

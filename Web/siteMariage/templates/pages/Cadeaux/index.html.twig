@@ -4,9 +4,14 @@
 {% block body %}
     <div class="container">
         <h1>Liste des cadeaux : </h1>
-        <div class="row flex">
+        <div>
             {% for cadeau in cadeaux %}
-               <h4>{{ cadeau.nom }} prix : {{ cadeau.prix }} description : {{ cadeau.description }}</h4>
+                   <ul>
+                       <li>
+                           <a href="{{ path('cadeaux.info',{id: cadeau.id, slug: cadeau.slug}) }}"> {{ cadeau.nom }} : {{ cadeau.prix }} €</a>
+                       </li>
+                   </ul>
+
             {% endfor %}
         </div>
     </div>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title 'Gérer les cadeaux'%}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>Gérer les cadeaux</h1>
+    <table class="table table-striped">
+        <thead><tr>
+            <th>Titre</th>
+            <th>Actions</th>
+        </tr></thead>
+        <tbody>
+        {% for cadeau in cadeaux %}
+        <tr>
+            <td>{{ cadeau.nom }}</td>
+            <td>
+                <a href="{{ path('admin.cadeau.edit',{id: cadeau.id}) }}" class="btn btn-secondary">Editer</a>
+                <form method="post" action="{{ path('admin.cadeau.delete', {id: cadeau.id}) }}" style="display: inline-block">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete'~ cadeau.id ) }}">
+
+                    <button class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{ path('admin.cadeau.new') }}" class="btn btn-primary">Nouveau</a>
+
+    </div>
+
+</div>
+
+{% endblock %}
