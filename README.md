@@ -21,20 +21,5 @@ Pour ce projet de développement web, nous avons trouvé un client qui aimerait 
   - Pour le gestion du temps : Clockify.
   - Pour la gestion des tâches : Trello. ( https://trello.com/b/YJ9fXbzf/projet-devweb )
   
-  ## Rapports 
-   Rapport 1 : https://github.com/abyssin14/Projet-devWeb/blob/master/Rapports/Rapport_Coaching1.pdf 
-   
-   Retour Rapport 1: https://github.com/abyssin14/Projet-devWeb/blob/master/Rapports/Compte_rendu_Coaching1.pdf
-   
-   Rapport 2 : https://github.com/abyssin14/Projet-devWeb/blob/master/Rapports/Rapport_Coaching2.pdf
-   
-   Retour Rapport 2: https://github.com/abyssin14/Projet-devWeb/blob/master/Rapports/Compte_rendu_Coaching2.docx
-   
-   Rapport 3 : 
-   
-   
-   ## Références
-   https://openclassrooms.com/fr/courses (Formation Symfony 4)
-   
-   https://www.youtube.com/watch?v=_drKtytdPF4 (Introduction à ReactJS)
+ 
    
