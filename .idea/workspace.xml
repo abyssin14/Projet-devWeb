@@ -2,12 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006b631c-4a92-4557-b673-b3c99f191c2c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7a06b0e1-f967-442b-a02d-0d702ca50438.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7a06b0e1-f967-442b-a02d-0d702ca50438.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Cadeau.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Cadeau.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Cadeaux/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Cadeaux/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/slug.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +62,13 @@
         <item name="mariagedb: schema" type="76f4a085:MysqlImplModel$Schema" />
         <item name="cadeau: table" type="285a2a93:MysqlImplModel$Table" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="mariagedb@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="mariagedb: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="utilisateur: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -57,41 +77,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/routes.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+            <state relative-caret-position="69">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php">
+        <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-              <folding>
-                <element signature="e#115#151#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="19" column="95" selection-start-line="19" selection-start-column="95" selection-end-line="19" selection-end-column="95" />
-              <folding>
-                <element signature="e#611#640#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="276">
+              <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
+            <state relative-caret-position="1861">
+              <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
               <folding>
                 <element signature="e#122#144#0#PHP" expanded="true" />
               </folding>
@@ -100,10 +114,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/new.html.twig">
+        <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/DescriptionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+            <state relative-caret-position="391">
+              <caret line="32" column="65" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="65" />
+              <folding>
+                <element signature="e#34#75#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -125,26 +142,31 @@
       <list>
         <option value="$PROJECT_DIR$/Web/siteMariage/.env" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/index.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/test.html.twig" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/index.html.twig" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/slug.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/src/Entity/Cadeau.php" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Cadeaux/infos.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Cadeaux/index.html.twig" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/edit.html.twig" />
         <option value="$PROJECT_DIR$/Web/siteMariage/config/packages/twig.yaml" />
         <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/DescriptionController.php" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/new.html.twig" />
-        <option value="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" />
         <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/index.html.twig" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/vendor/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/FixtureInterface.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/index.html.twig" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" />
         <option value="$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php" />
+        <option value="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" />
       </list>
     </option>
   </component>
@@ -152,9 +174,9 @@
     <servers />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+    <option name="x" value="951" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -164,7 +186,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -203,23 +224,8 @@
               <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
               <item name="Web" type="462c0819:PsiDirectoryNode" />
               <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="Web" type="462c0819:PsiDirectoryNode" />
-              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="Web" type="462c0819:PsiDirectoryNode" />
-              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
               <item name="Admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -227,10 +233,15 @@
               <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
               <item name="Web" type="462c0819:PsiDirectoryNode" />
               <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
+              <item name="Web" type="462c0819:PsiDirectoryNode" />
+              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Admin" type="462c0819:PsiDirectoryNode" />
-              <item name="Cadeaux" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
@@ -239,21 +250,12 @@
               <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Cadeaux" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="Web" type="462c0819:PsiDirectoryNode" />
-              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="Description" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,6 +270,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Tristan\Documents\Cours TI\deuxième_Ephec_2TL1\Q2\Projet-devWeb\Web\siteMariage\templates" />
       <recent name="C:\Users\Tristan\Documents\Cours TI\deuxième_Ephec_2TL1\Q2\Projet-devWeb\Web\siteMariage\templates\pages" />
       <recent name="C:\Users\Tristan\Documents\Cours TI\deuxième_Ephec_2TL1\Q2\Projet-devWeb\Web\siteMariage\templates\pages\Description" />
     </key>
@@ -285,6 +288,9 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="UserFixtures.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php">
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -294,6 +300,11 @@
       <envs />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHP Script.UserFixtures.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -314,22 +325,23 @@
       <workItem from="1583661549228" duration="493000" />
       <workItem from="1583662302278" duration="4498000" />
       <workItem from="1583671687458" duration="2088000" />
-      <workItem from="1583764121476" duration="13743000" />
+      <workItem from="1583764121476" duration="14529000" />
+      <workItem from="1583828077407" duration="10515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37483000" />
+    <option name="totallyTimeSpent" value="48784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19530201" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19798657" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32794118" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -344,7 +356,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" weight="0.14966443" />
+      <window_info anchor="right" id="Database" order="3" visible="true" weight="0.14966443" />
     </layout>
     <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19530201" />
@@ -376,30 +388,6 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/services.yaml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/bootstrap.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/composer.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/symfony.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/phpunit.xml.dist">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/vendor/composer/installed.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -441,29 +429,12 @@
         <state relative-caret-position="-39" />
       </provider>
     </entry>
-    <entry file="das://7a06b0e1-f967-442b-a02d-0d702ca50438/schema/mariagedb/table/utilisateur">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
           <folding>
             <element signature="e#7#22#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-          <folding>
-            <element signature="e#34#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -512,41 +483,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/packages/twig.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Form/CadeauType.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="95" selection-start-line="19" selection-start-column="95" selection-end-line="19" selection-end-column="95" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Migrations/Version20200310090225.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="e#34#75#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Repository/UtilisateurRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="23" column="45" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+          <folding>
+            <element signature="e#34#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/vendor/doctrine/data-fixtures/lib/Doctrine/Common/DataFixtures/FixtureInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://7a06b0e1-f967-442b-a02d-0d702ca50438/schema/mariagedb/table/cadeau">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-899">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/slug.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="101" selection-start-line="13" selection-start-column="57" selection-end-line="13" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Entity/Cadeau.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1771">
-          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding>
-            <element signature="e#30#62#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -560,102 +554,140 @@
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Cadeaux/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Entity/Cadeau.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" column="86" selection-start-line="21" selection-start-column="74" selection-end-line="21" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/packages/twig.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Form/CadeauType.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="1771">
+          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
           <folding>
-            <element signature="e#34#75#0#PHP" expanded="true" />
+            <element signature="e#30#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/edit.html.twig">
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Entity/Utilisateur.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="48" selection-end-line="12" selection-end-column="14" />
+        <state relative-caret-position="1056">
+          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+          <folding>
+            <element signature="e#30#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/DescriptionController.php">
+    <entry file="das://7a06b0e1-f967-442b-a02d-0d702ca50438/schema/mariagedb/table/utilisateur">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="15" column="65" selection-start-line="15" selection-start-column="65" selection-end-line="15" selection-end-column="65" />
+        <state relative-caret-position="320">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding>
-            <element signature="e#34#75#0#PHP" expanded="true" />
+            <element signature="e#36#79#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/Admin/Cadeaux/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="e#116#187#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="368">
+          <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
           <folding>
             <element signature="e#115#151#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="30" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/slug.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Description/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="23" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
-          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/routes.yaml">
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/DescriptionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/pages/Admin/Cadeaux/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="19" column="95" selection-start-line="19" selection-start-column="95" selection-end-line="19" selection-end-column="95" />
+        <state relative-caret-position="391">
+          <caret line="32" column="65" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="65" />
           <folding>
-            <element signature="e#611#640#0#HTML" expanded="true" />
+            <element signature="e#34#75#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
+        <state relative-caret-position="1861">
+          <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
           <folding>
             <element signature="e#122#144#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/config/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
         </state>
       </provider>
     </entry>

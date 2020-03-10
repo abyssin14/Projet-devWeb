@@ -19,14 +19,14 @@ class UtilisateurRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Utilisateur::class);
     }
-    public function findTristan()
+    /*public function findTristan()
     {
         return $this->createQueryBuilder('u')
             ->Where("u.prenom = 'Tristan'")
             ->setMaxResults(1)
             ->getQuery()
             ->getResult();
-    }
+    }*/
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects
     //  */

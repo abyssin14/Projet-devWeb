@@ -4,17 +4,10 @@
 {% block body %}
     <div class="jumbotron text-center">
 
-            <h1>Mariage Stephanie et Nicolas</h1>
+        <h1>Mariage Stephanie et Nicolas</h1>
     </div>
     <div class="container">
-        <h2>premier utilisateur  dans la base de données : </h2>
-        <div class="row flex">
-            {% for utilisateur in utilisateurs %}
-            <div>
-                <h4><a href="{{ path('description.slug', {id: utilisateur.id, slug: utilisateur.slug}) }}">{{ utilisateur.nom }}</a>{{ utilisateur.prenom }}</h4>
-            </div>
-            {% endfor %}
-        </div>
+        <h4>Description</h4>
     </div>
 
 {% endblock %}

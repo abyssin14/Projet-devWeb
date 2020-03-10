@@ -12,8 +12,6 @@ class HomeController extends AbstractController
 
 	
 	public function index(UtilisateurRepository $repository): Response{
-	    $utilisateurs = $repository->findTristan();
-
-		return $this->render('pages/home.html.twig', ['utilisateurs' => $utilisateurs]);
+		return $this->render('pages/home.html.twig');
 	}
 }

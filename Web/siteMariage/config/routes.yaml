@@ -2,21 +2,12 @@ home:
     path: /
     controller: App\Controller\HomeController::index
 
-description:
-    path: /description
-    controller: App\Controller\DescriptionController::index
-
-description.slug:
-    path: /description/{slug}-{id}
-    controller: App\Controller\DescriptionController::show
-
-
 cadeaux.index:
-    path: /cadeaux
+    path: /user/cadeaux
     controller: App\Controller\CadeauController::index
 
 cadeaux.info:
-    path: /cadeaux/{slug}-{id}
+    path: user/cadeaux/{slug}-{id}
     controller: App\Controller\CadeauController::show
 
 admin.cadeau.index:
@@ -37,6 +28,15 @@ admin.cadeau.edit:
     path: /admin/cadeau/{id}
     methods: GET|POST
     controller: App\Controller\Admin\AdminCadeauController::edit
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /logout
+
+
 
 
 

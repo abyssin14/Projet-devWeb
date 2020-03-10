@@ -41,7 +41,11 @@ class AdminCadeauController extends AbstractController
      */
     public function index(){
         $cadeaux = $this->repository->findAll();
-        return $this->render('pages/Admin/Cadeaux/index.html.twig',['cadeaux' => $cadeaux] );
+        return $this->render('Admin/Cadeaux/index.html.twig',
+            [
+                'cadeaux' => $cadeaux,
+                'current_menu' => 'admin'
+            ] );
     }
 
     /**
@@ -58,9 +62,11 @@ class AdminCadeauController extends AbstractController
             $this->em->flush();
             return $this->redirectToRoute('admin.cadeau.index');
         }
-        return  $this->render('pages/Admin/Cadeaux/new.html.twig',
-            ['cadeau' => $cadeau,
-                'form' => $form->createView()
+        return  $this->render('Admin/Cadeaux/new.html.twig',
+            [
+                'cadeau' => $cadeau,
+                'form' => $form->createView(),
+                'current_menu' => 'admin'
             ]);
     }
     /**
@@ -77,9 +83,10 @@ class AdminCadeauController extends AbstractController
             return $this->redirectToRoute('admin.cadeau.index');
         }
 
-        return  $this->render('pages/Admin/Cadeaux/edit.html.twig',
+        return  $this->render('Admin/Cadeaux/edit.html.twig',
             ['cadeau' => $cadeau,
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'current_menu' => 'admin'
             ]);
     }
 
