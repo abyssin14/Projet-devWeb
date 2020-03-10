@@ -6,14 +6,14 @@
 
         {% if error %}
             <div class="alert alert-danger">
-            Nom d'utilisateur incorrect.
+            Nom d'utilisateur ou mot de passe incorrect.
             </div>
         {% endif %}
 
         <form action="{{ path('login') }}" method="post">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
-                <input type="text" id="username" name="_username" class="form-control" value={{ last_username }}>
+                <input type="text" id="username" name="_username" class="form-control" value={{ user }}>
             </div>
             <div class="form-group">
                 <label for="password">Mot de passe</label>

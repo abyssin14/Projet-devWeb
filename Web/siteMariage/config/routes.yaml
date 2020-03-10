@@ -1,5 +1,5 @@
 home:
-    path: /
+    path: user/home
     controller: App\Controller\HomeController::index
 
 cadeaux.index:

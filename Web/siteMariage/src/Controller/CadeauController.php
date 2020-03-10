@@ -11,14 +11,16 @@ use App\Repository\CadeauRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Cadeau;
+use Symfony\Component\Security\Core\Security;
 
 class CadeauController extends AbstractController
 {
     private $repository;
-
-    public function __construct(CadeauRepository $repository)
+    private $security;
+    public function __construct(CadeauRepository $repository, Security $security)
     {
         $this->repository = $repository;
+        $this->security = $security;
     }
 
     public function index(){
@@ -39,7 +41,9 @@ class CadeauController extends AbstractController
 
         return $this->render('pages/Cadeaux/index.html.twig',
             ['current_menu' => 'cadeaux',
-                'cadeaux' => $listeCadeaux]);
+                'cadeaux' => $listeCadeaux,
+                'user' => $this->security->getUser()->getUsername()
+            ]);
     }
 
     public function show(Cadeau $cadeau, string $slug){
@@ -48,6 +52,7 @@ class CadeauController extends AbstractController
                 ['id' => $cadeau->getId(), 'slug' => $cadeau->getSlug()],301);
         }
          return $this->render('pages/Cadeaux/infos.html.twig',
-            ['cadeau' => $cadeau, 'current_menu' => 'cadeaux']);
+            ['cadeau' => $cadeau, 'current_menu' => 'cadeaux',  'user' => $this->security->getUser()->getUsername()]);
     }
+
 }

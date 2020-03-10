@@ -15,8 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\CadeauRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use Symfony\Component\Security\Core\Security;
 
 
 class AdminCadeauController extends AbstractController
@@ -29,11 +28,12 @@ class AdminCadeauController extends AbstractController
      * @var ObjectManager
      */
     private $em;
-
-    public function __construct(CadeauRepository $repository, EntityManagerInterface $em)
+    private $security;
+    public function __construct(CadeauRepository $repository, EntityManagerInterface $em, Security $security)
     {
         $this->repository = $repository;
         $this->em = $em;
+        $this->security = $security;
     }
 
     /**
@@ -44,7 +44,8 @@ class AdminCadeauController extends AbstractController
         return $this->render('Admin/Cadeaux/index.html.twig',
             [
                 'cadeaux' => $cadeaux,
-                'current_menu' => 'admin'
+                'current_menu' => 'admin',
+                'user' => $this->security->getUser()->getUsername()
             ] );
     }
 
@@ -66,7 +67,8 @@ class AdminCadeauController extends AbstractController
             [
                 'cadeau' => $cadeau,
                 'form' => $form->createView(),
-                'current_menu' => 'admin'
+                'current_menu' => 'admin',
+                'user' => $this->security->getUser()->getUsername()
             ]);
     }
     /**
@@ -86,7 +88,8 @@ class AdminCadeauController extends AbstractController
         return  $this->render('Admin/Cadeaux/edit.html.twig',
             ['cadeau' => $cadeau,
                 'form' => $form->createView(),
-                'current_menu' => 'admin'
+                'current_menu' => 'admin',
+                'user' => $this->security->getUser()->getUsername()
             ]);
     }
 
@@ -97,5 +100,6 @@ class AdminCadeauController extends AbstractController
         }
         return $this->redirectToRoute('admin.cadeau.index');
     }
+
 
 }
