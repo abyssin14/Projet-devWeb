@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="006b631c-4a92-4557-b673-b3c99f191c2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/Admin/AdminCadeauController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/DescriptionController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/base.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="006b631c-4a92-4557-b673-b3c99f191c2c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,8 +84,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="230">
+              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
               <folding>
                 <element signature="e#34#75#0#PHP" expanded="true" />
               </folding>
@@ -192,20 +181,6 @@
               <item name="Web" type="462c0819:PsiDirectoryNode" />
               <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="Web" type="462c0819:PsiDirectoryNode" />
-              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Projet-devWeb" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Projet-devWeb" type="462c0819:PsiDirectoryNode" />
-              <item name="Web" type="462c0819:PsiDirectoryNode" />
-              <item name="siteMariage" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -218,7 +193,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/symfony-react-project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
@@ -282,12 +257,12 @@
       <workItem from="1583671687458" duration="2088000" />
       <workItem from="1583764121476" duration="14529000" />
       <workItem from="1583828077407" duration="11006000" />
-      <workItem from="1583857635654" duration="11680000" />
+      <workItem from="1583857635654" duration="13605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60955000" />
+    <option name="totallyTimeSpent" value="62880000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -626,8 +601,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Web/siteMariage/src/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="230">
+          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
           <folding>
             <element signature="e#34#75#0#PHP" expanded="true" />
           </folding>
