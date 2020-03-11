@@ -13,13 +13,15 @@ security:
             anonymous: true
             logout:
                 path: /logout
-                target: /login
+                target: /
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
             form_login:
                 check_path: login
                 default_target_path: /user/home
+                always_use_default_target_path: true
+                failure_path: login
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
