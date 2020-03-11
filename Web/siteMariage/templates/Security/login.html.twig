@@ -10,6 +10,9 @@
             </div>
         {% endif %}
 
+
+ 
+
         <form action="{{ path('login') }}" method="post">
             <div class="form-group">
                 <label for="username">Nom d'utilisateur</label>
@@ -19,10 +22,15 @@
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="_password" class="form-control">
             </div>
+          
 
             <button type="submit" class="btn btn-primary">Se connecter</button>
         </form>
-
+       
+<div id="root"></div>
     </div>
 
 {% endblock %}
+
+
+ 
