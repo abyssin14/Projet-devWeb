@@ -12,6 +12,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Cadeau;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class CadeauController extends AbstractController
 {
@@ -36,14 +38,23 @@ class CadeauController extends AbstractController
         $listeCadeaux = $this->repository->findAll();
         dump($listeCadeaux);*/
 
-        $listeCadeaux = $this->repository->findAll();
 
 
-        return $this->render('pages/Cadeaux/index.html.twig',
+
+       return $this->render('pages/Cadeaux/index.html.twig',
             ['current_menu' => 'cadeaux',
                 'cadeaux' => $listeCadeaux,
                 'user' => $this->security->getUser()->getUsername()
             ]);
+
+        /*$response = new Response();
+
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        $response->setContent(json_encode($listeCadeaux));
+
+        return $response;*/
     }
 
     public function show(Cadeau $cadeau, string $slug){
@@ -53,6 +64,20 @@ class CadeauController extends AbstractController
         }
          return $this->render('pages/Cadeaux/infos.html.twig',
             ['cadeau' => $cadeau, 'current_menu' => 'cadeaux',  'user' => $this->security->getUser()->getUsername()]);
+    }
+
+    public function api( SerializerInterface $serializer){
+
+        $listeCadeaux = $this->repository->findAll();
+        $jsonContent = $serializer->serialize($listeCadeaux, 'json');
+        $response = new Response();
+
+        $response->headers->set('Content-Type', 'application/json');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        $response->setContent($jsonContent);
+
+        return $response;
     }
 
 }

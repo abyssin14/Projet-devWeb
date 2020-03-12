@@ -2,6 +2,10 @@ home:
     path: /user/home
     controller: App\Controller\HomeController::index
 
+api.user:
+    path: /api/cadeaux
+    controller: App\Controller\CadeauController::api
+
 invites.index:
     path: /user/formulaireInvites
     controller : App\Controller\InviteController::index

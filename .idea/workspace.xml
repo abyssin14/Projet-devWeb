@@ -2,13 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="006b631c-4a92-4557-b673-b3c99f191c2c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/7a06b0e1-f967-442b-a02d-0d702ca50438.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7a06b0e1-f967-442b-a02d-0d702ca50438.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/packages/translation.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/packages/translation.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/assets/js/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/assets/js/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/routes.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/siteMariage/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/DefaultController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Invite.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Entity/Invite.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Form/InviteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Form/InviteType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/default/index.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Invites/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/pages/Invites/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/translations/forms.fr.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,13 +66,6 @@
     </expand>
     <select />
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Tristan</find>
-      <find>tristan</find>
-      <find>desc</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -84,10 +93,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/symfony-react-project" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -97,7 +108,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="UserFixtures.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php">
+    <configuration name="UserFixtures.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Web/siteMariage/src/DataFixtures/UserFixtures.php">
       <method v="2" />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp">
@@ -109,11 +120,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="PHP Script.UserFixtures.php" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -139,7 +145,10 @@
       <workItem from="1583857635654" duration="14073000" />
       <workItem from="1583918963463" duration="1812000" />
       <workItem from="1583938171121" duration="3885000" />
-      <workItem from="1583942719397" duration="4019000" />
+      <workItem from="1583942719397" duration="4464000" />
+      <workItem from="1583950979113" duration="2697000" />
+      <workItem from="1584004888615" duration="12981000" />
+      <workItem from="1584023530283" duration="11635000" />
     </task>
     <servers />
   </component>
@@ -148,6 +157,40 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584019361568">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1584019361568" />
+    <state width="1493" height="190" key="GridCell.Tab.0.bottom" timestamp="1584019434716">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="190" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584019434716" />
+    <state width="1493" height="190" key="GridCell.Tab.0.center" timestamp="1584019434716">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="190" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584019434716" />
+    <state width="1493" height="190" key="GridCell.Tab.0.left" timestamp="1584019434716">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="190" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584019434716" />
+    <state width="1493" height="190" key="GridCell.Tab.0.right" timestamp="1584019434716">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="190" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584019434716" />
+    <state x="373" y="210" key="NewPhpClassDialog" timestamp="1584034102126">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="373" y="210" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1584034102126" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1584025940427">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1584025940427" />
+    <state x="453" y="0" width="629" height="824" key="find.popup" timestamp="1584036242991">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="453" y="0" width="629" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1584036242991" />
   </component>
   <component name="masterDetails">
     <states>

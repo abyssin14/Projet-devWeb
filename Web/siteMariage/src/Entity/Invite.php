@@ -17,11 +17,6 @@ class Invite
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $presence;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $allergie;
@@ -36,22 +31,31 @@ class Invite
      */
     private $enfant;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $presentCeremonie;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $presentVinDHonneur;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $presentRepas;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $presentSoiree;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPresence(): ?string
-    {
-        return $this->presence;
-    }
-
-    public function setPresence(string $presence): self
-    {
-        $this->presence = $presence;
-
-        return $this;
-    }
 
     public function getAllergie(): ?string
     {
@@ -85,6 +89,54 @@ class Invite
     public function setEnfant(int $enfant): self
     {
         $this->enfant = $enfant;
+
+        return $this;
+    }
+
+    public function getPresentCeremonie(): ?bool
+    {
+        return $this->presentCeremonie;
+    }
+
+    public function setPresentCeremonie(bool $presentCeremonie): self
+    {
+        $this->presentCeremonie = $presentCeremonie;
+
+        return $this;
+    }
+
+    public function getPresentVinDHonneur(): ?bool
+    {
+        return $this->presentVinDHonneur;
+    }
+
+    public function setPresentVinDHonneur(bool $presentVinDHonneur): self
+    {
+        $this->presentVinDHonneur = $presentVinDHonneur;
+
+        return $this;
+    }
+
+    public function getPresentRepas(): ?bool
+    {
+        return $this->presentRepas;
+    }
+
+    public function setPresentRepas(bool $presentRepas): self
+    {
+        $this->presentRepas = $presentRepas;
+
+        return $this;
+    }
+
+    public function getPresentSoiree(): ?bool
+    {
+        return $this->presentSoiree;
+    }
+
+    public function setPresentSoiree(bool $presentSoiree): self
+    {
+        $this->presentSoiree = $presentSoiree;
 
         return $this;
     }

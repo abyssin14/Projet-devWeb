@@ -3,24 +3,15 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-    
+
 class Index extends Component {
-  
-  
+
+
     render() {
     return (
-      
-
-     
-
-
       <span>Ceci est du react</span>
-
-     
-       
-        
     )
-   
+
   }
 }
   

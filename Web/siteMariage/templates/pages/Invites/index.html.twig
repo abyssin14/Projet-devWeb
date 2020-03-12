@@ -4,7 +4,15 @@
     <div class="container mt-4">
         <h1>Formulaire de présence</h1>
         {{ form_start(form) }}
-
+        <h6>Veuillez cocher les moments du mariage auxquels vous serez présents</h6>
+            <div class="row">
+                <div class="col-md-2">{{ form_row(form.presentCeremonie) }}</div>
+                <div class="col-md-2">{{ form_row(form.presentVinDHonneur) }}</div>
+            </div>
+             <div class="row">
+                <div class="col-md-2">{{ form_row(form.presentRepas) }}</div>
+                <div class="col-md-2">{{ form_row(form.presentSoiree) }}</div>
+             </div>
         {{ form_rest(form) }}
         <button class="btn btn-secondary">Valider</button>
         {{ form_end(form) }}
