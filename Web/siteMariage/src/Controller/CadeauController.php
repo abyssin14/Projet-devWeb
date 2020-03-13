@@ -35,9 +35,9 @@ class CadeauController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($cadeau);
         $em->flush();
-        $listeCadeaux = $this->repository->findAll();
         dump($listeCadeaux);*/
 
+        $listeCadeaux = $this->repository->findAll();
 
 
 
