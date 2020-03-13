@@ -1,9 +1,17 @@
+    #home:
+    #path: /user/home
+    #controller: App\Controller\HomeController::index
+
 home:
-    path: /user/home
+    path: /home
     controller: App\Controller\HomeController::index
 
 home.react:
-    path: /user/home/salut
+    path: /home/Acceuil
+    controller: App\Controller\HomeController::index
+
+home.cadeau:
+    path: /home/Cadeaux
     controller: App\Controller\HomeController::index
 
 api.user:

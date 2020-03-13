@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import '../css/app.css';
 import { BrowserRouter, Route, Switch, Link, HashRouter, NavLink } from 'react-router-dom';
-import home from './Components/home';
+import Cadeau from './Components/Cadeau';
 import Navigation from './Components/Navigation';
 
 
@@ -15,20 +15,20 @@ class Index extends Component {
     return (
       
       <switch>
-     
-     
-
-       <Route path="/" component={Navigation}>
-         
-
-   
-
-      
-
-
-       
+       <Route path="/home" component={Navigation}>
       </Route>
-    <Route path="/user/home/salut" component={home}></Route>
+
+    <Route path="/home/Acceuil">
+    <div class="jumbotron text-center">
+<h1>Mariage Stephanie et Nicolas</h1>
+</div>
+<div class="container">
+<h4>Description</h4>
+</div>
+    </Route>
+    <Route path="/home/Cadeaux" component={Cadeau}>
+
+    </Route>
      
    </switch>
     

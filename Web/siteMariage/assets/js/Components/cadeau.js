@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
-class home extends Component {
+class Cadeau extends Component {
  
     constructor(props) {
         super(props);
@@ -59,4 +59,4 @@ class home extends Component {
 }
 
 
-export default home;
+export default Cadeau;

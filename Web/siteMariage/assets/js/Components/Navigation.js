@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
-import home from './home';
+import Cadeau from './cadeau';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -26,17 +26,17 @@ class Navigation extends React.Component {
         <Router>
           <header>
             <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
-              <MDBNavbarBrand href="/">
+              <MDBNavbarBrand>
                   <strong>Bienvenue</strong>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={ this.onClick } />
               <MDBCollapse isOpen = { this.state.collapse } navbar>
                 <MDBNavbarNav left>
                   <MDBNavItem active>
-                      <MDBNavLink to="/user/home">Acceuil</MDBNavLink>
+                      <MDBNavLink to="/home/Acceuil">Acceuil</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="/user/home/salut">Cadeaux</MDBNavLink>
+                      <MDBNavLink to="/home/Cadeaux">Cadeaux</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                       <MDBNavLink to="#">Pricing</MDBNavLink>

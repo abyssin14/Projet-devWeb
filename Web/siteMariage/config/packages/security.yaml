@@ -19,7 +19,7 @@ security:
             # https://symfony.com/doc/current/security.html#firewalls-authentication
             form_login:
                 check_path: login
-                default_target_path: /user/home
+                default_target_path: /home/Acceuil
                 always_use_default_target_path: true
                 failure_path: login
             # https://symfony.com/doc/current/security/impersonating_user.html
