@@ -2,7 +2,7 @@
     
 import React, { Component } from 'react';
 import '../css/app.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link, HashRouter, NavLink } from 'react-router-dom';
 import home from './Components/home';
 
 
@@ -11,41 +11,49 @@ class Index extends Component {
 
     render() {
     return (
-      <main>
+      
       <switch>
      
       
 
-       <Route path="/user/home" exact >
+       <Route path="/user/home" exact>
          
-      <div>
-        <h1>Bienvenu admin</h1>
-    </div>
-    </Route>
-    <Route path="/user/home/salut" component={home}>
-      
-    </Route>
+
+      <nav>
+<ol>
+  
+  <li>     <Link to="/user/home/cadeaux">salut </Link>     </li>
+  <li>                  futur lien                                    </li>
+  </ol>
+
+
+      </nav>
+
+ 
+
+
+       
+  
+
     
-      </switch>
-      </main>
+    
+    
+    </Route>
+    <Route path="/user/home/cadeaux" component={home}></Route>
+     
+   </switch>
+    
+      
+      
     )
 
   }
-}
+
   
+
+}
+
   export default Index;
 
-    /* <main>
-        <Switch>
-      
-      <div className="index">
-        <Route path="/user/home" > 
-      <div>Bienvenue sur la page admin</div> 
-      </Route>
-          
-          <Route path="/home" component={home} />
-      </div>
-      </Switch>
-      </main>
-    );
-    }*/
+   
+   

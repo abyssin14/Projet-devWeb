@@ -39,7 +39,7 @@ class CadeauController extends AbstractController
         dump($listeCadeaux);*/
 
 
-
+        $listeCadeaux = $this->repository->findAll();
 
        return $this->render('pages/Cadeaux/index.html.twig',
             ['current_menu' => 'cadeaux',
