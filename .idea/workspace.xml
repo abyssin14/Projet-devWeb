@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="006b631c-4a92-4557-b673-b3c99f191c2c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/src/Controller/CadeauController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/assets/js/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/assets/js/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/Security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/Web/siteMariage/templates/pages/home.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -128,7 +131,7 @@
       <workItem from="1583950979113" duration="2697000" />
       <workItem from="1584004888615" duration="12981000" />
       <workItem from="1584023530283" duration="12238000" />
-      <workItem from="1584085630742" duration="4092000" />
+      <workItem from="1584085630742" duration="8374000" />
     </task>
     <servers />
   </component>
