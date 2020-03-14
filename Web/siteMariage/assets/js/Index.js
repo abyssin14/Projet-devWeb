@@ -10,7 +10,7 @@ import Navigation from './Components/Navigation';
 
 class Index extends Component {
   componentDidMount() {
-  fetch('http://localhost:8000/api/cadeaux/test'
+  fetch('http://localhost:8000/api/cadeaux'
   ,{
     method: 'POST',
     headers: {'Content-Type':'application/json'},
@@ -21,7 +21,7 @@ class Index extends Component {
       description : "ceci est un test de fetching post via react",
       slug : "test"
     })
-  }).then(res => res.json());
+  }).then((response) => response.json());
 }
 
     render() {
