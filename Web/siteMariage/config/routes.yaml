@@ -1,6 +1,9 @@
 racine:
     path: /
     controller: App\Controller\RacineController:index
+test:
+    path: /api/cadeaux/test
+    controller: App\Controller\HomeController::index
 navigation:
     path: /user
     controller: App\Controller\HomeController::index

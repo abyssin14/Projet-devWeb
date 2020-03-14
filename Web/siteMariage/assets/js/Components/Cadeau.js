@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 class Cadeau extends Component {
- 
+
     constructor(props) {
         super(props);
         this.state = {
@@ -33,11 +33,15 @@ class Cadeau extends Component {
                     });
                 }
             )
+
+
     }
 
   render() {
-  
-   
+
+
+
+
     const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Erreur : {error.message}</div>;
@@ -55,6 +59,7 @@ class Cadeau extends Component {
         );
         }
     }
+
 
 }
 

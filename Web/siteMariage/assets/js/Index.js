@@ -9,7 +9,20 @@ import Navigation from './Components/Navigation';
 
 
 class Index extends Component {
-
+  componentDidMount() {
+  fetch('http://localhost:8000/api/cadeaux/test'
+  ,{
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body:JSON.stringify({
+      id : 9,
+      nom : "test",
+      prix : 15,
+      description : "ceci est un test de fetching post via react",
+      slug : "test"
+    })
+  }).then(res => res.json());
+}
 
     render() {
     return (
