@@ -1,34 +1,23 @@
-    #home:
-    #path: /user/home
-    #controller: App\Controller\HomeController::index
+racine:
+    path: /
+    controller: App\Controller\RacineController:index
+navigation:
+    path: /user
+    controller: App\Controller\HomeController::index
 
 home:
-    path: /home
+    path: /user/Acceuil
     controller: App\Controller\HomeController::index
 
-home.react:
-    path: /home/Acceuil
+cadeau:
+    path: /user/Cadeaux
     controller: App\Controller\HomeController::index
 
-home.cadeau:
-    path: /home/Cadeaux
-    controller: App\Controller\HomeController::index
-
-api.user:
+api.cadeau:
     path: /api/cadeaux
     controller: App\Controller\CadeauController::api
 
-invites.index:
-    path: /user/formulaireInvites
-    controller : App\Controller\InviteController::index
 
-cadeaux.index:
-    path: /user/cadeaux
-    controller: App\Controller\CadeauController::index
-
-cadeaux.info:
-    path: /user/cadeaux/{slug}-{id}
-    controller: App\Controller\CadeauController::show
 
 admin.cadeau.index:
     path: /admin/cadeau
@@ -43,14 +32,13 @@ admin.cadeau.delete:
     methods: DELETE
     controller: App\Controller\Admin\AdminCadeauController::delete
 
-
 admin.cadeau.edit:
     path: /admin/cadeau/{id}
     methods: GET|POST
     controller: App\Controller\Admin\AdminCadeauController::edit
 
 login:
-    path: /
+    path: /login
     controller: App\Controller\SecurityController::login
 
 logout:
@@ -58,7 +46,17 @@ logout:
 
 
 
+#invites.index:
+#   path: /user/formulaireInvites
+#  controller : App\Controller\InviteController::index
 
+#cadeaux.index:
+#    path: /user/cadeaux
+#    controller: App\Controller\CadeauController::index
+
+#cadeaux.info:
+#    path: /user/cadeaux/{slug}-{id}
+#    controller: App\Controller\CadeauController::show
 
 #index:
 #    path: /

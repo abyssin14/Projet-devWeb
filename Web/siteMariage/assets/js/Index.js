@@ -1,5 +1,5 @@
 // ./src/js/app.js
-    
+
 import React, { Component } from 'react';
 import '../css/app.css';
 import { BrowserRouter, Route, Switch, Link, HashRouter, NavLink } from 'react-router-dom';
@@ -13,12 +13,12 @@ class Index extends Component {
 
     render() {
     return (
-      
+
       <switch>
-       <Route path="/home" component={Navigation}>
+       <Route path="/user" component={Navigation}>
       </Route>
 
-    <Route path="/home/Acceuil">
+    <Route path="/user/Acceuil">
     <div class="jumbotron text-center">
 <h1>Mariage Stephanie et Nicolas</h1>
 </div>
@@ -26,23 +26,20 @@ class Index extends Component {
 <h4>Description</h4>
 </div>
     </Route>
-    <Route path="/home/Cadeaux" component={Cadeau}>
+    <Route path="/user/Cadeaux" component={Cadeau}>
 
     </Route>
-     
+
    </switch>
-    
-      
-      
+
+
+
     )
 
   }
 
-  
+
 
 }
 
   export default Index;
-
-   
-   

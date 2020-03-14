@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
-import Cadeau from './cadeau';
+import Cadeau from './Cadeau';
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -19,24 +19,21 @@ class Navigation extends React.Component {
   }
 
   render() {
-    const bgPink = {backgroundColor: '#000000'}
+    const bgPink = {backgroundColor: '#1b4fa3'}
     const container = {height: 1300}
     return(
       <div>
         <Router>
           <header>
             <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
-              <MDBNavbarBrand>
-                  <strong>Bienvenue</strong>
-              </MDBNavbarBrand>
               <MDBNavbarToggler onClick={ this.onClick } />
               <MDBCollapse isOpen = { this.state.collapse } navbar>
                 <MDBNavbarNav left>
                   <MDBNavItem active>
-                      <MDBNavLink to="/home/Acceuil">Acceuil</MDBNavLink>
+                      <MDBNavLink to="/user/Acceuil"><strong>Acceuil</strong></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="/home/Cadeaux">Cadeaux</MDBNavLink>
+                      <MDBNavLink to="/user/Cadeaux">Cadeaux</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                       <MDBNavLink to="#">Pricing</MDBNavLink>
@@ -59,15 +56,15 @@ class Navigation extends React.Component {
               </MDBCollapse>
             </MDBNavbar>
           </header>
-          
+
         </Router>
-        
+
       </div>
 
 
 
     );
-    
+
   }
 }
 
