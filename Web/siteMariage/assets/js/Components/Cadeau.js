@@ -14,7 +14,7 @@ class Cadeau extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8000/api/cadeaux")
+        fetch("http://localhost:8000/api/cadeaus?page=1")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -39,7 +39,7 @@ class Cadeau extends Component {
 
   render() {
 
-
+console.log(this.state.items);
 
 
     const { error, isLoaded, items } = this.state;

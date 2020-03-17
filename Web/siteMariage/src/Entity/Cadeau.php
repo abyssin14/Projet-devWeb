@@ -2,15 +2,20 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\CadeauRepository")
  */
+
+
 class Cadeau
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
