@@ -36,10 +36,10 @@ class Navigation extends React.Component {
                       <MDBNavLink to="/user/Cadeaux">Cadeaux</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                      <MDBNavLink to="#">Pricing</MDBNavLink>
+                      <MDBNavLink to="#">formulaire présence</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#">Options</MDBNavLink>
+                    <MDBNavLink to="#">Contact</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>

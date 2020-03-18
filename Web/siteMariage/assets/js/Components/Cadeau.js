@@ -46,10 +46,10 @@ console.log(this.state.items);
         if (error) {
             return <div>Erreur : {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Chargement…</div>;
+            return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-                <ul>
+                <ul><br></br><br></br><br></br>
                 {items.map(item => (
                         <li key={item.id}>
                     {item.nom} {item.prix}
