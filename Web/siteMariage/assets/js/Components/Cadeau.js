@@ -33,9 +33,9 @@ class Cadeau extends Component {
                     });
                 }
             )
-
-
     }
+
+
 
   render() {
 
@@ -56,6 +56,7 @@ console.log(this.state.items);
         </li>
         ))}
         </ul>
+  
         );
         }
     }
