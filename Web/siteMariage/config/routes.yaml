@@ -9,13 +9,16 @@ navigation:
     controller: App\Controller\HomeController::index
 
 home:
-    path: /user/Acceuil
+    path: /user/Accueil
     controller: App\Controller\HomeController::index
 
 cadeau:
     path: /user/Cadeaux
     controller: App\Controller\HomeController::index
 
+formulaire:
+    path: /user/Formulaire
+    controller: App\Controller\HomeController::index
 api.cadeau:
     path: /api/cadeaux
     controller: App\Controller\CadeauController::api

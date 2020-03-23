@@ -38,10 +38,6 @@ class Cadeau extends Component {
 
 
   render() {
-
-console.log(this.state.items);
-
-
     const { error, isLoaded, items } = this.state;
         if (error) {
             return <div>Erreur : {error.message}</div>;
@@ -49,14 +45,17 @@ console.log(this.state.items);
             return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
+              <div>
                 <ul><br></br><br></br><br></br>
                 {items.map(item => (
                         <li key={item.id}>
-                    {item.nom} {item.prix}
-        </li>
+                          {item.nom} : {item.prix} €
+                        </li>
         ))}
         </ul>
-  
+        </div>
+
+
         );
         }
     }

@@ -1,1 +1,2 @@
 npm install --save mdbreact ( attention dans le dossier assets )
+npm install react-hook-form
