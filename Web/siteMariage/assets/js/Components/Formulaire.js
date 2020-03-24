@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
+import  '../../css/app.css';
 
 
 class Formulaire extends Component {
@@ -56,9 +57,9 @@ handleSubmit(event) {
 
   render(){
     return(
-  <div>
+  <div >
     <br></br><br></br><br></br>
-  <form onSubmit={this.handleSubmit}>
+  <form   onSubmit={this.handleSubmit}>
       <label>Formulaire de présence</label><br></br>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
@@ -82,7 +83,7 @@ handleSubmit(event) {
       <label>Enfant</label><br></br>
       <input type="number"  min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
       <br></br>
-      <input type="submit" value="Envoyer"></input>
+      <input type="submit" className="bouton" value="Envoyer"></input>
   </form>
 
   </div>

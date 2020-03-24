@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import app from "../../css/app.css"
 
 class Cadeau extends Component {
 
@@ -45,10 +45,10 @@ class Cadeau extends Component {
             return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-              <div>
+              <div >
                 <ul><br></br><br></br><br></br>
                 {items.map(item => (
-                        <li key={item.id}>
+                        <li className="bouton" key={item.id}>
                           {item.nom} : {item.prix} €
                         </li>
         ))}
