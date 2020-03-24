@@ -8,7 +8,17 @@ use Cocur\Slugify\Slugify;
 
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  collectionOperations={
+ *         "post"={"path"="/cadeaux"},
+ *          "get"={"path"="/cadeaux"}
+ *     },
+ *     itemOperations={
+ *         "get"={"path"="/cadeaux/{id}"},
+ *         "delete"={"path"="/cadeaux/{id}"},
+ *         "put"={"path"="/cadeaux/{id}"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\CadeauRepository")
  */
 

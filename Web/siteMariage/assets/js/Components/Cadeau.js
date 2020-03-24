@@ -14,7 +14,7 @@ class Cadeau extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8000/api/cadeaus?page=1")
+        fetch("http://localhost:8000/api/cadeaux?page=1")
             .then(res => res.json())
             .then(
                 (result) => {

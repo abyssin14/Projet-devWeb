@@ -5,7 +5,6 @@ import Index from './Index';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReactOnRails from 'react-on-rails';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 ReactDOM.render(

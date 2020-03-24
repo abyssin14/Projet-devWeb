@@ -1,6 +1,10 @@
 racine:
     path: /
     controller: App\Controller\RacineController:index
+
+invites.index:
+        path: /user/formulaireInvites
+        controller: App\Controller\InviteController::index
 test:
     path: /api/cadeaux/test
     controller: App\Controller\HomeController::index
@@ -51,10 +55,6 @@ logout:
     path: /logout
 
 
-
-#invites.index:
-#   path: /user/formulaireInvites
-#  controller : App\Controller\InviteController::index
 
 #cadeaux.index:
 #    path: /user/cadeaux
