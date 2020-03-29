@@ -24,7 +24,7 @@ class Navigation extends React.Component {
     const bgPink = {backgroundColor: '#1b4fa3'}
     const container = {height: 1300}
     return(
-      <div>
+      <div style={{height:"10%"}}> 
         <Router>
           <header>
             <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">

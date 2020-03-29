@@ -17,10 +17,22 @@
 .btn-default{background:#6B456A; color:#fff; border-radius:30px; border:none; font-size:16px;}
 .fa-spin {
     margin: 0 auto;}
-body {
-    background-color: lightgray;
-}
+
 
 .bouton {
+<<<<<<< Updated upstream
 font-size: 200px;
+=======
+font-size: 30px;
+}
+
+.salut:hover{
+
+background-color: whitesmoke;
+
+}
+html, body {
+
+    height: 100%;
+>>>>>>> Stashed changes
 }
