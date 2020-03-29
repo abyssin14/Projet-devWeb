@@ -31,8 +31,12 @@ class Index extends Component {
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
     <Route path="/user/Formulaire" component={Formulaire}></Route>
+                <Route path="/logout" component={() => {
+            window.location.reload();
+                }}></Route>
 
-   </switch>
+
+                </switch>
 
 
 
