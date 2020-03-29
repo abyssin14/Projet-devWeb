@@ -69,8 +69,8 @@ class Cadeau extends Component {
               
                
 
-                <div className="card bg-light">
-                <ul className="list-group">
+                <div className="card bg-light" style={{maxHeight:"100%"}}>
+                <ul className="list-group  table-wrapper-scroll-y " style={{maxHeight:"100%"}}>
                 {items.map(item => (
                         <li id={item.id} className="list-group-item list-group-item-dark salut" 
                         key={item.id}
