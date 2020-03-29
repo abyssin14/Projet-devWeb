@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import app from "../../css/app.css"
+import cadeau from "../../img/cadeau.png"
 
 
 class Cadeau extends Component {
@@ -45,9 +46,11 @@ class Cadeau extends Component {
         console.log(a);
         console.log(b);
         this.setState(state => ({
-          infoCadeau: a + " Prix : " + b + "€"
+          infoCadeau: a + " avec un prix de: " + b + " € !"
         }));
-      }
+
+        document.getElementById('imgCadeau').style.display ="none";
+            }
 
   render() {
     const { error, isLoaded, items } = this.state;
@@ -57,11 +60,11 @@ class Cadeau extends Component {
             return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-              <div >
+              <div style={{height:"90%"}}>
               
                
-                <div className="card bg-light"  >Description à venir</div>
-                <div className="card-group "  style={{ marginTop:"0px",  marginBottom:"0px"}} >
+                <div className="card bg-light" style={{height:"30%"}} >Description à venir</div>
+                <div className="card-group "  style={{ height:"70%",marginTop:"0px",  marginBottom:"0px"}} >
                
               
                
@@ -80,7 +83,10 @@ class Cadeau extends Component {
         ))}
         </ul>
         </div>
-        <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> {this.state.infoCadeau}</div>
+        <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> {this.state.infoCadeau}
+        <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
+        
+        </div>
         </div> 
         </div>
 
