@@ -13,7 +13,8 @@ class Cadeau extends Component {
             isLoaded: false,
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
-            montantRecolte: 0
+            montantRecolte: 0,
+            invites: []
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,9 +42,34 @@ class Cadeau extends Component {
                     });
                 }
             )
+
+            fetch("http://localhost:8000/api/invites")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        invites: result
+                    });
+                },
+                // Remarque : il est important de traiter les erreurs ici
+                // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+                // des exceptions provenant de réels bugs du composant.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+
+           
+           
+          
+     
     }
 
-    
+   
     
     handleClick(a,b) {
         this.setState(state => ({
@@ -59,8 +85,7 @@ class Cadeau extends Component {
     handleSubmit(event) {
         var maxCadeau = document.getElementById('montantCadeau').max;
         var minCadeau = document.getElementById('montantCadeau').min;
-        console.log(this.state.montantRecolte);
-        console.log(maxCadeau);
+
 
         if( parseInt(this.state.montantRecolte) > parseInt(maxCadeau) || parseInt(this.state.montantRecolte) <= parseInt(minCadeau) ) {
             alert('Entrer une valeur entre' + minCadeau + ' et' + maxCadeau +' €');
@@ -68,6 +93,8 @@ class Cadeau extends Component {
                 montantRecolte:  0
               }));
         }
+
+        
     }
 
     handleInputChange(event) { 
@@ -86,6 +113,7 @@ class Cadeau extends Component {
 
   render() {
     const { error, isLoaded, items } = this.state;
+    
         if (error) {
             return <div>Erreur : {error.message}</div>;
         } else if (!isLoaded) {
@@ -121,12 +149,32 @@ class Cadeau extends Component {
         <br></br><br></br>
         <div className="formPayement" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
+        <label>Sélectionner votre nom et Prénom</label><br></br>
+        <select >
+        <option>Votre nom</option>
+        {this.state.invites.map(invite => (
+                        <option>
+                          {invite.nom}
+                        </option>
+        ))}
+
+        </select> &nbsp;
+        <select>
+     <option>votre Prenom</option>
+     {this.state.invites.map(invite => (
+                     <option>
+                       {invite.prenom}
+                     </option>
+     ))}
+
+     </select>
+
+        <br></br><br></br>
         <label>Entrer un montant</label> &nbsp;
         <input type="number" min="0" max="10" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
         <input type="checkbox"></input> <label>Au mariage</label> &nbsp;
         <input type="checkbox"></input> <label>Maintenant (payement en ligne)</label><br></br>
         <input type="button" value="Valider" onClick={this.handleSubmit}></input>
-
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
         
