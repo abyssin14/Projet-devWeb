@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
-import Cadeau from './Cadeau';
-import Formulaire from './Formulaire';
 import  '../../css/app.css';
 
 class Navigation extends React.Component {
@@ -46,13 +44,7 @@ class Navigation extends React.Component {
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
-                    <MDBNavLink to="#"><MDBIcon fab icon="facebook-f" /></MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#"><MDBIcon fab icon="twitter" /></MDBNavLink>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="#"><MDBIcon fab icon="instagram" /></MDBNavLink>
+                    <MDBNavLink to="/logout">Deconnexion</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
