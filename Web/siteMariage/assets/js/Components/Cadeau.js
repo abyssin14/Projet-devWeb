@@ -52,6 +52,7 @@ class Cadeau extends Component {
         document.getElementById('imgCadeau').style.display ="none";
         document.getElementById('formPayement').style.display ="block";
        document.getElementById('montantCadeau').max = b;
+       document.getElementById('montantCadeau').value = 0;
             }
 
   render() {
