@@ -13,9 +13,12 @@ class Cadeau extends Component {
             isLoaded: false,
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
+            montantRecolte: 0
         };
         this.handleClick = this.handleClick.bind(this);
-    
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+   
     }
 
     componentDidMount() {
@@ -43,8 +46,6 @@ class Cadeau extends Component {
     
     
     handleClick(a,b) {
-        console.log(a);
-        console.log(b);
         this.setState(state => ({
           infoCadeau: a + " avec un prix de: " + b + " € !"
         }));
@@ -54,6 +55,34 @@ class Cadeau extends Component {
        document.getElementById('montantCadeau').max = b;
        document.getElementById('montantCadeau').value = 0;
             }
+
+    handleSubmit(event) {
+        var maxCadeau = document.getElementById('montantCadeau').max;
+        var minCadeau = document.getElementById('montantCadeau').min;
+        console.log(this.state.montantRecolte);
+        console.log(maxCadeau);
+
+        if( parseInt(this.state.montantRecolte) > parseInt(maxCadeau) || parseInt(this.state.montantRecolte) <= parseInt(minCadeau) ) {
+            alert('Entrer une valeur entre' + minCadeau + ' et' + maxCadeau +' €');
+            this.setState(state => ({
+                montantRecolte:  0
+              }));
+        }
+    }
+
+    handleInputChange(event) { 
+
+      
+        const target = event.target;
+        const value = target.value;
+        const name = target.name; 
+      
+        this.setState(state => ({
+            montantRecolte:  value
+          }));
+         
+         
+    }
 
   render() {
     const { error, isLoaded, items } = this.state;
@@ -90,14 +119,15 @@ class Cadeau extends Component {
         <br></br><br></br><br></br>
         {this.state.infoCadeau}
         <br></br><br></br>
-        <form className="formPayement" id="formPayement">
+        <div className="formPayement" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
         <label>Entrer un montant</label> &nbsp;
-        <input type="number" min="1" max="10" id="montantCadeau"></input> €<br></br>
+        <input type="number" min="0" max="10" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
         <input type="checkbox"></input> <label>Au mariage</label> &nbsp;
-        <input type="checkbox"></input> <label>Maintenant (payement en ligne)</label>
+        <input type="checkbox"></input> <label>Maintenant (payement en ligne)</label><br></br>
+        <input type="button" value="Valider" onClick={this.handleSubmit}></input>
 
-        </form>
+        </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
         
 

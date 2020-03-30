@@ -71,7 +71,18 @@ html, body {
 .navbar {
     height:10%;
 }
-
+/* On cache le formulaire de payement si aucun cadeau n'est sélectionner*/
 .formPayement{
     display:none;
+}
+/* Permet de masquer l'arrow de l'input number page cadeau*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/*warning si la valeur dépasser le montant autorisé dans le input number vue cadeau */
+input:out-of-range{
+    background: crimson;
+    color:#fff;
 }
