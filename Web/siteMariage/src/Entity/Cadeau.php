@@ -48,6 +48,21 @@ class Cadeau
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $acheteurs = [];
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $montantsRecoltes = [];
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $payement;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,5 +108,41 @@ class Cadeau
     {
         $slugify = new Slugify();
         return $slugify->slugify($this->nom);
+    }
+
+    public function getAcheteurs(): ?array
+    {
+        return $this->acheteurs;
+    }
+
+    public function setAcheteurs(?array $acheteurs): self
+    {
+        $this->acheteurs = $acheteurs;
+
+        return $this;
+    }
+
+    public function getMontantsRecoltes(): ?array
+    {
+        return $this->montantsRecoltes;
+    }
+
+    public function setMontantsRecoltes(?array $montantsRecoltes): self
+    {
+        $this->montantsRecoltes = $montantsRecoltes;
+
+        return $this;
+    }
+
+    public function getPayement(): ?string
+    {
+        return $this->payement;
+    }
+
+    public function setPayement(?string $payement): self
+    {
+        $this->payement = $payement;
+
+        return $this;
     }
 }

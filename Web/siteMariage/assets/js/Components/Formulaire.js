@@ -17,6 +17,8 @@ class Formulaire extends Component {
       presentVinDHonneur: false,
       presentRepas: false,
       presentSoiree: false,
+      nom: new String(),
+      prenom: new String()
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +52,9 @@ handleSubmit(event) {
     "presentCeremonie": this.state.presentCeremonie,
     "presentVinDHonneur": this.state.presentVinDHonneur,
     "presentRepas": this.state.presentRepas,
-    "presentSoiree": this.state.presentSoiree
+    "presentSoiree": this.state.presentSoiree,
+    "nom": this.state.nom,
+    "prenom": this.state.prenom
   })
 })
 }
@@ -58,9 +62,15 @@ handleSubmit(event) {
   render(){
     return(
   <div >
-    <br></br><br></br><br></br>
+    <br></br><br></br>
   <form   onSubmit={this.handleSubmit}>
       <label>Formulaire de présence</label><br></br>
+     <label>nom</label><br></br>
+      <input type="text" name="nom" value={this.state.nom} onChange={this.handleInputChange}></input>
+        <br></br>
+     <label>prénom</label><br></br>
+     <input type="text" name="prenom" value={this.state.prenom} onChange={this.handleInputChange}></input>
+        <br></br>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
       <div>
