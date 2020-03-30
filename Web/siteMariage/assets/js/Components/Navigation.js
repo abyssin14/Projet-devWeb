@@ -22,14 +22,14 @@ class Navigation extends React.Component {
     const bgPink = {backgroundColor: '#1b4fa3'}
     const container = {height: 1300}
     return(
-      <div>
+      <div style={{height:"10%"}}> 
         <Router>
           <header>
             <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
               <MDBNavbarToggler onClick={ this.onClick } />
               <MDBCollapse isOpen = { this.state.collapse } navbar>
                 <MDBNavbarNav left>
-                  <MDBNavItem active>
+                  <MDBNavItem >
                       <MDBNavLink to="/user/Accueil"><strong>Accueil</strong></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
@@ -39,7 +39,7 @@ class Navigation extends React.Component {
                       <MDBNavLink to="/user/Formulaire">Formulaire</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="#">Contact</MDBNavLink>
+                    <MDBNavLink to="">Contact</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
