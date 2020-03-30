@@ -50,6 +50,8 @@ class Cadeau extends Component {
         }));
 
         document.getElementById('imgCadeau').style.display ="none";
+        document.getElementById('formPayement').style.display ="block";
+       document.getElementById('montantCadeau').max = b;
             }
 
   render() {
@@ -86,10 +88,13 @@ class Cadeau extends Component {
         <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> 
         <br></br><br></br><br></br>
         {this.state.infoCadeau}
-        <form className="formPayement">
+        <br></br><br></br>
+        <form className="formPayement" id="formPayement">
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
-        <label>Entrer un montant</label>
-        <input type="number"></input> €
+        <label>Entrer un montant</label> &nbsp;
+        <input type="number" min="1" max="10" id="montantCadeau"></input> €<br></br>
+        <input type="checkbox"></input> <label>Au mariage</label> &nbsp;
+        <input type="checkbox"></input> <label>Maintenant (payement en ligne)</label>
 
         </form>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
