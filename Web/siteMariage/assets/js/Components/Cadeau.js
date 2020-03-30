@@ -70,7 +70,7 @@ class Cadeau extends Component {
                
 
                 <div className="card bg-light" style={{maxHeight:"100%"}}>
-                <ul className="list-group  table-wrapper-scroll-y " style={{maxHeight:"100%"}}>
+                <ul className="list-group  table-wrapper-scroll-y" style={{maxHeight:"100%"}}>
                 {items.map(item => (
                         <li id={item.id} className="list-group-item list-group-item-dark salut" 
                         key={item.id}
@@ -83,9 +83,18 @@ class Cadeau extends Component {
         ))}
         </ul>
         </div>
-        <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> {this.state.infoCadeau}
+        <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> 
+        <br></br><br></br><br></br>
+        {this.state.infoCadeau}
+        <form className="formPayement">
+        <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
+        <label>Entrer un montant</label>
+        <input type="number"></input> €
+
+        </form>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
         
+
         </div>
         </div> 
         </div>

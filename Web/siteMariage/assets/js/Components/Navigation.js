@@ -25,7 +25,7 @@ class Navigation extends React.Component {
       <div style={{height:"10%"}}> 
         <Router>
           <header>
-            <MDBNavbar style={bgPink} dark expand="md" scrolling fixed="top">
+            <MDBNavbar style={bgPink}  dark expand="md" scrolling fixed="top">
               <MDBNavbarToggler onClick={ this.onClick } />
               <MDBCollapse isOpen = { this.state.collapse } navbar>
                 <MDBNavbarNav left>
