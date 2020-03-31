@@ -6,6 +6,7 @@ import cadeau from "../../img/cadeau.png"
 
 class Cadeau extends Component {
 
+/* Définitions des states */
     constructor(props) {
         super(props);
         this.state = {
@@ -14,14 +15,18 @@ class Cadeau extends Component {
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
             montantRecolte: 0,
-            invites: []
+            invites: [],
+            payementMariage : false,
+            payementEnLigne : false
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-   
+        this.conditionCheck = this.conditionCheck.bind(this);
     }
 
+
+    /* Appele de notre api pour les tables cadeaux et invités */
     componentDidMount() {
         fetch("http://localhost:8000/api/cadeaux?page=1")
             .then(res => res.json())
@@ -70,7 +75,7 @@ class Cadeau extends Component {
     }
 
    
-    
+    /* Affichage lors d'un clique sur un cadeau*/
     handleClick(a,b) {
         this.setState(state => ({
           infoCadeau: a + " avec un prix de: " + b + " € !"
@@ -82,6 +87,8 @@ class Cadeau extends Component {
        document.getElementById('montantCadeau').value = 0;
             }
 
+
+      /* Condition d'envoie Payement client cadeau*/
     handleSubmit(event) {
         var maxCadeau = document.getElementById('montantCadeau').max;
         var minCadeau = document.getElementById('montantCadeau').min;
@@ -96,7 +103,7 @@ class Cadeau extends Component {
 
         
     }
-
+  /* Définis le montant investi que le client encodre au sein du formulaire payement */
     handleInputChange(event) { 
 
       
@@ -111,6 +118,33 @@ class Cadeau extends Component {
          
     }
 
+    /* Checked/unchecked nos options de payements et met a jour le state*/
+
+    conditionCheck(event) {
+  
+       const target = event.target;
+       const value = target.checked;
+       const name = target.name; 
+        if ( name == 'payementMariage') {
+            this.setState({
+                payementEnLigne: false
+              });
+            }
+
+            if ( name == 'payementEnLigne') {
+                this.setState({
+                    payementMariage: false
+                  });
+                }
+                
+       this.setState({
+        [name]: value
+       });
+
+    }
+
+/*Rendu de notre page cadeau */
+
   render() {
     const { error, isLoaded, items } = this.state;
     
@@ -120,11 +154,11 @@ class Cadeau extends Component {
             return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-              <div style={{height:"90%"}}>
+              <div style={{height:"100%"}}>
               
                
-                <div className="card bg-light" style={{height:"30%"}} >Description à venir</div>
-                <div className="card-group "  style={{ height:"70%",marginTop:"0px",  marginBottom:"0px"}} >
+                <div className="card bg-light" style={{height:"35%"}} >Description à venir</div>
+                <div className="card-group "  style={{ height:"65%",marginTop:"0px",  marginBottom:"0px"}} >
                
               
                
@@ -137,8 +171,6 @@ class Cadeau extends Component {
                         onClick={this.handleClick.bind(this, item.nom, item.prix)}
                         >
                           {item.nom} : {item.prix} €
-
-                          
                         </li>
         ))}
         </ul>
@@ -172,8 +204,8 @@ class Cadeau extends Component {
         <br></br><br></br>
         <label>Entrer un montant</label> &nbsp;
         <input type="number" min="0" max="10" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
-        <input type="checkbox"></input> <label>Au mariage</label> &nbsp;
-        <input type="checkbox"></input> <label>Maintenant (payement en ligne)</label><br></br>
+        <input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label>Au mariage</label> &nbsp;
+        <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label>Maintenant (payement en ligne)</label><br></br>
         <input type="button" value="Valider" onClick={this.handleSubmit}></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
@@ -201,3 +233,4 @@ export default Cadeau;
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
 />
+
