@@ -17,7 +17,16 @@ class Cadeau extends Component {
             montantRecolte: 0,
             invites: [],
             payementMariage : false,
-            payementEnLigne : false
+            payementEnLigne : false,
+            cadeauID: 0,
+            cadeauNom: "",
+            cadeauPrix: "",
+            cadeauDesc: "",
+            acheteurs: "",
+            montantsRecoltes: ""
+    
+
+
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -76,7 +85,7 @@ class Cadeau extends Component {
 
    
     /* Affichage lors d'un clique sur un cadeau*/
-    handleClick(a,b) {
+    handleClick(a,b,c,d,e,f) {
         this.setState(state => ({
           infoCadeau: a + " avec un prix de: " + b + " € !"
         }));
@@ -85,6 +94,21 @@ class Cadeau extends Component {
         document.getElementById('formPayement').style.display ="block";
        document.getElementById('montantCadeau').max = b;
        document.getElementById('montantCadeau').value = 0;
+
+
+       this.setState({
+        cadeauID: c,
+        cadeauPrix: b,
+        cadeauNom: a,
+        cadeauDesc: d,
+        acheteurs: e,
+        montantsRecoltes: f
+
+       });
+
+ console.log(e,f);
+
+      
             }
 
 
@@ -101,7 +125,31 @@ class Cadeau extends Component {
               }));
         }
 
-        
+   /*    
+  var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
+  console.log(urlToFetch);
+
+        fetch(urlToFetch, {
+            method: 'PUT',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                "nom": this.state.cadeauNom,
+                "prix": this.state.cadeauPrix,
+                "description": this.state.cadeauDesc,
+                "acheteurs": [
+                  "string"
+                ],
+                "montantsRecoltes": [
+                  "string"
+                ],
+                "payement": "string"
+              })
+          })
+
+        */
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
     handleInputChange(event) { 
@@ -136,7 +184,7 @@ class Cadeau extends Component {
                     payementMariage: false
                   });
                 }
-                
+
        this.setState({
         [name]: value
        });
@@ -168,7 +216,7 @@ class Cadeau extends Component {
                 {items.map(item => (
                         <li id={item.id} className="list-group-item list-group-item-dark salut" 
                         key={item.id}
-                        onClick={this.handleClick.bind(this, item.nom, item.prix)}
+                        onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
                           {item.nom} : {item.prix} €
                         </li>
