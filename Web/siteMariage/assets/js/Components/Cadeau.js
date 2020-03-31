@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import app from "../../css/app.css"
 import cadeau from "../../img/cadeau.png"
+import { number } from 'prop-types';
 
 
 class Cadeau extends Component {
@@ -22,11 +23,10 @@ class Cadeau extends Component {
             cadeauNom: "",
             cadeauPrix: "",
             cadeauDesc: "",
-            acheteurs: [],
-            montantsRecoltes: [],
-            totalRecolte: 0 
-    
-
+            acheteurs: '',
+            montantsRecoltes: '',
+            totalRecolte:  Number(),
+            resteContrib: Number()
 
         };
         this.handleClick = this.handleClick.bind(this);
@@ -34,6 +34,8 @@ class Cadeau extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.conditionCheck = this.conditionCheck.bind(this);
     }
+
+
 
 
     /* Appele de notre api pour les tables cadeaux et invités */
@@ -93,7 +95,7 @@ class Cadeau extends Component {
 
         document.getElementById('imgCadeau').style.display ="none";
         document.getElementById('formPayement').style.display ="block";
-       document.getElementById('montantCadeau').max = b;
+ 
        document.getElementById('montantCadeau').value = 0;
 
 
@@ -107,8 +109,23 @@ class Cadeau extends Component {
         montantRecolte: 0
        });
 
-            }
+     var totalRecoltee = 0;
+for ( var i = 0; i < f.length; i++) {
+        totalRecoltee += parseInt(f[i]);
+}
+      console.log(totalRecoltee);
 
+
+        this.setState({
+        totalRecolte: totalRecoltee,
+        resteContrib: b - totalRecoltee
+    })
+
+    document.getElementById("montantRecolte").style.display = "block";
+
+}
+
+    
 
       /* Condition d'envoie Payement client cadeau*/
     handleSubmit(event) {
@@ -126,18 +143,12 @@ class Cadeau extends Component {
     else {
         var nom= document.getElementById("nom").value;
         console.log(nom);
-                if (this.state.acheteurs == null) {
-                    this.state.acheteurs =  nom;
-                }
-                else {
+              
+           
                     this.state.acheteurs.push(nom);
-                }
-                if(this.state.montantsRecoltes == null) {
-                    this.state.montantsRecoltes =  this.state.montantRecolte;
-                }
-                else{
                     this.state.montantsRecoltes.push(this.state.montantRecolte);
-                }
+                
+        console.log(this.state.acheteurs);
 
   var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
   console.log(urlToFetch);
@@ -152,13 +163,34 @@ class Cadeau extends Component {
                 "nom": this.state.cadeauNom,
                 "prix": parseInt(this.state.cadeauPrix),
                 "description": this.state.cadeauDesc,
-                "acheteurs": [ this.state.acheteurs ],
-                "montantsRecoltes": [ this.state.montantsRecoltes ],
+                "acheteurs":  this.state.acheteurs ,
+                "montantsRecoltes": this.state.montantsRecoltes ,
                 "payement": "enattente"
               })
           })
         }
           document.getElementById(this.state.cadeauID).click();
+
+          fetch("http://localhost:8000/api/cadeaux?page=1")
+          .then(res => res.json())
+          .then(
+              (result) => {
+                  this.setState({
+                      isLoaded: true,
+                      items: result
+                  });
+              },
+              // Remarque : il est important de traiter les erreurs ici
+              // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+              // des exceptions provenant de réels bugs du composant.
+              (error) => {
+                  this.setState({
+                      isLoaded: true,
+                      error
+                  });
+              }
+          )
+
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
     handleInputChange(event) { 
@@ -172,7 +204,7 @@ class Cadeau extends Component {
             montantRecolte:  value
           }));
          
-         console.log(this.state.montantRecolte, this.state.acheteurs);
+        
     }
 
     /* Checked/unchecked nos options de payements et met a jour le state*/
@@ -233,8 +265,11 @@ class Cadeau extends Component {
         </ul>
         </div>
         <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> 
-        <br></br><br></br><br></br>
+        <br></br><br></br>
         {this.state.infoCadeau}
+       <div id="montantRecolte" style={{display:"none"}}> {this.state.totalRecolte} € déjà recolté !<br></br>
+        Il reste {this.state.resteContrib} € à contribuer
+       </div>
         <br></br><br></br>
         <div className="formPayement" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
@@ -260,7 +295,7 @@ class Cadeau extends Component {
 
         <br></br><br></br>
         <label>Entrer un montant</label> &nbsp;
-        <input type="number" min="0" max="10" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
+        <input type="number" min="0" max={this.state.resteContrib}  id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
         <input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label>Au mariage</label> &nbsp;
         <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label>Maintenant (payement en ligne)</label><br></br>
         <input type="button" value="Valider" onClick={this.handleSubmit}></input>
