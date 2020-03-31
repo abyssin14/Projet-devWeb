@@ -23,7 +23,8 @@ class Cadeau extends Component {
             cadeauPrix: "",
             cadeauDesc: "",
             acheteurs: [],
-            montantsRecoltes: [] 
+            montantsRecoltes: [],
+            totalRecolte: 0 
     
 
 
@@ -115,13 +116,14 @@ class Cadeau extends Component {
         var minCadeau = document.getElementById('montantCadeau').min;
 
 
-        if( parseInt(this.state.montantRecolte) > parseInt(maxCadeau) || parseInt(this.state.montantRecolte) <= parseInt(minCadeau) ) {
-            alert('Entrer une valeur entre' + minCadeau + ' et' + maxCadeau +' €');
+        if( parseInt(this.state.montantRecolte) > parseInt(maxCadeau) || parseInt(this.state.montantRecolte) < 1 ) {
+            alert('Entrer une valeur entre' + 1 + ' et' + maxCadeau +' €');
             this.setState(state => ({
                 montantRecolte:  0
               }));
         }
 
+    else {
         var nom= document.getElementById("nom").value;
         console.log(nom);
                 if (this.state.acheteurs == null) {
@@ -137,7 +139,6 @@ class Cadeau extends Component {
                     this.state.montantsRecoltes.push(this.state.montantRecolte);
                 }
 
-        console.log(this.state.cadeauNom,this.state.cadeauPrix,this.state.cadeauDesc,this.state.montantsRecoltes, this.state.acheteurs);
   var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
   console.log(urlToFetch);
 
@@ -156,7 +157,7 @@ class Cadeau extends Component {
                 "payement": "enattente"
               })
           })
-
+        }
           document.getElementById(this.state.cadeauID).click();
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
