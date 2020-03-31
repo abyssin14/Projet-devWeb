@@ -16,7 +16,7 @@ class Cadeau extends Component {
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
             montantRecolte: 0,
             invites: [],
-            payementMariage : false,
+            payementMariage : true,
             payementEnLigne : false,
             cadeauID: 0,
             cadeauNom: "",
@@ -106,10 +106,6 @@ class Cadeau extends Component {
         montantRecolte: 0
        });
 
- console.log(e,f);
- console.log(this.state.montantsRecoltes,this.state.acheteurs);
-
-      
             }
 
 
@@ -160,9 +156,6 @@ class Cadeau extends Component {
                 "payement": "enattente"
               })
           })
-
-      
-          
 
           document.getElementById(this.state.cadeauID).click();
     }
