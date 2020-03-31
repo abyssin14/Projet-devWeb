@@ -19,7 +19,7 @@ class Index extends Component {
     return (
 
       <switch>
-       <Route path="/user" component={Navigation}>
+       <Route path="/user" component={() => <Navigation privilege= {this.props.privilege} />}>
       </Route>
 
     <Route path="/user/Accueil">
@@ -32,11 +32,14 @@ class Index extends Component {
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
     <Route path="/user/Formulaire" component={Formulaire}></Route>
-                <Route path="/logout" component={() => {
+    <Route path="/logout" component={() => {
             window.location.reload();
-                }}></Route>
-
-
+                }}>
+    </Route>
+    <Route path="/admin/cadeau" component={() => {
+            window.location.reload();
+                }}>
+    </Route>
                 </switch>
 
 

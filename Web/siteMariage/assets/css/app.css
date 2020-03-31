@@ -21,9 +21,10 @@
 
 .bouton {
 
-font-size: 200px;
-
-font-size: 30px;
+    font-size: 20px;
+    background-color: #0000cc;
+    border-color: #0000cc;
+    margin : 10px;
 }
 
 .salut:hover{
