@@ -22,8 +22,8 @@ class Cadeau extends Component {
             cadeauNom: "",
             cadeauPrix: "",
             cadeauDesc: "",
-            acheteurs: "",
-            montantsRecoltes: ""
+            acheteurs: [],
+            montantsRecoltes: [] 
     
 
 
@@ -102,11 +102,12 @@ class Cadeau extends Component {
         cadeauNom: a,
         cadeauDesc: d,
         acheteurs: e,
-        montantsRecoltes: f
-
+        montantsRecoltes: f,
+        montantRecolte: 0
        });
 
  console.log(e,f);
+ console.log(this.state.montantsRecoltes,this.state.acheteurs);
 
       
             }
@@ -125,7 +126,22 @@ class Cadeau extends Component {
               }));
         }
 
-   /*    
+        var nom= document.getElementById("nom").value;
+        console.log(nom);
+                if (this.state.acheteurs == null) {
+                    this.state.acheteurs =  nom;
+                }
+                else {
+                    this.state.acheteurs.push(nom);
+                }
+                if(this.state.montantsRecoltes == null) {
+                    this.state.montantsRecoltes =  this.state.montantRecolte;
+                }
+                else{
+                    this.state.montantsRecoltes.push(this.state.montantRecolte);
+                }
+
+        console.log(this.state.cadeauNom,this.state.cadeauPrix,this.state.cadeauDesc,this.state.montantsRecoltes, this.state.acheteurs);
   var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
   console.log(urlToFetch);
 
@@ -137,19 +153,18 @@ class Cadeau extends Component {
             },
             body: JSON.stringify({
                 "nom": this.state.cadeauNom,
-                "prix": this.state.cadeauPrix,
+                "prix": parseInt(this.state.cadeauPrix),
                 "description": this.state.cadeauDesc,
-                "acheteurs": [
-                  "string"
-                ],
-                "montantsRecoltes": [
-                  "string"
-                ],
-                "payement": "string"
+                "acheteurs": [ this.state.acheteurs ],
+                "montantsRecoltes": [ this.state.montantsRecoltes ],
+                "payement": "enattente"
               })
           })
 
-        */
+      
+          
+
+          document.getElementById(this.state.cadeauID).click();
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
     handleInputChange(event) { 
@@ -163,7 +178,7 @@ class Cadeau extends Component {
             montantRecolte:  value
           }));
          
-         
+         console.log(this.state.montantRecolte, this.state.acheteurs);
     }
 
     /* Checked/unchecked nos options de payements et met a jour le state*/
@@ -230,7 +245,7 @@ class Cadeau extends Component {
         <div className="formPayement" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
         <label>Sélectionner votre nom et Prénom</label><br></br>
-        <select >
+        <select id="nom">
         <option>Votre nom</option>
         {this.state.invites.map(invite => (
                         <option>
