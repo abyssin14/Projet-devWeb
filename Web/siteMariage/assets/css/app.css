@@ -18,15 +18,6 @@
 .fa-spin {
     margin: 0 auto;}
 
-
-.bouton {
-
-    font-size: 20px;
-    background-color: #0000cc;
-    border-color: #0000cc;
-    margin : 10px;
-}
-
 .salut:hover{
 
 background-color: whitesmoke;
@@ -86,4 +77,28 @@ input::-webkit-inner-spin-button {
 input:out-of-range{
     background: crimson;
     color:#fff;
+}
+
+#monform{
+      
+    width: 380px;
+    height: 600px;
+    background: #fff;
+    border-radius: 10px;
+    position: fixed;
+    left: 35%;
+    top: 15%;
+   
+}
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+  }
+
+body {
+    line-height: inherit;
 }

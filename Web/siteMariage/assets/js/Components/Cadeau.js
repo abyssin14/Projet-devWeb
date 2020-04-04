@@ -270,12 +270,12 @@ for ( var i = 0; i < f.length; i++) {
        <div id="montantRecolte" style={{display:"none"}}> {this.state.totalRecolte} € déjà recolté !<br></br>
         Il reste {this.state.resteContrib} € à contribuer
        </div>
-        <br></br><br></br>
-        <div className="formPayement" id="formPayement" >
+        <br></br>
+        <div className="form-group formPayement form-inline" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
-        <label>Sélectionner votre nom et Prénom</label><br></br>
-        <select id="nom">
-        <option>Votre nom</option>
+        <br></br>
+        <select id="nom" className="custom-select">
+        <option disabled selected>Votre nom</option>
         {this.state.invites.map(invite => (
                         <option>
                           {invite.nom}
@@ -283,8 +283,8 @@ for ( var i = 0; i < f.length; i++) {
         ))}
 
         </select> &nbsp;
-        <select>
-     <option>votre Prenom</option>
+        <select className="custom-select">
+     <option disabled selected>votre Prenom</option>
      {this.state.invites.map(invite => (
                      <option>
                        {invite.prenom}
@@ -294,11 +294,11 @@ for ( var i = 0; i < f.length; i++) {
      </select>
 
         <br></br><br></br>
-        <label>Entrer un montant</label> &nbsp;
-        <input type="number" min="0" max={this.state.resteContrib}  id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} ></input> €<br></br>
-        <input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label>Au mariage</label> &nbsp;
-        <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label>Maintenant (payement en ligne)</label><br></br>
-        <input type="button" value="Valider" onClick={this.handleSubmit}></input>
+        <label style={{display:"inline-block"}}>Entrer un montant</label> &nbsp;
+        <input type="number" min="0" max={this.state.resteContrib}  className="form-control" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} style={{width:"15%"}}></input> €<br></br>
+        <br></br><input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label style={{display:"inline-block"}}>Au mariage</label> &nbsp;
+        <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label style={{display:"inline-block"}}>Maintenant (payement en ligne)</label><br></br>
+        <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="btn btn-primary mb-2"></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
         

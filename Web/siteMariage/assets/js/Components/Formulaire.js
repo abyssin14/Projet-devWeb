@@ -61,39 +61,56 @@ handleSubmit(event) {
 
   render(){
     return(
-  <div >
-    <br></br><br></br>
-  <form   onSubmit={this.handleSubmit}>
+  <div className="container" id="monform">
+    
+  <form  className="form-group"  onSubmit={this.handleSubmit}>
       <label>Formulaire de présence</label><br></br>
-     <label>nom</label><br></br>
-      <input type="text" name="nom" value={this.state.nom} onChange={this.handleInputChange}></input>
-        <br></br>
-     <label>prénom</label><br></br>
-     <input type="text" name="prenom" value={this.state.prenom} onChange={this.handleInputChange}></input>
-        <br></br>
+      <div className="form-group"></div>
+     <label>Nom</label><br></br>
+      <input type="text" name="nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
+      <div/>
+        <div className="form-group">
+     <label>Prénom</label><br></br>
+     <input type="text" name="prenom" className="form-control w-25" value={this.state.prenom} onChange={this.handleInputChange}></input>
+     </div>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
       <div>
-      <input type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange}></input>
-      <label>Cérémonie</label>
-      <input type="checkbox" name="presentRepas" checked={this.state.presentRepas} onChange={this.handleInputChange}></input>
-      <label>Repas</label>
-      <br></br>
-      <input type="checkbox" name="presentVinDHonneur" checked={this.state.presentVinDHonneur} onChange={this.handleInputChange}></input>
-      <label>Vin d'honneur</label>
-      <input type="checkbox"  name="presentSoiree" checked={this.state.presentSoiree} onChange={this.handleInputChange}></input>
-      <label>Soirée</label>
+      <div className="form-check">
+      <label className="form-check-label">
+      <input className="form-check-input" type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange}></input>Cérémonie
+      </label>
+      </div>
+      <div className="form-check">
+      <label className="form-check-label">
+      <input type="checkbox" name="presentRepas" className="form-check-input" checked={this.state.presentRepas} onChange={this.handleInputChange}></input>Repas
+      </label>
+      </div>
+      <div className="form-check">
+      <label className="form-check-label">
+      <input type="checkbox" name="presentVinDHonneur" className="form-check-input" checked={this.state.presentVinDHonneur} onChange={this.handleInputChange}></input>Vin d'honneur
+      </label>
+      </div>
+      <div className="form-check">
+      <label className="form-check-label">
+      <input type="checkbox"  className="form-check-input" name="presentSoiree" checked={this.state.presentSoiree} onChange={this.handleInputChange}></input>Soirée
+      </label>
+      </div>
       </div>
       <br></br>
+      <div className="form-group">
       <label>Allergie</label><br></br>
-      <input type="text" name="allergie" value={this.state.allergie} onChange={this.handleInputChange}></input>
-      <br></br><br></br>
+      <input type="text" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
+      </div>
+      <br></br>
       <input type="checkbox" name="accompagnant" checked={this.state.accompagnant} onChange={this.handleInputChange}></input>
       <label>Serez-vous accompagnez?</label><br></br>
+      <div className="form-group">
       <label>Enfant</label><br></br>
-      <input type="number"  min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
+      <input type="number" className="form-control w-25" min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
+      </div>
       <br></br>
-      <input type="submit" className="bouton" value="Envoyer"></input>
+      <input type="submit" className="btn btn-default" value="Envoyer"></input>
   </form>
 
   </div>
@@ -101,3 +118,10 @@ handleSubmit(event) {
   }
 }
 export default Formulaire;
+
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>
