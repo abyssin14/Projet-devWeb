@@ -81,13 +81,13 @@ input:out-of-range{
 
 #monform{
       
-    width: 380px;
-    height: 600px;
+    width: 40%;
+    height: 90%;
     background: #fff;
     border-radius: 10px;
     position: fixed;
-    left: 35%;
-    top: 15%;
+    left: 30%;
+    top: 10%;
    
 }
 

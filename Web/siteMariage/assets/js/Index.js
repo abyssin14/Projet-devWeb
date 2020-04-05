@@ -23,12 +23,7 @@ class Index extends Component {
       </Route>
 
     <Route path="/user/Accueil">
-    <div className="jumbotron text-center">
-<h1>Mariage Stephanie et Nicolas</h1>
-</div>
-<div className="container">
-<h4>Description</h4>
-</div>
+   <div>salut</div>
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
     <Route path="/user/Formulaire" component={Formulaire}></Route>

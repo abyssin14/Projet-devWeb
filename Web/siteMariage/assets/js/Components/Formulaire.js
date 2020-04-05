@@ -62,56 +62,50 @@ handleSubmit(event) {
   render(){
     return(
   <div className="container" id="monform">
-    
   <form  className="form-group"  onSubmit={this.handleSubmit}>
-      <label>Formulaire de présence</label><br></br>
-      <div className="form-group"></div>
-     <label>Nom</label><br></br>
+      <div className="form-group form-inline">
+     <label> Nom </label>
       <input type="text" name="nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
-      <div/>
-        <div className="form-group">
-     <label>Prénom</label><br></br>
+      </div>
+        <div className="form-group form-inline">
+     <label> Prénom </label>
      <input type="text" name="prenom" className="form-control w-25" value={this.state.prenom} onChange={this.handleInputChange}></input>
      </div>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
-      <div>
+    
       <div className="form-check">
-      <label className="form-check-label">
-      <input className="form-check-input" type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange}></input>Cérémonie
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input className="form-check-input" type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange} ></input>Cérémonie
       </label>
-      </div>
-      <div className="form-check">
       <label className="form-check-label">
       <input type="checkbox" name="presentRepas" className="form-check-input" checked={this.state.presentRepas} onChange={this.handleInputChange}></input>Repas
       </label>
       </div>
       <div className="form-check">
-      <label className="form-check-label">
+      <label className="form-check-label"  style={{marginRight:"5%"}}>
       <input type="checkbox" name="presentVinDHonneur" className="form-check-input" checked={this.state.presentVinDHonneur} onChange={this.handleInputChange}></input>Vin d'honneur
       </label>
-      </div>
-      <div className="form-check">
       <label className="form-check-label">
       <input type="checkbox"  className="form-check-input" name="presentSoiree" checked={this.state.presentSoiree} onChange={this.handleInputChange}></input>Soirée
       </label>
       </div>
-      </div>
-      <br></br>
+      
+    
       <div className="form-group">
       <label>Allergie</label><br></br>
       <input type="text" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
       </div>
-      <br></br>
       <input type="checkbox" name="accompagnant" checked={this.state.accompagnant} onChange={this.handleInputChange}></input>
       <label>Serez-vous accompagnez?</label><br></br>
       <div className="form-group">
       <label>Enfant</label><br></br>
       <input type="number" className="form-control w-25" min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
+      <br></br><input type="submit" className="form-control btn btn-primary w-25" value="Envoyer"></input>
+
       </div>
-      <br></br>
-      <input type="submit" className="btn btn-default" value="Envoyer"></input>
-  </form>
+      
+      </form>
 
   </div>
     )
