@@ -20,7 +20,7 @@ class AdminNavigationHtml extends React.Component{
           });
         }
         render(){
-          const bgPink = {backgroundColor: '#1b4fa3'}
+          const bgPink = {backgroundColor: '#FF6666'}
           const container = {height: 1300}
       return(
 
@@ -61,3 +61,10 @@ class AdminNavigationHtml extends React.Component{
     }
 }
 export default AdminNavigationHtml;
+
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>

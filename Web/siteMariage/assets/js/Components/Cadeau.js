@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import app from "../../css/app.css"
 import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
-
+import fleur from "../../img/FondFleurs.png"
 
 class Cadeau extends Component {
 
@@ -264,10 +264,11 @@ for ( var i = 0; i < f.length; i++) {
         ))}
         </ul>
         </div>
-        <div   className="card bg-primary bg-light text-dark" style={{textAlign:"center"}}> 
+        <div className="card text-dark cadeauDiv" style={{textAlign:"center"}} > 
         <br></br><br></br>
+       
         {this.state.infoCadeau}
-       <div id="montantRecolte" style={{display:"none"}}> {this.state.totalRecolte} € déjà recolté !<br></br>
+       <div id="montantRecolte" style={{display:"none"}}><br></br> {this.state.totalRecolte} € déjà recolté !<br></br>
         Il reste {this.state.resteContrib} € à contribuer
        </div>
         <br></br>
