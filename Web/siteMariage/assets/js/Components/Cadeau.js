@@ -4,6 +4,7 @@ import app from "../../css/app.css"
 import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
+import fleurs from "../../img/Fleurs.png"
 
 class Cadeau extends Component {
 
@@ -246,20 +247,30 @@ for ( var i = 0; i < f.length; i++) {
               <div style={{height:"100%"}}>
               
                
-                <div className="card" style={{height:"35%",backgroundColor: "#ffc"}} >Description à venir</div>
+                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "#ffc"}} >
+                    
+                    
+                    <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
+                    Avant de pouvoir contribuer à un cadeau, il faut signaler votre présence au mariage. <br></br>
+                    Si ce n'est pas déjà fais, <a href="/user/Formulaire">cliquer ici.</a></span>
+                    
+                    
+                    </div> 
+
+
                 <div className="card-group "  style={{ height:"65%",marginTop:"0px",  marginBottom:"0px"}} >
                
               
                
 
-                <div className="card text-dark" style={{maxHeight:"100%",backgroundColor: "#ffc"}}>
+                <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffc",border:'1px solid rgba(45, 47, 8, 0.1)'}}>
                 <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
                 {items.map(item => (
                         <li id={item.id} style={{backgroundColor:"blanchedalmond"}} className="list-group-item list-group-item text-dark salut" 
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
-                          {item.nom} : {item.prix} €
+                          {item.nom}  {item.prix} €
                         </li>
         ))}
         </ul>
