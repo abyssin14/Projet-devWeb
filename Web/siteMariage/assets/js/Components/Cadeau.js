@@ -246,16 +246,16 @@ for ( var i = 0; i < f.length; i++) {
               <div style={{height:"100%"}}>
               
                
-                <div className="card bg-light" style={{height:"35%"}} >Description à venir</div>
+                <div className="card" style={{height:"35%",backgroundColor: "#ffc"}} >Description à venir</div>
                 <div className="card-group "  style={{ height:"65%",marginTop:"0px",  marginBottom:"0px"}} >
                
               
                
 
-                <div className="card bg-light" style={{maxHeight:"100%"}}>
-                <ul className="list-group  table-wrapper-scroll-y" style={{maxHeight:"100%"}}>
+                <div className="card text-dark" style={{maxHeight:"100%",backgroundColor: "#ffc"}}>
+                <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
                 {items.map(item => (
-                        <li id={item.id} className="list-group-item list-group-item-dark salut" 
+                        <li id={item.id} style={{backgroundColor:"blanchedalmond"}} className="list-group-item list-group-item text-dark salut" 
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -264,7 +264,7 @@ for ( var i = 0; i < f.length; i++) {
         ))}
         </ul>
         </div>
-        <div className="card text-dark cadeauDiv" style={{textAlign:"center"}} > 
+        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "#ffc"}} > 
         <br></br><br></br>
        
         {this.state.infoCadeau}
