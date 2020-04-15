@@ -63,7 +63,7 @@ handleSubmit(event) {
     return(
       <div style={{width:"100%", height:"100%",backgroundColor:"rgb(255, 255, 204)"}}> 
   <div className="container"  id="monform">
-  <form  className="form-group"  onSubmit={this.handleSubmit}>
+  <form  className="form-group"  style={{marginBottom:"1.5rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline" >
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
@@ -75,7 +75,7 @@ handleSubmit(event) {
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
     
-      <div className="form-check">
+      <div className="form-check" style={{marginBottom:"10px"}}>
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input className="form-check-input" type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange} ></input>Cérémonie
       </label>
