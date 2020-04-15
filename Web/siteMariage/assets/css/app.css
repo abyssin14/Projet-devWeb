@@ -18,11 +18,7 @@
 .fa-spin {
     margin: 0 auto;}
 
-.salut:hover{
 
-background-color: whitesmoke;
-
-}
 /* IMPORTANT définis la taille de notre page*/
 html, body {
     height: 100%;
@@ -93,7 +89,6 @@ input:out-of-range{
 
 .container {
     border: 2px solid #dedede;
-    background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 5px;
@@ -111,12 +106,31 @@ body {
     background-size: contain;
     background-color: whitesmoke;
     font-family: Georgia, 'Times New Roman', Times, serif;
+  
 }
 .listeCadeau {
     font-family: Arial, Helvetica, sans-serif;
+   
 }
 .texteDescriptionVueCadeau {
 
 top:50%;
 position: relative;
 }
+
+nav {
+    font-family: serif;
+    font-size: 20px;
+}
+
+.salut:hover{
+background-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+ }
+
+ [type="checkbox"] {
+     padding: 250px;
+ }
+ input[checkbox] {
+    padding: 250px;
+
+ }

@@ -61,7 +61,8 @@ handleSubmit(event) {
 
   render(){
     return(
-  <div className="container" id="monform">
+      <div style={{width:"100%", height:"100%",backgroundColor:"rgb(255, 255, 204)"}}> 
+  <div className="container" style={{backgroundColor:"rgb(255, 255, 204)"}} id="monform">
   <form  className="form-group"  onSubmit={this.handleSubmit}>
       <div className="form-group form-inline">
      <label> Nom </label>
@@ -107,6 +108,7 @@ handleSubmit(event) {
       
       </form>
 
+  </div>
   </div>
     )
   }

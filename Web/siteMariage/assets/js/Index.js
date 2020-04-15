@@ -23,7 +23,10 @@ class Index extends Component {
       </Route>
 
     <Route path="/user/Accueil">
-   <div>salut</div>
+   <body className="bodyAcceuil"> 
+
+
+   </body>
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
     <Route path="/user/Formulaire" component={Formulaire}></Route>
