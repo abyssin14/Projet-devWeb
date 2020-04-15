@@ -62,15 +62,15 @@ handleSubmit(event) {
   render(){
     return(
       <div style={{width:"100%", height:"100%",backgroundColor:"rgb(255, 255, 204)"}}> 
-  <div className="container" style={{backgroundColor:"rgb(255, 255, 204)"}} id="monform">
+  <div className="container"  id="monform">
   <form  className="form-group"  onSubmit={this.handleSubmit}>
-      <div className="form-group form-inline">
-     <label> Nom </label>
-      <input type="text" name="nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
+      <div className="form-group form-inline" >
+     <label> </label>
+      <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
       </div>
         <div className="form-group form-inline">
-     <label> Prénom </label>
-     <input type="text" name="prenom" className="form-control w-25" value={this.state.prenom} onChange={this.handleInputChange}></input>
+     <label> </label>
+     <input type="text" name="prenom" placeholder="Prénom" className="form-control w-25" value={this.state.prenom} onChange={this.handleInputChange}></input>
      </div>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
@@ -94,15 +94,15 @@ handleSubmit(event) {
       
     
       <div className="form-group">
-      <label>Allergie</label><br></br>
-      <input type="text" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
+      <label></label><br></br>
+      <input type="text" placeholder="Allergie(s) ?" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
       </div>
       <input type="checkbox" name="accompagnant" checked={this.state.accompagnant} onChange={this.handleInputChange}></input>
       <label>Serez-vous accompagnez?</label><br></br>
       <div className="form-group">
-      <label>Enfant</label><br></br>
+      <label>Si oui, combien d'enfants vous accompagnes ?</label><br></br>
       <input type="number" className="form-control w-25" min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
-      <br></br><input type="submit" className="form-control btn btn-primary w-25" value="Envoyer"></input>
+      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-50" value="Je confirme ma présence au mariage"></input>
 
       </div>
       

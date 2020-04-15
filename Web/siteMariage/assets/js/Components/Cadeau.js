@@ -266,7 +266,7 @@ for ( var i = 0; i < f.length; i++) {
                 <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffc"}}>
                 <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
                 {items.map(item => (
-                        <li id={item.id} style={{backgroundColor:"blanchedalmond"}}  className="list-group-item list-group-item text-dark salut" 
+                        <li id={item.id} style={{backgroundColor:"blanchedalmond",borderRadius:"9px"}}  className="list-group-item list-group-item text-dark salut" 
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >

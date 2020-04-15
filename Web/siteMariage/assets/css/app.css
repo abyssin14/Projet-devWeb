@@ -77,15 +77,18 @@ input:out-of-range{
 
 #monform{
       
-    width: 40%;
-    height: 90%;
-    background: #fff;
+    width: 600px; 
+    background: #a9898982;
     border-radius: 10px;
-    position: fixed;
-    left: 30%;
-    top: 10%;
+    position: relative;
+    top: 15%;
+    height: 500px;
+    font-family: -wekbit-body;
+    font-size:17px;
    
 }
+
+
 
 .container {
     border: 2px solid #dedede;
@@ -106,6 +109,7 @@ body {
     background-size: contain;
     background-color: whitesmoke;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    
   
 }
 .listeCadeau {
