@@ -12,6 +12,11 @@ import location from '../img/locationMariage.jpg'
 
 
 class Index extends Component {
+
+  redirection() {
+    document.location.href = "/user/Formulaire";
+  }
+
   componentDidMount() {
 
 }
@@ -32,7 +37,7 @@ class Index extends Component {
 <header className="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
   <div className="w3-display-middle w3-text-black w3-center">
     <h1 className="w3-jumbo">Jane et John</h1>
-    <h2>Are getting married</h2>
+    <h2>Vont se marier</h2>
     <h2><b>17.07.2017</b></h2>
   </div>
 </header>
@@ -40,8 +45,8 @@ class Index extends Component {
 
 <div className="w3-bottom w3-hide-small">
   <div className="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home" style={{width:"25%"}} className="w3-bar-item w3-button">Welcome</a>
-    <a href="#us" style={{width:"25%"}}  className="w3-bar-item w3-button">Jane and John</a>
+    <a href="#home" style={{width:"25%"}} className="w3-bar-item w3-button">Bienvenue</a>
+    <a href="#us" style={{width:"25%"}}  className="w3-bar-item w3-button">Jane et John</a>
     <a href="#wedding" style={{width:"25%"}}  className="w3-bar-item w3-button">Mariage</a>
     <a href="#rsvp" style={{width:"25%"}}  className="w3-bar-item w3-button w3-hover-black">Participer</a>
   </div>
@@ -56,31 +61,31 @@ class Index extends Component {
       occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat.</i>
     </p><br></br>
-    <p className="w3-center"><a href="#wedding" className="w3-button w3-black w3-round w3-padding-large w3-large">Details mariage</a></p>
+    <p className="w3-center"><a href="#wedding" className="w3-button w3-black w3-round w3-padding-large w3-large">Détails mariage</a></p>
   </div>
 </div>
 
 
 <div className="w3-display-container bgimg2">
   <div className="w3-display-middle w3-text-white w3-center">
-    <h1 className="w3-jumbo">You Are Invited</h1><br></br>
-    <h2>Of course..</h2>
+    <h1 className="w3-jumbo">Tu es invité</h1><br></br>
+    <h2>Bien évidemment !</h2>
   </div>
 </div>
 
 
 <div className="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
   <div className="w3-content">
-    <h1 className="w3-text-grey"><b>THE WEDDING</b></h1>
+    <h1 className="w3-text-grey"><b>LE MARIAGE</b></h1>
     <img className="w3-round-large w3-grayscale-min" src={location} style={{width:"100%",margin:"64px 0"}}/>
     <div className="w3-row">
       <div className="w3-half">
-        <h2>When</h2>
+        <h2>Quand</h2>
         <p>Wedding Ceremony - 2:00pm</p>
         <p>Reception et Dinner - 5:00pm</p>
       </div>
       <div className="w3-half">
-        <h2>Where</h2>
+        <h2>Où</h2>
         <p>Some place, an address</p>
         <p>Some where, some address</p>
       </div>
@@ -90,10 +95,10 @@ class Index extends Component {
 
 
 <div className="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
-  <h1>HOPE YOU CAN MAKE IT!</h1>
-  <p className="w3-large">Kindly Respond By January, 2017</p>
+  <h1>EN ESPERANT QUE TU SERAS PRESENT</h1>
+  <p className="w3-large">Veuillez répondre d'ici janvier 2017</p>
   <p className="w3-xlarge">
-    <button onclick="document.getElementById('id01').style.display='block'" className="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style={{padding:"8px 60px"}} >Participer</button>
+    <button onClick={this.redirection} className="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style={{padding:"8px 60px"}} >Participer</button>
   </p>
 </div>
 
@@ -119,9 +124,7 @@ class Index extends Component {
 </div>
 
 
-<footer className="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" className="w3-hover-text-green">w3.css</a></p>
-</footer>
+
 <div className="w3-hide-small" style={{marginBottom:"32px"}} ></div>
 
   

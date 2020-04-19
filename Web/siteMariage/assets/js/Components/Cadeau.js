@@ -247,7 +247,7 @@ for ( var i = 0; i < f.length; i++) {
               <div style={{height:"100%"}}>
               
                
-                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "#ffc"}} >
+                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "rgba(255, 255, 204, 0.62)", fontFamily:"sans-serif"}} >
                     
                     
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
@@ -263,10 +263,10 @@ for ( var i = 0; i < f.length; i++) {
               
                
 
-                <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffc"}}>
+                <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffdddd"}}>
                 <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
                 {items.map(item => (
-                        <li id={item.id} style={{backgroundColor:"blanchedalmond",borderRadius:"9px"}}  className="list-group-item list-group-item text-dark salut" 
+                        <li id={item.id} style={{backgroundColor:"#f1dfc4"}}  className="list-group-item list-group-item text-dark salut" 
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -275,17 +275,17 @@ for ( var i = 0; i < f.length; i++) {
         ))}
         </ul>
         </div>
-        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "#ffc"}} > 
-        <br></br><br></br>
+        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "rgba(255, 204, 204, 0.8)"}} > 
+        <br></br>
        
         {this.state.infoCadeau}
        <div id="montantRecolte" style={{display:"none"}}><br></br> {this.state.totalRecolte} € déjà recolté !<br></br>
         Il reste {this.state.resteContrib} € à contribuer
        </div>
-        <br></br>
+        
         <div className="form-group formPayement form-inline" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
-        <br></br>
+        
         <select id="nom" className="custom-select">
         <option disabled selected>Votre nom</option>
         {this.state.invites.map(invite => (

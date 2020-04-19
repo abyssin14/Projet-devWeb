@@ -20,7 +20,7 @@ class AdminNavigationHtml extends React.Component{
           });
         }
         render(){
-          const bgPink = {backgroundColor: 'rgb(123, 107, 86)'}
+          const bgPink = {backgroundColor: 'rgba(115, 75, 75, 0.74)'}
           const container = {height: 1300}
       return(
 
