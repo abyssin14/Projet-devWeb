@@ -139,3 +139,16 @@ border-radius: 5px;
     padding: 250px;
 
  }
+
+ /* CSS PAGE ACCEUIL */
+
+ body,h1,h2{font-family: "Raleway", sans-serif}
+ body, html {height: 100%}
+ p {line-height: 2}
+ .bgimg, .bgimg2 {
+   min-height: 100%;
+   background-position: center;
+   background-size: cover;
+ }
+ .bgimg {background-image: url("/w3images/wedding_couple.jpg")}
+ .bgimg2 {background-image: url("/w3images/flowers.jpg")}
