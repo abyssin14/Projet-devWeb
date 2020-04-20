@@ -61,7 +61,7 @@ handleSubmit(event) {
 
   render(){
     return(
-      <div style={{width:"100%", height:"100%",backgroundColor:"rgb(255, 255, 204)"}}> 
+      <div className="w3-grayscale-min" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}> 
   <div className="container"  id="monform">
   <form  className="form-group"  style={{marginBottom:"1.5rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline" >
@@ -102,7 +102,7 @@ handleSubmit(event) {
       <div className="form-group">
       <label>Si oui, combien d'enfants vous accompagnes ?</label><br></br>
       <input type="number" className="form-control w-25" min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
-      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-50" value="Je confirme ma présence au mariage"></input>
+      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Participer"></input>
 
       </div>
       

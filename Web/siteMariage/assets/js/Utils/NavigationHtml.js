@@ -20,7 +20,7 @@ class NavigationHtml extends React.Component{
           });
         }
         render(){
-          const bgPink = {backgroundColor: '#8e7d66'}
+          const bgPink = {backgroundColor: 'rgba(115, 75, 75, 0.74)'}
           const container = {height: 1300}
       return(
 
