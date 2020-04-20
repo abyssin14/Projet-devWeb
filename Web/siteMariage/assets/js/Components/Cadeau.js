@@ -41,7 +41,7 @@ class Cadeau extends Component {
 
     /* Appele de notre api pour les tables cadeaux et invités */
     componentDidMount() {
-        fetch("http://localhost:8001/api/cadeaux?page=1")
+        fetch("http://localhost:8000/api/cadeaux?page=1")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -61,7 +61,7 @@ class Cadeau extends Component {
                 }
             )
 
-            fetch("http://localhost:8001/api/invites")
+            fetch("http://localhost:8000/api/invites")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -151,7 +151,7 @@ for ( var i = 0; i < f.length; i++) {
                 
         console.log(this.state.acheteurs);
 
-  var urlToFetch = "http://localhost:8001/api/cadeaux/" + this.state.cadeauID;
+  var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
   console.log(urlToFetch);
 
         fetch(urlToFetch, {
@@ -172,7 +172,7 @@ for ( var i = 0; i < f.length; i++) {
         }
           document.getElementById(this.state.cadeauID).click();
 
-          fetch("http://localhost:8001/api/cadeaux?page=1")
+          fetch("http://localhost:8000/api/cadeaux?page=1")
           .then(res => res.json())
           .then(
               (result) => {
@@ -244,7 +244,7 @@ for ( var i = 0; i < f.length; i++) {
             return <div><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-              <div style={{height:"100%"}}>
+              <div  style={{height:"100%", filter: "grayscale(50%)"}}>
               
                
                 <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "rgba(255, 255, 204, 0.62)", fontFamily:"sans-serif"}} >

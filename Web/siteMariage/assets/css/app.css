@@ -87,7 +87,11 @@ input:out-of-range{
     height: 90%;
     font-family: unset;
     font-size:17px;
-    margin-bottom: 0px;;
+    margin-bottom: 0px;
+    background-image: url("../img/cake.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
    
 }
 
@@ -156,3 +160,5 @@ border-radius: 5px;
  }
  .bgimg {background-color: rgb(255, 255, 204)}
  .bgimg2 {background-image: url("../img/flowers.jpg")}
+
+

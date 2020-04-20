@@ -61,7 +61,7 @@ handleSubmit(event) {
 
   render(){
     return(
-      <div className="w3-grayscale-min" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}> 
+      <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}> 
   <div className="container"  id="monform">
   <form  className="form-group"  style={{marginBottom:"1.5rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline" >
