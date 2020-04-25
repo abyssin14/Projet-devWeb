@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../css/app.css';
+import { postInvite } from "../Utils/fetching.js"
 
 
 class Formulaire extends Component {
@@ -23,45 +24,45 @@ class Formulaire extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleInputChange(event) {
     const target = event.target;
     const value = target.name === 'presentCeremonie' || target.name === 'accompagnant' || target.name === 'presentVinDHonneur' || target.name === 'presentRepas' || target.name === 'presentSoiree' ? target.checked : target.value;
-    const name = target.name; 
-    
+    const name = target.name;
+
     this.setState({
       [name]: value
     });
- 
-    
+
+
 
   }
-  
+
 
 handleSubmit(event) {
-  fetch('http://localhost:8000/api/invites', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    "allergie": this.state.allergie,
-    "accompagnant": this.state.accompagnant,
-    "enfant": parseInt(this.state.enfant),
-    "presentCeremonie": this.state.presentCeremonie,
-    "presentVinDHonneur": this.state.presentVinDHonneur,
-    "presentRepas": this.state.presentRepas,
-    "presentSoiree": this.state.presentSoiree,
-    "nom": this.state.nom,
-    "prenom": this.state.prenom
-  })
-})
+  if(this.state.nom == '' && this.state.prenom == ''){
+
+}else{
+
+     var body = JSON.stringify({
+      "allergie": this.state.allergie,
+      "accompagnant": this.state.accompagnant,
+      "enfant": parseInt(this.state.enfant),
+      "presentCeremonie": this.state.presentCeremonie,
+      "presentVinDHonneur": this.state.presentVinDHonneur,
+      "presentRepas": this.state.presentRepas,
+      "presentSoiree": this.state.presentSoiree,
+      "nom": this.state.nom,
+      "prenom": this.state.prenom
+    })
+    postInvite(body)
+}
+
 }
 
   render(){
     return(
-      <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}> 
+      <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}>
   <div className="container"  id="monform">
   <form  className="form-group"  style={{marginBottom:"1.5rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline" >
@@ -74,7 +75,7 @@ handleSubmit(event) {
      </div>
       <label>Veuillez cocher les moments du mariage auxquels vous serez présents</label>
       <br></br>
-    
+
       <div className="form-check" style={{marginBottom:"10px"}}>
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input className="form-check-input" type="checkbox" name="presentCeremonie" checked={this.state.presentCeremonie}  onChange={this.handleInputChange} ></input>Cérémonie
@@ -91,8 +92,8 @@ handleSubmit(event) {
       <input type="checkbox"  className="form-check-input" name="presentSoiree" checked={this.state.presentSoiree} onChange={this.handleInputChange}></input>Soirée
       </label>
       </div>
-      
-    
+
+
       <div className="form-group">
       <label></label><br></br>
       <input type="text" placeholder="Allergie(s) ?" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
@@ -105,7 +106,7 @@ handleSubmit(event) {
       <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Participer"></input>
 
       </div>
-      
+
       </form>
 
   </div>
