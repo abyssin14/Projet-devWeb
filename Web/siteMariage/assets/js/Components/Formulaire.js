@@ -39,7 +39,7 @@ class Formulaire extends Component {
   
 
 handleSubmit(event) {
-  fetch('http://localhost:8000/api/invites', {
+  fetch('http://51.75.126.4/api/invites', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',

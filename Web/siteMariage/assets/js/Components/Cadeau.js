@@ -41,7 +41,7 @@ class Cadeau extends Component {
 
     /* Appele de notre api pour les tables cadeaux et invités */
     componentDidMount() {
-        fetch("http://localhost:8000/api/cadeaux?page=1")
+        fetch("http://51.75.126.4/api/cadeaux?page=1")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -61,7 +61,7 @@ class Cadeau extends Component {
                 }
             )
 
-            fetch("http://localhost:8000/api/invites")
+            fetch("http://51.75.126.4/api/invites")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -151,7 +151,7 @@ for ( var i = 0; i < f.length; i++) {
                 
         console.log(this.state.acheteurs);
 
-  var urlToFetch = "http://localhost:8000/api/cadeaux/" + this.state.cadeauID;
+  var urlToFetch = "http://51.75.126.4/api/cadeaux/" + this.state.cadeauID;
   console.log(urlToFetch);
 
         fetch(urlToFetch, {
@@ -172,7 +172,7 @@ for ( var i = 0; i < f.length; i++) {
         }
           document.getElementById(this.state.cadeauID).click();
 
-          fetch("http://localhost:8000/api/cadeaux?page=1")
+          fetch("http://51.75.126.4/api/cadeaux?page=1")
           .then(res => res.json())
           .then(
               (result) => {
