@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Switch, Link, HashRouter, NavLink } from 'react-r
 import Cadeau from './Components/Cadeau';
 import Formulaire from './Components/Formulaire';
 import Navigation from './Components/Navigation';
+import Administration from './Components/Administration';
 import couple from '../img/imgCouple.jpg'
 import location from '../img/locationMariage.jpg'
 
@@ -147,6 +148,7 @@ class Index extends Component {
             window.location.reload();
                 }}>
     </Route>
+    <Route path="/admin" component={Administration}></Route>
                 </switch>
 
 

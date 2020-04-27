@@ -23,6 +23,11 @@ cadeau:
 formulaire:
     path: /user/Formulaire
     controller: App\Controller\HomeController::index
+
+administration:
+    path: /admin
+    controller: App\Controller\HomeController::index
+
 api.cadeau:
     path: /api/cadeaux
     controller: App\Controller\CadeauController::api
