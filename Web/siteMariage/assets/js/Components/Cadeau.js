@@ -5,6 +5,7 @@ import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
+import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 
 class Cadeau extends Component {
 
@@ -41,18 +42,15 @@ class Cadeau extends Component {
 
     /* Appele de notre api pour les tables cadeaux et invités */
     componentDidMount() {
-        fetch("http://51.75.126.4/api/cadeaux?page=1")
-            .then(res => res.json())
-            .then(
+
+            getCadeaux().then(
                 (result) => {
+
                     this.setState({
                         isLoaded: true,
                         items: result
                     });
                 },
-                // Remarque : il est important de traiter les erreurs ici
-                // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
-                // des exceptions provenant de réels bugs du composant.
                 (error) => {
                     this.setState({
                         isLoaded: true,
@@ -60,10 +58,7 @@ class Cadeau extends Component {
                     });
                 }
             )
-
-            fetch("http://51.75.126.4/api/invites")
-            .then(res => res.json())
-            .then(
+            getInvites().then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
@@ -81,55 +76,58 @@ class Cadeau extends Component {
                 }
             )
 
-           
-           
-          
-     
+
+
+
+
     }
 
-   
+
     /* Affichage lors d'un clique sur un cadeau*/
-    handleClick(a,b,c,d,e,f) {
+    handleClick(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs ,montantsRecoltes) {
         this.setState(state => ({
-          infoCadeau: a + " avec un prix de: " + b + " € !"
+          infoCadeau: cadeauNom + " avec un prix de: " + cadeauPrix + " € !"
         }));
 
         document.getElementById('imgCadeau').style.display ="none";
         document.getElementById('formPayement').style.display ="block";
- 
+
        document.getElementById('montantCadeau').value = 0;
 
 
        this.setState({
-        cadeauID: c,
-        cadeauPrix: b,
-        cadeauNom: a,
-        cadeauDesc: d,
-        acheteurs: e,
-        montantsRecoltes: f,
+        cadeauID: cadeauID,
+        cadeauPrix: cadeauPrix,
+        cadeauNom: cadeauNom,
+        cadeauDesc: cadeauDesc,
+        acheteurs: acheteurs,
+        montantsRecoltes: montantsRecoltes,
         montantRecolte: 0
        });
 
      var totalRecoltee = 0;
-for ( var i = 0; i < f.length; i++) {
-        totalRecoltee += parseInt(f[i]);
+for ( var i = 0; i < montantsRecoltes.length; i++) {
+        totalRecoltee += parseInt(montantsRecoltes[i]);
 }
       console.log(totalRecoltee);
 
 
         this.setState({
         totalRecolte: totalRecoltee,
-        resteContrib: b - totalRecoltee
+        resteContrib: cadeauPrix - totalRecoltee
     })
 
     document.getElementById("montantRecolte").style.display = "block";
 
 }
 
-    
+
 
       /* Condition d'envoie Payement client cadeau*/
     handleSubmit(event) {
+
+        //acheteurId = findAcheteurId(this.state.nom, this.state.prenom);
+
         var maxCadeau = document.getElementById('montantCadeau').max;
         var minCadeau = document.getElementById('montantCadeau').min;
 
@@ -144,37 +142,28 @@ for ( var i = 0; i < f.length; i++) {
     else {
         var nom= document.getElementById("nom").value;
         console.log(nom);
-              
-           
+
+
                     this.state.acheteurs.push(nom);
                     this.state.montantsRecoltes.push(this.state.montantRecolte);
-                
-        console.log(this.state.acheteurs);
 
-  var urlToFetch = "http://51.75.126.4/api/cadeaux/" + this.state.cadeauID;
-  console.log(urlToFetch);
 
-        fetch(urlToFetch, {
-            method: 'PUT',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                "nom": this.state.cadeauNom,
-                "prix": parseInt(this.state.cadeauPrix),
-                "description": this.state.cadeauDesc,
-                "acheteurs":  this.state.acheteurs ,
-                "montantsRecoltes": this.state.montantsRecoltes ,
-                "payement": "enattente"
-              })
-          })
+          var body = JSON.stringify({
+              "nom": this.state.cadeauNom,
+              "prix": parseInt(this.state.cadeauPrix),
+              "description": this.state.cadeauDesc,
+              "acheteurs":  this.state.acheteurs ,
+              "montantsRecoltes": this.state.montantsRecoltes ,
+              "payement": "enattente"
+            });
+        putCadeau(this.state.cadeauID, body);
+
+
+
+
         }
           document.getElementById(this.state.cadeauID).click();
-
-          fetch("http://51.75.126.4/api/cadeaux?page=1")
-          .then(res => res.json())
-          .then(
+          getCadeaux().then(
               (result) => {
                   this.setState({
                       isLoaded: true,
@@ -194,27 +183,27 @@ for ( var i = 0; i < f.length; i++) {
 
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
-    handleInputChange(event) { 
+    handleInputChange(event) {
 
-      
+
         const target = event.target;
         const value = target.value;
-        const name = target.name; 
-      
+        const name = target.name;
+
         this.setState(state => ({
             montantRecolte:  value
           }));
-         
-        
+
+
     }
 
     /* Checked/unchecked nos options de payements et met a jour le state*/
 
     conditionCheck(event) {
-  
+
        const target = event.target;
        const value = target.checked;
-       const name = target.name; 
+       const name = target.name;
         if ( name == 'payementMariage') {
             this.setState({
                 payementEnLigne: false
@@ -237,7 +226,7 @@ for ( var i = 0; i < f.length; i++) {
 
   render() {
     const { error, isLoaded, items } = this.state;
-    
+
         if (error) {
             return <div>Erreur : {error.message}</div>;
         } else if (!isLoaded) {
@@ -245,28 +234,28 @@ for ( var i = 0; i < f.length; i++) {
         } else {
             return (
               <div  style={{height:"100%", filter: "grayscale(50%)"}}>
-              
-               
+
+
                 <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "rgba(255, 255, 204, 0.62)", fontFamily:"sans-serif"}} >
-                    
-                    
+
+
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
                     Avant de pouvoir contribuer à un cadeau, il faut signaler votre présence au mariage. <br></br>
                     Si ce n'est pas déjà fais, <a href="/user/Formulaire">cliquer ici.</a></span>
-                    
-                    
-                    </div> 
+
+
+                    </div>
 
 
                 <div className="card-group "  style={{ height:"65%",marginTop:"0px",  marginBottom:"0px"}} >
-               
-              
-               
+
+
+
 
                 <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffdddd"}}>
                 <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
                 {items.map(item => (
-                        <li id={item.id} style={{backgroundColor:"#f1dfc4"}}  className="list-group-item list-group-item text-dark salut" 
+                        <li id={item.id} style={{backgroundColor:"#f1dfc4"}}  className="list-group-item list-group-item text-dark salut"
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -275,17 +264,17 @@ for ( var i = 0; i < f.length; i++) {
         ))}
         </ul>
         </div>
-        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "rgba(255, 204, 204, 0.8)"}} > 
+        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "rgba(255, 204, 204, 0.8)"}} >
         <br></br>
-       
+
         {this.state.infoCadeau}
        <div id="montantRecolte" style={{display:"none"}}><br></br> {this.state.totalRecolte} € déjà recolté !<br></br>
         Il reste {this.state.resteContrib} € à contribuer
        </div>
-        
+
         <div className="form-group formPayement form-inline" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
-        
+
         <select id="nom" className="custom-select">
         <option disabled selected>Votre nom</option>
         {this.state.invites.map(invite => (
@@ -313,10 +302,10 @@ for ( var i = 0; i < f.length; i++) {
         <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="btn btn-primary mb-2"></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
-        
+
 
         </div>
-        </div> 
+        </div>
         </div>
 
 
@@ -337,4 +326,3 @@ export default Cadeau;
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous"
 />
-
