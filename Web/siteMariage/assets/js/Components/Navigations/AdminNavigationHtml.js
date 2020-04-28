@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
-import  '../../css/app.css';
+import  '../../../css/app.css';
 
 
-class NavigationHtml extends React.Component{
+class AdminNavigationHtml extends React.Component{
       constructor(props) {
           super(props);
           this.state = {
@@ -40,12 +40,16 @@ class NavigationHtml extends React.Component{
                 <MDBNavLink to="/user/Formulaire">Formulaire</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                <MDBNavLink to="">Contact</MDBNavLink>
+                <MDBNavLink to="/user/Contact">Contact</MDBNavLink>
                 </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
-            <MDBNavItem>
-            <MDBNavLink to="/logout">Deconnexion</MDBNavLink>
+
+                <MDBNavItem>
+                  <MDBNavLink to="/admin">Administration</MDBNavLink>
+                </MDBNavItem>
+                <MDBNavItem>
+                  <MDBNavLink to="/logout">Deconnexion</MDBNavLink>
                 </MDBNavItem>
                 </MDBNavbarNav>
                 </MDBCollapse>
@@ -57,4 +61,11 @@ class NavigationHtml extends React.Component{
 
     }
 }
-export default NavigationHtml;
+export default AdminNavigationHtml;
+
+<link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+  crossorigin="anonymous"
+/>

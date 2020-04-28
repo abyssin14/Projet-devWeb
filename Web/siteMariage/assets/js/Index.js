@@ -30,11 +30,11 @@ class Index extends Component {
       </Route>
 
     <Route path="/user/Accueil">
-    
 
-   <body> 
-  
- 
+
+   <body>
+
+
 <header className="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
   <div className="w3-display-middle w3-text-black w3-center">
     <h1 className="w3-jumbo">Stéphanie et Nicolas</h1>
@@ -128,7 +128,7 @@ class Index extends Component {
 
 <div className="w3-hide-small" style={{marginBottom:"32px"}} ></div>
 
-  
+
 </body>
 
 
@@ -136,10 +136,10 @@ class Index extends Component {
 
 
 
-  
+
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
-    <Route path="/user/Formulaire" component={Formulaire}></Route>
+    <Route path="/user/Formulaire" component={() => <Formulaire privilege= {this.props.privilege} />}></Route>
     <Route path="/logout" component={() => {
             window.location.reload();
                 }}>
@@ -162,6 +162,3 @@ class Index extends Component {
 }
 
   export default Index;
-
-
- 

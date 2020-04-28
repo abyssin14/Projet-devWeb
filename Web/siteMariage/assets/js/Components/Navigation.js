@@ -2,8 +2,8 @@ import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
 import  '../../css/app.css';
-import NavigationHtml from "../Utils/NavigationHtml.js"
-import AdminNavigationHtml from "../Utils/AdminNavigationHtml.js"
+import NavigationHtml from "./Navigations/NavigationHtml.js"
+import AdminNavigationHtml from "./Navigations/AdminNavigationHtml.js"
 import ReactDOM from 'react-dom';
 
 
