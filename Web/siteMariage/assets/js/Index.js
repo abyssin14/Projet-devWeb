@@ -49,7 +49,7 @@ class Index extends Component {
     <a href="#home" style={{width:"25%"}} className="w3-bar-item w3-button">Bienvenue</a>
     <a href="#us" style={{width:"25%"}}  className="w3-bar-item w3-button">Stéphanie et Nicolas</a>
     <a href="#wedding" style={{width:"25%"}}  className="w3-bar-item w3-button">Mariage</a>
-    <a href="#rsvp" style={{width:"25%"}}  className="w3-bar-item w3-button w3-hover-black">Participer</a>
+    <a href="#rsvp" style={{width:"25%"}}  className="w3-bar-item w3-button w3-hover-black">Je serais là</a>
   </div>
 </div>
 
@@ -99,7 +99,7 @@ class Index extends Component {
   <h1>EN ESPERANT QUE TU SERAS PRESENT</h1>
   <p className="w3-large">Veuillez répondre d'ici janvier 2021</p>
   <p className="w3-xlarge">
-    <button onClick={this.redirection} className="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style={{padding:"8px 60px"}} >Participer</button>
+    <button onClick={this.redirection} className="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style={{padding:"8px 60px"}} >Je confirme ma présence</button>
   </p>
 </div>
 
@@ -148,7 +148,7 @@ class Index extends Component {
             window.location.reload();
                 }}>
     </Route>
-    <Route path="/admin" component={Administration}></Route>
+    <Route path="/user/admin" component={Administration}></Route>
                 </switch>
 
 

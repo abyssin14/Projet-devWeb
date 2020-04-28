@@ -103,7 +103,7 @@ handleSubmit(event) {
       <div className="form-group">
       <label>Si oui, combien d'enfants vous accompagnes ?</label><br></br>
       <input type="number" className="form-control w-25" min="0" name="enfant" value={this.state.enfant} onChange={this.handleInputChange}></input>
-      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Participer"></input>
+      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Valider"></input>
 
       </div>
 

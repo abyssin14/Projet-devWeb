@@ -25,7 +25,7 @@ formulaire:
     controller: App\Controller\HomeController::index
 
 administration:
-    path: /admin
+    path: /user/admin
     controller: App\Controller\HomeController::index
 
 api.cadeau:

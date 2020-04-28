@@ -37,7 +37,7 @@ class AdminNavigationHtml extends React.Component{
             <MDBNavLink to="/user/Cadeaux">Cadeaux</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                <MDBNavLink to="/user/Formulaire">Formulaire</MDBNavLink>
+                <MDBNavLink to="/user/Formulaire">Participer</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                 <MDBNavLink to="/user/Contact">Contact</MDBNavLink>
@@ -46,7 +46,7 @@ class AdminNavigationHtml extends React.Component{
                 <MDBNavbarNav right>
 
                 <MDBNavItem>
-                  <MDBNavLink to="/admin">Administration</MDBNavLink>
+                  <MDBNavLink to="/user/admin">Administration</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink to="/logout">Deconnexion</MDBNavLink>

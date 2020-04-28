@@ -27,8 +27,29 @@ fetch(API_HOST + '/api/cadeaux/' + idCadeau, {
                         })
 }
 
+export function deleteCadeau(idCadeau){
+  fetch(API_HOST + '/api/cadeaux/' + idCadeau, {
+                            method: 'DELETE',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json',
+                            }
+                          })
+  }
+
 export function postInvite(body){
   fetch(API_HOST + '/api/invites', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: body
+  })
+}
+
+export function postCadeau(body){
+  fetch(API_HOST + '/api/cadeaux', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
