@@ -137,6 +137,8 @@ class Administration extends Component {
         document.getElementById('editCadeau').style.display = "block";
         document.getElementById('gererCadeau').style.display = "none";
       
+console.log(this.state.invites);
+
         this.setState({
             nomEdit: cadeauNom,
             prixEdit: cadeauPrix,
@@ -294,7 +296,7 @@ class Administration extends Component {
                      <td> {invite.nom}</td>
                      <td>{invite.prenom}</td>
                      <td>{invite.presentCeremonie ? "Oui" : "Non"} </td>
-                     <td>{invite.presentVinDhonneur ? "Oui" : "Non"} </td>
+                     <td>{invite.presentVinDHonneur ? "Oui" : "Non"} </td>
                      <td>{invite.presentRepas ? "Oui" : "Non"} </td>
                      <td>{invite.presentSoiree ? "Oui" : "Non"} </td>
                      <td>{invite.enfant}</td>
