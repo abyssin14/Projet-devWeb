@@ -78,7 +78,7 @@ class Cadeau extends Component {
 
 
 
-
+console.log(this.state.invites)
 
     }
 
@@ -109,7 +109,6 @@ class Cadeau extends Component {
 for ( var i = 0; i < montantsRecoltes.length; i++) {
         totalRecoltee += parseInt(montantsRecoltes[i]);
 }
-      console.log(totalRecoltee);
 
 
         this.setState({
@@ -141,7 +140,6 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
 
     else {
         var nom= document.getElementById("nom").value;
-        console.log(nom);
 
 
                     this.state.acheteurs.push(nom);
@@ -277,7 +275,8 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
 
         <select id="nom" className="custom-select">
         <option disabled selected>Votre nom</option>
-        {this.state.invites.map(invite => (
+        {
+          this.state.invites.map(invite => (
                         <option>
                           {invite.nom}
                         </option>

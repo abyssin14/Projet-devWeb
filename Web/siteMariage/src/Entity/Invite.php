@@ -28,10 +28,6 @@ class Invite
      */
     private $accompagnant;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $enfant;
 
     /**
      * @ORM\Column(type="boolean")
@@ -63,6 +59,11 @@ class Invite
      */
     private $prenom;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $enfants = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,18 +90,6 @@ class Invite
     public function setAccompagnant(bool $accompagnant): self
     {
         $this->accompagnant = $accompagnant;
-
-        return $this;
-    }
-
-    public function getEnfant(): ?int
-    {
-        return $this->enfant;
-    }
-
-    public function setEnfant(int $enfant): self
-    {
-        $this->enfant = $enfant;
 
         return $this;
     }
@@ -173,6 +162,18 @@ class Invite
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getEnfants(): ?array
+    {
+        return $this->enfants;
+    }
+
+    public function setEnfants(?array $enfants): self
+    {
+        $this->enfants = $enfants;
 
         return $this;
     }
