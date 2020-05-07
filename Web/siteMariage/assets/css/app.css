@@ -170,3 +170,8 @@ border-radius: 5px;
     font-size: 24px;
     margin-left: 1%
  }
+
+ .boutonDelete{
+     cursor: pointer;
+ }
+ 

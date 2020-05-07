@@ -37,6 +37,17 @@ export function deleteCadeau(idCadeau){
                           })
   }
 
+  
+export function deleteInvite(idInvite){
+  fetch(API_HOST + '/api/invites/' + idInvite, {
+                            method: 'DELETE',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json',
+                            }
+                          })
+  }
+
 export function postInvite(body){
   fetch(API_HOST + '/api/invites', {
   method: 'POST',

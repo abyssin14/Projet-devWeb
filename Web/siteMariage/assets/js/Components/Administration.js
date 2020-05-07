@@ -5,7 +5,7 @@ import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
-import { getCadeaux, getInvites, putCadeau, deleteCadeau, postCadeau } from "../Utils/fetching.js"
+import { getCadeaux, getInvites, putCadeau, deleteCadeau, postCadeau, deleteInvite } from "../Utils/fetching.js"
 import ReactDOM from 'react-dom';
 
 
@@ -16,19 +16,28 @@ class Administration extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            //State load cadeau/invite
             error: null,
             isLoaded: false,
             items: [],
             invites: [],
+
+            //State cadeau edit
             nomEdit: new String(),
             prixEdit: new String(),
             descEdit: new String(),
             recolteEdit: [],
             achteurEdit: [],
             idEdit: Number(),
+            
+            //State nouveau cadeau
             descriptionNouveauCadeau: new String(),
             prixNouveauCadeau: Number(),
-            nomNouveauCadeau: new String()   
+            nomNouveauCadeau: new String(),   
+
+            //State invite edit
+
+
         };
 
         this.editCadeau = this.editCadeau.bind(this);
@@ -38,6 +47,9 @@ class Administration extends Component {
         this.updateCadeau = this.updateCadeau.bind(this);
         this.nouveauCadeau = this.nouveauCadeau.bind(this);
         this.envoieNouveauCadeau = this.envoieNouveauCadeau.bind(this)
+        this.supprimerInvite = this.supprimerInvite.bind(this);
+        this.editInvite = this.editInvite.bind(this);
+
     
 
     }
@@ -84,7 +96,7 @@ class Administration extends Component {
     // state à jour au changement d'un input text
     handleInputChange(event) {
         const target = event.target;
-        const value = target.value;
+        const value = target.name === 'presentCeremonie' || target.name === 'presentVinDHonneur' || target.name === 'presentRepas' || target.name === 'presentSoiree' ? target.checked : target.value;
         const name = target.name;
     
         this.setState({
@@ -100,6 +112,8 @@ class Administration extends Component {
         var tableauRecolte = this.state.recolteEdit;
         tableauRecolte.splice(indexAsupprimer,1);
         this.state.recolteEdit = tableauRecolte;
+
+        document.getElementById(indexAsupprimer).style.display = "none";
          
               }
 
@@ -131,13 +145,12 @@ class Administration extends Component {
 
     }
 
-    // Vue edit cadeau
-    editCadeau(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
+
+    editContribution(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
         ReactDOM.unmountComponentAtNode(document.getElementById('investisseurs'));
-        document.getElementById('editCadeau').style.display = "block";
+        document.getElementById('editCadeau').style.display = "none";
         document.getElementById('gererCadeau').style.display = "none";
-      
-console.log(this.state.invites);
+        document.getElementById('gererContribution').style.display = "block";
 
         this.setState({
             nomEdit: cadeauNom,
@@ -146,15 +159,16 @@ console.log(this.state.invites);
           });  
 
         this.state.idEdit = cadeauID;
+
+        document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
         this.state.recolteEdit = recoltes;
         this.state.achteurEdit = acheteurs;
+        console.log(acheteurs,recoltes);
         document.getElementById("investisseurs").innerHTML = "";
-        document.getElementById("cadeauToEdit").innerHTML = " Editer le cadeau " + cadeauNom;
-       
         const listeInvestisseurs = [];
         for ( var i = 0; i < acheteurs.length; i++) {
           
-        listeInvestisseurs.push( <tr>
+        listeInvestisseurs.push( <tr id={i}>
            <td>  {acheteurs[i]}</td> 
             <td> {recoltes[i]} €</td>
            <td><button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.suppInvestisseur.bind(this,i)}>Supprimer</button></td>
@@ -162,6 +176,23 @@ console.log(this.state.invites);
         )
             }
             ReactDOM.render(listeInvestisseurs, document.getElementById('investisseurs'));
+    }
+
+    // Vue edit cadeau
+    editCadeau(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
+        
+        document.getElementById('editCadeau').style.display = "block";
+        document.getElementById('gererCadeau').style.display = "none";
+      
+        this.setState({
+            nomEdit: cadeauNom,
+            prixEdit: cadeauPrix,
+            descEdit: cadeauDesc
+          });  
+
+        this.state.idEdit = cadeauID;
+        document.getElementById("cadeauToEdit").innerHTML = " Editer le cadeau " + cadeauNom;
+       
         }
 
        supprimerCadeau(idCadeauToDelete) {
@@ -172,9 +203,22 @@ console.log(this.state.invites);
 
         }
 
+        editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite) {
+            document.getElementById("gestionInvite").style.display = "none";
+            document.getElementById("editInvite").style.display = "block";
+
+        }
+
+        supprimerInvite(idInviteToDelete) {
+
+            deleteInvite(idInviteToDelete);
+
+            window.location.reload();
+        }
+
 
         updateCadeau() {
-
+            console.log(this.state.idEdit);
 
             var body = JSON.stringify({
                 "nom": this.state.nomEdit,
@@ -185,12 +229,20 @@ console.log(this.state.invites);
                 "payement": "enattente"
               });
           putCadeau(this.state.idEdit, body);
+
+          window.location.reload();
         }
        
         retourCadeau() {
             document.getElementById('editCadeau').style.display = "none";
             document.getElementById('nouveauCadeau').style.display = "none";
             document.getElementById('gererCadeau').style.display = "block";
+            document.getElementById('gererContribution').style.display = "none";
+        }
+
+        retourInvite() {
+            document.getElementById("gestionInvite").style.display = "block";
+            document.getElementById("editInvite").style.display = "none";
         }
 
     render(){
@@ -207,7 +259,7 @@ console.log(this.state.invites);
           <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 255, 204)", position:"absolute", top:"10%"}}>
       
 
-      <div className="container mt-4" id="gererCadeau" style={{ position:"relative",height:"50%"}}>
+      <div className="container mt-4" id="gererCadeau" style={{ position:"relative",height:"100%",width:"40%", float:"left"}}>
     <h1>Gérer les cadeaux</h1>
     <table className="table table-striped">
         <thead><tr>
@@ -229,6 +281,7 @@ console.log(this.state.invites);
 
 <td> </td>
 <td>
+<a className="btn btn-secondary" style={{marginRight:"6px"}} onClick={this.editContribution.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>Voir les contributions</a>
     <a className="btn btn-secondary" style={{marginRight:"6px"}} onClick={this.editCadeau.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>Editer</a>
     <button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.supprimerCadeau.bind(this, item.id)}>Supprimer</button>
 
@@ -242,7 +295,7 @@ console.log(this.state.invites);
 
 </div>
 
-<div className="container mt-4" id="nouveauCadeau" style={{display:"none"}}>
+<div className="container mt-4" id="nouveauCadeau" style={{ position:"relative",height:"100%",width:"50%", float:"left", display:"none"}}>
 <h1>Nouveau Cadeau</h1>
 <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
 
@@ -263,23 +316,31 @@ console.log(this.state.invites);
 
 </div>
 
-<div className="container mt-4" id="editCadeau" style={{display:"none", height:"50%",position:"relative"}}>
+<div className="container mt-4" id="editCadeau" style={{ position:"relative",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1 id="cadeauToEdit"></h1>
 <label></label><br></br>
       <input type="text" placeholder="Nom" name="nomEdit" className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input>
-      <table className="table table-striped" id="investisseurs">
-          
-         
-      </table>
+      
       <div className="text-right">
       <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
         <a className="btn btn-primary" onClick={this.updateCadeau.bind(this)}>Confirmer</a>
     </div>
    
 </div>
-<div className="container mt-4">
+
+<div  className="container mt-4" id="gererContribution"  style={{ position:"relative",height:"100%",width:"40%", float:"left", display:"none"}}>
+<h1 id="nomCadeauContribution"></h1>
+      <table className="table table-striped" id="investisseurs"> 
+      </table>
+      <div className="text-right">
+      <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
+      <a className="btn btn-primary" onClick={this.updateCadeau.bind(this)}>Confirmer</a>
+      </div>
+</div>
+
+<div className="container mt-4" id="gestionInvite" style={{ position:"relative",height:"100%",width:"60%", float:"right"}}>
 <h1>Gérer les invités</h1>
 <table className="table table-striped" id="mesInvites">
     <th>Nom</th>
@@ -288,7 +349,7 @@ console.log(this.state.invites);
     <th>Vin d'honneur</th>
     <th>Repas</th>
     <th>Soirée</th>
-    <th>Nombre d'enfants</th>
+    <th>Enfants</th>
     <th>Allergie(s)</th>
 {this.state.invites.map(invite => (
 
@@ -299,13 +360,44 @@ console.log(this.state.invites);
                      <td>{invite.presentVinDHonneur ? "Oui" : "Non"} </td>
                      <td>{invite.presentRepas ? "Oui" : "Non"} </td>
                      <td>{invite.presentSoiree ? "Oui" : "Non"} </td>
-                     <td>{invite.enfant}</td>
+                     <td>{invite.enfants.length}</td>
                      <td>{invite.allergie}</td>
+                     <td>
+                     <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree)}>&#x270D;</span>
+                         <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
+                    </td>
                        
                        </tr>
      ))}
 </table>
 </div>
+<div className="container mt-4" id="editInvite" style={{ position:"relative",height:"100%",width:"60%", float:"right", display:"none"}}>
+<h1 className="nomInviteToModif"></h1>
+      <input type="text" placeholder="Nom" name="nomInviteToEdit" className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Prénom" name="prenomInviteToEdit" className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Allergies" name="allergieInviteToEdit" className="form-control w-25" value={this.state.allergieInviteToEdit} onChange={this.handleInputChange}></input>
+      <div className="form-check">
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input className="form-check-input" type="checkbox" name="invitePresentCeremonieToEdit" checked={this.state.invitePresentCeremonieToEdit}  onChange={this.handleInputChange} ></input>Cérémonie
+      </label>
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox" name="invitePresentRepasToEdit" className="form-check-input" checked={this.state.invitePresentRepasToEdit} onChange={this.handleInputChange}></input>Repas
+      </label>
+
+      
+      <label className="form-check-label"  style={{marginRight:"5%"}}>
+      <input type="checkbox" name="invitePresentVinDHonneurToEdit" className="form-check-input" checked={this.state.presentVinDHonneur} onChange={this.handleInputChange}></input>Vin d'honneur
+      </label>
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox"  className="form-check-input" name="invitePresentSoireeToEdit" checked={this.state.invitePresentSoireeToEdit} onChange={this.handleInputChange}></input>Soirée
+      </label>
+      
+</div>
+<div className="text-right">
+<a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
+</div>
+      </div>
+      
 
 
       </div>
