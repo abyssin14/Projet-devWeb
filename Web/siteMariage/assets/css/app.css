@@ -174,3 +174,6 @@ border-radius: 5px;
  .boutonDelete{
      cursor: pointer;
  }
+.mt-4, .my-4{
+    margin-top: "0px";
+}

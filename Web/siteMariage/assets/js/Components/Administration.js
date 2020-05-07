@@ -275,7 +275,7 @@ class Administration extends Component {
           <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 255, 204)", position:"absolute", top:"10%"}}>
       
 
-      <div className="container mt-4" id="gererCadeau" style={{ position:"relative",height:"100%",width:"40%", float:"left"}}>
+      <div className="container" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
     <h1>Gérer les cadeaux</h1>
     <table className="table table-striped" style={{padding:"0px"}}>
         <thead><tr style={{padding:"0px"}}>
@@ -297,9 +297,9 @@ class Administration extends Component {
 
 <td> </td>
 <td style={{padding:"0px"}}>
-<span  style={{display: "inline-block",fontSize:"23px", fontFamily: "auto", marginRight:"6px"}} onClick={this.editContribution.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x1F5F3; </span>
-    <span style={{marginRight:"6px"}} onClick={this.editCadeau.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x270D;</span>
-    <span style={{display: "inline-block"}} onClick={this.supprimerCadeau.bind(this, item.id)}>&#x274C;</span>
+<span className="boutonDelete" style={{display: "inline-block",fontSize:"23px", fontFamily: "auto", marginRight:"6px"}} onClick={this.editContribution.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x1F5F3; </span>
+    <span className="boutonDelete" style={{marginRight:"6px"}} onClick={this.editCadeau.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x270D;</span>
+    <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerCadeau.bind(this, item.id)}>&#x274C;</span>
 
 </td> </tr>
         ))}
@@ -311,7 +311,7 @@ class Administration extends Component {
 
 </div>
 
-<div className="container mt-4" id="nouveauCadeau" style={{ position:"relative",height:"100%",width:"50%", float:"left", display:"none"}}>
+<div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"50%", float:"left", display:"none"}}>
 <h1>Nouveau Cadeau</h1>
 <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
 
@@ -332,7 +332,7 @@ class Administration extends Component {
 
 </div>
 
-<div className="container mt-4" id="editCadeau" style={{ position:"relative",height:"100%",width:"40%", float:"left", display:"none"}}>
+<div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1 id="cadeauToEdit"></h1>
 <label></label><br></br>
       <input type="text" placeholder="Nom" name="nomEdit" className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input>
@@ -346,7 +346,7 @@ class Administration extends Component {
    
 </div>
 
-<div  className="container mt-4" id="gererContribution"  style={{ position:"relative",height:"100%",width:"40%", float:"left", display:"none"}}>
+<div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1 id="nomCadeauContribution"></h1>
       <table className="table table-striped" id="investisseurs"> 
       </table>
@@ -356,7 +356,7 @@ class Administration extends Component {
       </div>
 </div>
 
-<div className="container mt-4" id="gestionInvite" style={{ position:"relative",height:"100%",width:"60%", float:"right"}}>
+<div className="container" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right"}}>
 <h1>Gérer les invités</h1>
 <table className="table table-striped" id="mesInvites">
     <th>Nom</th>
@@ -387,7 +387,7 @@ class Administration extends Component {
      ))}
 </table>
 </div>
-<div className="container mt-4" id="editInvite" style={{ position:"relative",height:"100%",width:"60%", float:"right", display:"none"}}>
+<div className="container" id="editInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
 <h1 className="nomInviteToModif"></h1>
       <input type="text" placeholder="Nom" name="nomInviteToEdit" className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Prénom" name="prenomInviteToEdit" className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
