@@ -36,7 +36,13 @@ class Administration extends Component {
             nomNouveauCadeau: new String(),   
 
             //State invite edit
-
+            nomInviteToEdit: new String(),
+            prenomInviteToEdit: new String(),
+            invitePresentCeremonieToEdit: false,
+            invitePresentRepasToEdit: false,
+            invitePresentSoireeToEdit: false,
+            invitePresentVinDHonneurToEdit: false,
+            allergieInviteToEdit: new String()
 
         };
 
@@ -96,7 +102,7 @@ class Administration extends Component {
     // state à jour au changement d'un input text
     handleInputChange(event) {
         const target = event.target;
-        const value = target.name === 'presentCeremonie' || target.name === 'presentVinDHonneur' || target.name === 'presentRepas' || target.name === 'presentSoiree' ? target.checked : target.value;
+        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
         const name = target.name;
     
         this.setState({
@@ -207,6 +213,16 @@ class Administration extends Component {
             document.getElementById("gestionInvite").style.display = "none";
             document.getElementById("editInvite").style.display = "block";
 
+            this.setState({
+                nomInviteToEdit: nomInvite,
+                prenomInviteToEdit: prenomInvite,
+                allergieInviteToEdit: allergieInvite,
+                invitePresentCeremonieToEdit: presentCeremonieInvite,
+                invitePresentVinDHonneurToEdit: presentVinDHonneurInvite,
+                invitePresentRepasToEdit: presentRepasInvite,
+                invitePresentSoireeToEdit: presentSoireeInvite
+              });  
+
         }
 
         supprimerInvite(idInviteToDelete) {
@@ -261,17 +277,17 @@ class Administration extends Component {
 
       <div className="container mt-4" id="gererCadeau" style={{ position:"relative",height:"100%",width:"40%", float:"left"}}>
     <h1>Gérer les cadeaux</h1>
-    <table className="table table-striped">
-        <thead><tr>
+    <table className="table table-striped" style={{padding:"0px"}}>
+        <thead><tr style={{padding:"0px"}}>
             <th style={{borderBottom: "0px"}}>Noms</th>
-            <th style={{borderBottom: "0px"}}>Actions</th>
+            
         </tr></thead>
         <tbody>
        
         
 
-        {items.map(item => (<tr  style={{backgroundColor: "rgb(255, 255, 204)"}}>
-                        <td id={item.id} style={{backgroundColor:"rgba(136, 172, 210, 0.27)"}}  className="list-group-item list-group-item text-dark salut"
+        {items.map(item => (<tr>
+                        <td id={item.id} style={{color:"black"}}  
                         key={item.id}
                         //onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -280,10 +296,10 @@ class Administration extends Component {
 
 
 <td> </td>
-<td>
-<a className="btn btn-secondary" style={{marginRight:"6px"}} onClick={this.editContribution.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>Voir les contributions</a>
-    <a className="btn btn-secondary" style={{marginRight:"6px"}} onClick={this.editCadeau.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>Editer</a>
-    <button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.supprimerCadeau.bind(this, item.id)}>Supprimer</button>
+<td style={{padding:"0px"}}>
+<span  style={{display: "inline-block",fontSize:"23px", fontFamily: "auto", marginRight:"6px"}} onClick={this.editContribution.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x1F5F3; </span>
+    <span style={{marginRight:"6px"}} onClick={this.editCadeau.bind(this, item.nom, item.prix, item.id, item.description,item.acheteurs,item.montantsRecoltes)}>&#x270D;</span>
+    <span style={{display: "inline-block"}} onClick={this.supprimerCadeau.bind(this, item.id)}>&#x274C;</span>
 
 </td> </tr>
         ))}
