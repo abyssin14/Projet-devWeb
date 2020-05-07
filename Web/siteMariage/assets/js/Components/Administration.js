@@ -276,7 +276,12 @@ class Administration extends Component {
       
 
       <div className="container" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
-    <h1>Gérer les cadeaux</h1>
+    <h1>Gérer les cadeaux
+    <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
+    </h1>
+    
+        
+    
     <table className="table table-striped" style={{padding:"0px"}}>
         <thead><tr style={{padding:"0px"}}>
             <th style={{borderBottom: "0px"}}>Noms</th>
@@ -305,9 +310,7 @@ class Administration extends Component {
         ))}
         </tbody>
     </table>
-    <div className="text-right">
-        <a className="btn btn-primary" onClick={this.nouveauCadeau.bind(this)}>Nouveau</a>
-    </div>
+    
 
 </div>
 
