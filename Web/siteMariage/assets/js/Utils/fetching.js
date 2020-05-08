@@ -27,6 +27,17 @@ fetch(API_HOST + '/api/cadeaux/' + idCadeau, {
                         })
 }
 
+export function putInvite(idInvite, body){
+  fetch(API_HOST + '/api/invites/' + idInvite, {
+                            method: 'PUT',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json',
+                            },
+                            body: body
+                          })
+  }
+
 export function deleteCadeau(idCadeau){
   fetch(API_HOST + '/api/cadeaux/' + idCadeau, {
                             method: 'DELETE',

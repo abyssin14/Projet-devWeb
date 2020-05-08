@@ -5,7 +5,7 @@ import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
-import { getCadeaux, getInvites, putCadeau, deleteCadeau, postCadeau, deleteInvite } from "../Utils/fetching.js"
+import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau, deleteInvite } from "../Utils/fetching.js"
 import ReactDOM from 'react-dom';
 
 
@@ -21,6 +21,8 @@ class Administration extends Component {
             isLoaded: false,
             items: [],
             invites: [],
+            nbInput: 1,
+            nbInputAdd: Number(),
 
             //State cadeau edit
             nomEdit: new String(),
@@ -36,13 +38,16 @@ class Administration extends Component {
             nomNouveauCadeau: new String(),   
 
             //State invite edit
+            idInviteToEdit: Number(),
             nomInviteToEdit: new String(),
             prenomInviteToEdit: new String(),
             invitePresentCeremonieToEdit: false,
             invitePresentRepasToEdit: false,
             invitePresentSoireeToEdit: false,
             invitePresentVinDHonneurToEdit: false,
-            allergieInviteToEdit: new String()
+            inviteAccompagnantToEdit: false,
+            allergieInviteToEdit: new String(),
+            enfantsInviteToEdit: []
 
         };
 
@@ -55,6 +60,8 @@ class Administration extends Component {
         this.envoieNouveauCadeau = this.envoieNouveauCadeau.bind(this)
         this.supprimerInvite = this.supprimerInvite.bind(this);
         this.editInvite = this.editInvite.bind(this);
+        this.updateInvite = this.updateInvite.bind(this);
+        this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
 
     
 
@@ -102,7 +109,7 @@ class Administration extends Component {
     // state à jour au changement d'un input text
     handleInputChange(event) {
         const target = event.target;
-        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
+        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' ||target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
         const name = target.name;
     
         this.setState({
@@ -209,18 +216,21 @@ class Administration extends Component {
 
         }
 
-        editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite) {
+        editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite,accompagnantInvite,enfantsInvite) {
             document.getElementById("gestionInvite").style.display = "none";
             document.getElementById("editInvite").style.display = "block";
 
             this.setState({
+                idInviteToEdit: idInvite,
                 nomInviteToEdit: nomInvite,
                 prenomInviteToEdit: prenomInvite,
                 allergieInviteToEdit: allergieInvite,
+                inviteAccompagnantToEdit: accompagnantInvite,
                 invitePresentCeremonieToEdit: presentCeremonieInvite,
                 invitePresentVinDHonneurToEdit: presentVinDHonneurInvite,
                 invitePresentRepasToEdit: presentRepasInvite,
-                invitePresentSoireeToEdit: presentSoireeInvite
+                invitePresentSoireeToEdit: presentSoireeInvite,
+                enfantsInviteToEdit: enfantsInvite
               });  
 
         }
@@ -256,10 +266,49 @@ class Administration extends Component {
             document.getElementById('gererContribution').style.display = "none";
         }
 
+        updateInvite() {
+
+            var body = JSON.stringify({
+                "allergie": this.state.allergieInviteToEdit,
+                "accompagnant": this.state.inviteAccompagnantToEdit,
+                "presentCeremonie": this.state.invitePresentCeremonieToEdit,
+                "presentVinDHonneur": this.state.invitePresentVinDHonneurToEdit,
+                "presentRepas": this.state.invitePresentRepasToEdit,
+                "presentSoiree": this.state.invitePresentSoireeToEdit,
+                "nom": this.state.nomInviteToEdit,
+                "prenom": this.state.prenomInviteToEdit,
+                "enfants": this.state.enfantsInviteToEdit
+                
+              });
+              putInvite(this.state.idInviteToEdit, body);
+        }
+
         retourInvite() {
             document.getElementById("gestionInvite").style.display = "block";
             document.getElementById("editInvite").style.display = "none";
         }
+
+
+        //Gestion enfants
+
+        handleClickAddEnfant(){
+            var nbInputAdd = i + 1;
+
+            nextInputs[nbInputAdd] = <input style={{marginRight:"1%"}} type="number" className="form-control w-10" min="0" max="18" name="0" onChange={this.handleInputChange}></input>;
+            this.renderInputEnfant();
+          }
+          
+          renderInputEnfant(){
+            this.state.nextInputs = this.state.enfantsInviteToEdit.length;
+            var nextInputs = new Array();
+            for(var i = 0; i < this.state.nextInputs; i++){
+                nextInputs[i]  = <input style={{marginRight:"1%"}} type="number" value={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name="0" onChange={this.handleInputChange}></input>;
+             }
+            
+             this.state.nextInputs = i;
+          
+            return nextInputs;
+          }
 
     render(){
 
@@ -382,7 +431,7 @@ class Administration extends Component {
                      <td>{invite.enfants.length}</td>
                      <td>{invite.allergie}</td>
                      <td>
-                     <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree)}>&#x270D;</span>
+                     <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
                     </td>
                        
@@ -410,9 +459,19 @@ class Administration extends Component {
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input type="checkbox"  className="form-check-input" name="invitePresentSoireeToEdit" checked={this.state.invitePresentSoireeToEdit} onChange={this.handleInputChange}></input>Soirée
       </label>
-      
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox"  className="form-check-input" name="inviteAccompagnantToEdit" checked={this.state.inviteAccompagnantToEdit} onChange={this.handleInputChange}></input>Accompagnant
+      </label>   
 </div>
+
+<div className="form-inline">
+        {this.renderInputEnfant()}
+        <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
+      </div>
+
+
 <div className="text-right">
+<a className="btn btn-primary" onClick={this.updateInvite}>Confirmer</a>   
 <a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
 </div>
       </div>
