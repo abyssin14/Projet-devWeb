@@ -4,9 +4,21 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  collectionOperations={
+ *         "post"={"path"="/invites", "security"="is_granted('ROLE_ADMIN')"},
+ *          "get"={"path"="/invites", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"}
+ *     },
+ *     itemOperations={
+ *         "get"={"path"="/invites/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
+ *         "delete"={"path"="/invites/{id}", "security"="is_granted('ROLE_ADMIN')"},
+ *         "put"={"path"="/invites/{id}", "security"="is_granted('ROLE_ADMIN')"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\InviteRepository")
  */
 class Invite
@@ -51,11 +63,13 @@ class Invite
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $prenom;
 

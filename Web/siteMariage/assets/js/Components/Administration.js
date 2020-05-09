@@ -9,7 +9,7 @@ import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau,p
 import ReactDOM from 'react-dom';
 
 
-    
+
 
 class Administration extends Component {
 
@@ -22,7 +22,7 @@ class Administration extends Component {
             items: [],
             invites: [],
             nbEnfants: Number(),
-            
+
 
             //State cadeau edit
             nomEdit: new String(),
@@ -31,11 +31,11 @@ class Administration extends Component {
             recolteEdit: [],
             achteurEdit: [],
             idEdit: Number(),
-            
+
             //State nouveau cadeau
             descriptionNouveauCadeau: new String(),
             prixNouveauCadeau: Number(),
-            nomNouveauCadeau: new String(),   
+            nomNouveauCadeau: new String(),
 
             //State nouvel invite
             nomNouvelInvite: new String(),
@@ -80,7 +80,7 @@ class Administration extends Component {
         this.handleClickAddEnfantNouvelInvite = this.handleClickAddEnfantNouvelInvite.bind(this);
         this.handleClickDeleteEnfantNouvelInvite = this.handleClickDeleteEnfantNouvelInvite.bind(this);
 
-    
+
 
     }
 
@@ -126,13 +126,13 @@ class Administration extends Component {
     // state à jour au changement d'un input text/number //
     handleInputChange(event) {
         const target = event.target;
-        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' || 
-        target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' 
-        || target.name === 'accompagneNouvelInvite' || target.name === 'presentCeremonieNouvelInvite' || target.name === 'presentRepasNouvelInvite'  
+        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' ||
+        target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit'
+        || target.name === 'accompagneNouvelInvite' || target.name === 'presentCeremonieNouvelInvite' || target.name === 'presentRepasNouvelInvite'
         || target.name === 'presentSoireeNouvelInvite' || target.name === 'presentVinDHonneurNouvelInvite' ? target.checked : target.value;
         const name = target.name;
         console.log(name);
-       
+
         if(!isNaN(parseInt(name))){
             this.state.enfantsInviteToEdit[name] = value;
             console.log()
@@ -141,19 +141,19 @@ class Administration extends Component {
               [name]: value
             });
           }
-          
+
       }
 
       handleInputChangeNouvelInvite(event) {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-       
-            this.state.enfantsNouvelInvite[name] = value; 
+
+            this.state.enfantsNouvelInvite[name] = value;
       }
 
-    
-    // Supprimer la contribution à un cadeau  
+
+    // Supprimer la contribution à un cadeau
       suppInvestisseur(indexAsupprimer) {
         var tableauAcheteur = this.state.achteurEdit;
         tableauAcheteur.splice(indexAsupprimer, 1);
@@ -164,7 +164,7 @@ class Administration extends Component {
         this.state.recolteEdit = tableauRecolte;
 
         document.getElementById(indexAsupprimer).style.display = "none";
-         
+
               }
 
 
@@ -177,15 +177,15 @@ class Administration extends Component {
 
     // Vue edit cadeau
     editCadeau(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
-        
+
         document.getElementById('editCadeau').style.display = "block";
         document.getElementById('gererCadeau').style.display = "none";
-      
+
         this.setState({
             nomEdit: cadeauNom,
             prixEdit: cadeauPrix,
             descEdit: cadeauDesc
-          });  
+          });
 
         this.state.idEdit = cadeauID;
 
@@ -193,22 +193,22 @@ class Administration extends Component {
         enteteEditCadeau[0] = <span style={{float:"right"}} className="btn btn-warning" onClick={this.retourCadeau}>&#x21A9;</span>;
         enteteEditCadeau[1] = "Editer le cadeau " + cadeauNom;
         ReactDOM.render(enteteEditCadeau, document.getElementById("cadeauToEdit"));
-        
+
         }
 
-    // Vue edit Contribution d'un cadeau    
+    // Vue edit Contribution d'un cadeau
     editContribution(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
         ReactDOM.unmountComponentAtNode(document.getElementById('investisseurs'));
         document.getElementById('editCadeau').style.display = "none";
         document.getElementById('gererCadeau').style.display = "none";
         document.getElementById('gererContribution').style.display = "block";
-    
+
         this.setState({
             nomEdit: cadeauNom,
             prixEdit: cadeauPrix,
             descEdit: cadeauDesc
-        });  
-        
+        });
+
         this.state.idEdit = cadeauID;
         var enteteContribution = [];
         enteteContribution[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>;
@@ -217,13 +217,13 @@ class Administration extends Component {
        // document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
         this.state.recolteEdit = recoltes;
         this.state.achteurEdit = acheteurs;
-     
+
         document.getElementById("investisseurs").innerHTML = "";
         const listeInvestisseurs = [];
         for ( var i = 0; i < acheteurs.length; i++) {
-            
+
         listeInvestisseurs.push( <tr id={i}>
-            <td>  {acheteurs[i]}</td> 
+            <td>  {acheteurs[i]}</td>
             <td> {recoltes[i]} €</td>
             <td><button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.suppInvestisseur.bind(this,i)}>Supprimer</button></td>
             </tr>
@@ -237,7 +237,7 @@ class Administration extends Component {
     editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite,accompagnantInvite,enfantsInvite) {
             document.getElementById("gestionInvite").style.display = "none";
             document.getElementById("editInvite").style.display = "block";
-            
+
 
             this.setState({
                 idInviteToEdit: idInvite,
@@ -250,11 +250,11 @@ class Administration extends Component {
                 invitePresentRepasToEdit: presentRepasInvite,
                 invitePresentSoireeToEdit: presentSoireeInvite,
                 enfantsInviteToEdit: enfantsInvite
-              });  
+              });
 
               var ententeEditInvite = [];
               ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourInvite}> &#x21A9;</span>;
-              ententeEditInvite[1] = "Editer l'invité : " + nomInvite + " " + prenomInvite 
+              ententeEditInvite[1] = "Editer l'invité : " + nomInvite + " " + prenomInvite
               ReactDOM.render(ententeEditInvite,document.getElementById("nomInviteToModif"));
 
         }
@@ -302,7 +302,7 @@ class Administration extends Component {
         window.location.reload();
     }
 
-    // FONCTION UPDATE 
+    // FONCTION UPDATE
     // Modifier un cadeau
     updateCadeau() {
         console.log(this.state.idEdit);
@@ -332,7 +332,7 @@ class Administration extends Component {
             "nom": this.state.nomInviteToEdit,
             "prenom": this.state.prenomInviteToEdit,
             "enfants": this.state.enfantsInviteToEdit
-            
+
           });
           putInvite(this.state.idInviteToEdit, body);
           window.location.reload();
@@ -352,8 +352,8 @@ class Administration extends Component {
           var indexAsupprimer = this.state.enfantsInviteToEdit.length - 1;
          arrayUpdate.splice(indexAsupprimer,1);
          this.setState({enfantsInviteToEdit: arrayUpdate})
-        
-      
+
+
        this.renderInputEnfant();
       }
     //Affiche le nombre d'enfants sous form d'input number
@@ -362,7 +362,7 @@ class Administration extends Component {
         for ( var i = 0; i < this.state.enfantsInviteToEdit.length; i++){
             var nom = "enfantsInviteToEdit["+i+"]";
             enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChange}></input>;
-         }  
+         }
         return enfantsToRender;
       }
 
@@ -380,8 +380,8 @@ class Administration extends Component {
           var indexAsupprimer = this.state.enfantsNouvelInvite.length - 1;
          arrayUpdate.splice(indexAsupprimer,1);
          this.setState({enfantsNouvelInvite: arrayUpdate})
-        
-      
+
+
        this.renderInputEnfantNouvelInvite();
       }
     //Affiche le nombre d'enfants sous form d'input number
@@ -389,14 +389,14 @@ class Administration extends Component {
         var enfantsToRender = new Array();
         for ( var i = 0; i < this.state.enfantsNouvelInvite.length; i++){
             enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsNouvelInvite[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChangeNouvelInvite}></input>;
-         }  
+         }
         return enfantsToRender;
       }
 
 
     // FONCTION D'AJOUT
     // Création d'un nouveau cadeau
-    envoieNouveauCadeau() {
+   envoieNouveauCadeau() {
 
         var body = JSON.stringify({
             "nom": this.state.nomNouveauCadeau,
@@ -406,8 +406,11 @@ class Administration extends Component {
             "montantsRecoltes": [],
             "payement": ""
           })
+
         postCadeau(body)
        this.retourCadeau()
+
+    
     }
     //Création d'un nouvel invite
     envoieNouvelInvite() {
@@ -431,7 +434,7 @@ class Administration extends Component {
 
 
 
- 
+
 
     render(){
 
@@ -453,20 +456,20 @@ class Administration extends Component {
     <h1>Gérer les cadeaux
     <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
     </h1>
-    
-        
-    
+
+
+
     <table className="table table-striped" style={{padding:"0px"}}>
         <thead><tr style={{padding:"0px"}}>
             <th style={{borderBottom: "0px"}}>Noms</th>
-            
+
         </tr></thead>
         <tbody>
-       
-        
+
+
 
         {items.map(item => (<tr>
-                        <td id={item.id} style={{color:"black"}}  
+                        <td id={item.id} style={{color:"black"}}
                         key={item.id}
                         //onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -519,6 +522,7 @@ class Administration extends Component {
 <h1 id="cadeauToEdit">
 </h1>
 <label></label><br></br>
+
       Nom: <input type="text" placeholder="Nom" name="nomEdit" style={{display:"inline-block"}} className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input><br></br><br></br>
       Prix: <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input> €<br></br><br></br>
       Description: <input type="text" style={{display:"inline-block"}} placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input><br></br>
@@ -533,10 +537,11 @@ class Administration extends Component {
 
 
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
+
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
 <h1 id="nomCadeauContribution">  
 </h1>
-      <table className="table table-striped" id="investisseurs"> 
+      <table className="table table-striped" id="investisseurs">
       </table>
       
       <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
@@ -574,7 +579,7 @@ class Administration extends Component {
                      <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
                     </td>
-                       
+
                        </tr>
      ))}
 </table>
@@ -596,6 +601,7 @@ class Administration extends Component {
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input type="checkbox" name="invitePresentRepasToEdit" className="form-check-input" checked={this.state.invitePresentRepasToEdit} onChange={this.handleInputChange}></input>Repas
       </label>
+
       <label className="form-check-label"  style={{marginRight:"5%"}}>
       <input type="checkbox" name="invitePresentVinDHonneurToEdit" className="form-check-input" checked={this.state.invitePresentVinDHonneurToEdit} onChange={this.handleInputChange}></input>Vin d'honneur
       </label>
@@ -604,15 +610,16 @@ class Administration extends Component {
       </label>
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input type="checkbox"  className="form-check-input" name="inviteAccompagnantToEdit" checked={this.state.inviteAccompagnantToEdit} onChange={this.handleInputChange}></input>Accompagnant
-      </label>   
+      </label>
 </div>
 <br></br>
 <div className="form-inline">
-    Enfants : 
+    Enfants :
         {this.renderInputEnfant()}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
         <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfant.bind()}/>
       </div>
+
 
 
   <br></br>
@@ -641,7 +648,7 @@ class Administration extends Component {
       <label></label>
       <input type="text" placeholder="Allergie(s)" name="allergieNouvelInvite" className="form-control w-25" value={this.state.allergieNouvelInvite} onChange={this.handleInputChange}></input>
       </div>
-      
+
       <div className="form-check">
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input className="form-check-input" type="checkbox" name="presentCeremonieNouvelInvite" checked={this.state.presentCeremonieNouvelInvite}  onChange={this.handleInputChange} ></input>Cérémonie
@@ -650,7 +657,7 @@ class Administration extends Component {
       <input type="checkbox" name="presentRepasNouvelInvite" className="form-check-input" checked={this.state.presentRepasNouvelInvite} onChange={this.handleInputChange}></input>Repas
       </label>
 
-      
+
       <label className="form-check-label"  style={{marginRight:"5%"}}>
       <input type="checkbox" name="presentVinDHonneurNouvelInvite" className="form-check-input" checked={this.state.presentVinDHonneurNouvelInvite} onChange={this.handleInputChange}></input>Vin d'honneur
       </label>
@@ -659,11 +666,11 @@ class Administration extends Component {
       </label>
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input type="checkbox"  className="form-check-input" name="accompagneNouvelInvite" checked={this.state.accompagneNouvelInvite} onChange={this.handleInputChange}></input>Accompagnant
-      </label>   
+      </label>
 </div>
 
 <div className="form-inline">
-    Enfants : 
+    Enfants :
         {this.renderInputEnfantNouvelInvite()}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfantNouvelInvite.bind()}/>
         <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfantNouvelInvite.bind()}/>
@@ -673,7 +680,7 @@ class Administration extends Component {
       
 
 </div>
-      
+
 
 
       </div>
