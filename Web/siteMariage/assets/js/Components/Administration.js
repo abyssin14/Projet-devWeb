@@ -5,7 +5,7 @@ import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
-import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau, deleteInvite } from "../Utils/fetching.js"
+import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau,postInvite, deleteInvite } from "../Utils/fetching.js"
 import ReactDOM from 'react-dom';
 
 
@@ -40,6 +40,7 @@ class Administration extends Component {
             //State nouvel invite
             nomNouvelInvite: new String(),
             prenomNouvelInvite: new String(),
+            allergieNouvelInvite: new String(),
             accompagneNouvelInvite: false,
             presentVinDHonneurNouvelInvite: false,
             presentRepasNouvelInvite: false,
@@ -69,7 +70,8 @@ class Administration extends Component {
         this.suppInvestisseur = this.suppInvestisseur.bind(this);
         this.updateCadeau = this.updateCadeau.bind(this);
         this.nouveauCadeau = this.nouveauCadeau.bind(this);
-        this.envoieNouveauCadeau = this.envoieNouveauCadeau.bind(this)
+        this.envoieNouveauCadeau = this.envoieNouveauCadeau.bind(this);
+        this.envoieNouvelInvite = this.envoieNouvelInvite.bind(this);
         this.supprimerInvite = this.supprimerInvite.bind(this);
         this.editInvite = this.editInvite.bind(this);
         this.updateInvite = this.updateInvite.bind(this);
@@ -389,10 +391,25 @@ class Administration extends Component {
             "montantsRecoltes": [],
             "payement": ""
           })
-
-
         postCadeau(body)
+        window.location.reload();
+    }
+    //Création d'un nouvel invite
+    envoieNouvelInvite() {
 
+        var body = JSON.stringify({
+            "allergie": this.state.allergieNouvelInvite,
+            "accompagnant": this.state.accompagneNouvelInvite,
+            "enfants": this.state.enfantsNouvelInvite,
+            "presentCeremonie": this.state.presentCeremonieNouvelInvite,
+            "presentVinDHonneur": this.state.presentVinDHonneurNouvelInvite,
+            "presentRepas": this.state.presentRepasNouvelInvite,
+            "presentSoiree": this.state.presentSoireeNouvelInvite,
+            "nom": this.state.nomNouvelInvite,
+            "prenom": this.state.prenomNouvelInvite
+          })
+
+        postInvite(body)
         window.location.reload();
     }
 
@@ -563,7 +580,7 @@ class Administration extends Component {
 
       
       <label className="form-check-label"  style={{marginRight:"5%"}}>
-      <input type="checkbox" name="invitePresentVinDHonneurToEdit" className="form-check-input" checked={this.state.presentVinDHonneur} onChange={this.handleInputChange}></input>Vin d'honneur
+      <input type="checkbox" name="invitePresentVinDHonneurToEdit" className="form-check-input" checked={this.state.invitePresentVinDHonneurToEdit} onChange={this.handleInputChange}></input>Vin d'honneur
       </label>
       <label className="form-check-label" style={{marginRight:"5%"}}>
       <input type="checkbox"  className="form-check-input" name="invitePresentSoireeToEdit" checked={this.state.invitePresentSoireeToEdit} onChange={this.handleInputChange}></input>Soirée
@@ -599,8 +616,12 @@ class Administration extends Component {
       <input type="text" placeholder="Nom" name="nomNouvelInvite" className="form-control w-25" value={this.state.nomNouvelInvite} onChange={this.handleInputChange}></input>
       </div>
       <div className="form-group">
-      <label></label><br></br>
+      <label></label>
       <input type="text" placeholder="Prenom" name="prenomNouvelInvite" className="form-control w-25" value={this.state.prenomNouvelInvite} onChange={this.handleInputChange}></input>
+      </div>
+      <div className="form-group">
+      <label></label>
+      <input type="text" placeholder="Allergie(s)" name="allergieNouvelInvite" className="form-control w-25" value={this.state.allergieNouvelInvite} onChange={this.handleInputChange}></input>
       </div>
       
       <div className="form-check">
