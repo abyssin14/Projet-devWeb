@@ -21,8 +21,8 @@ class Administration extends Component {
             isLoaded: false,
             items: [],
             invites: [],
-            nbInput: 1,
-            nbInputAdd: Number(),
+            nbEnfants: Number(),
+            
 
             //State cadeau edit
             nomEdit: new String(),
@@ -47,7 +47,8 @@ class Administration extends Component {
             invitePresentVinDHonneurToEdit: false,
             inviteAccompagnantToEdit: false,
             allergieInviteToEdit: new String(),
-            enfantsInviteToEdit: []
+            enfantsInviteToEdit: [],
+
 
         };
 
@@ -62,6 +63,7 @@ class Administration extends Component {
         this.editInvite = this.editInvite.bind(this);
         this.updateInvite = this.updateInvite.bind(this);
         this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
+        this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
 
     
 
@@ -111,10 +113,17 @@ class Administration extends Component {
         const target = event.target;
         const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' ||target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
         const name = target.name;
-    
-        this.setState({
-          [name]: value
-        });  
+        console.log(name);
+       
+        if(!isNaN(parseInt(name))){
+            this.state.enfantsInviteToEdit[name] = value;
+            console.log()
+          }else{
+            this.setState({
+              [name]: value
+            });
+          }
+          
       }
       
       suppInvestisseur(indexAsupprimer) {
@@ -219,6 +228,7 @@ class Administration extends Component {
         editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite,accompagnantInvite,enfantsInvite) {
             document.getElementById("gestionInvite").style.display = "none";
             document.getElementById("editInvite").style.display = "block";
+            
 
             this.setState({
                 idInviteToEdit: idInvite,
@@ -281,6 +291,7 @@ class Administration extends Component {
                 
               });
               putInvite(this.state.idInviteToEdit, body);
+              window.location.reload();
         }
 
         retourInvite() {
@@ -290,24 +301,35 @@ class Administration extends Component {
 
 
         //Gestion enfants
-
+       
         handleClickAddEnfant(){
-            var nbInputAdd = i + 1;
-
-            nextInputs[nbInputAdd] = <input style={{marginRight:"1%"}} type="number" className="form-control w-10" min="0" max="18" name="0" onChange={this.handleInputChange}></input>;
-            this.renderInputEnfant();
+            var enfantToEditUpdate = this.state.enfantsInviteToEdit.concat(0);
+            this.setState({enfantsInviteToEdit: enfantToEditUpdate})
+           this.renderInputEnfant();
+           console.log(this.state.enfantsInviteToEdit);
+          }
+          handleClickDeleteEnfant(){
+              var arrayUpdate = this.state.enfantsInviteToEdit;
+              var indexAsupprimer = this.state.enfantsInviteToEdit.length - 1;
+             arrayUpdate.splice(indexAsupprimer,1);
+             this.setState({enfantsInviteToEdit: arrayUpdate})
+            
+          
+           this.renderInputEnfant();
           }
           
           renderInputEnfant(){
-            this.state.nextInputs = this.state.enfantsInviteToEdit.length;
-            var nextInputs = new Array();
-            for(var i = 0; i < this.state.nextInputs; i++){
-                nextInputs[i]  = <input style={{marginRight:"1%"}} type="number" value={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name="0" onChange={this.handleInputChange}></input>;
+            
+         
+            var enfantsToRender = new Array();
+            for ( var i = 0; i < this.state.enfantsInviteToEdit.length; i++){
+                var nom = "enfantsInviteToEdit["+i+"]";
+                enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChange}></input>;
              }
             
-             this.state.nextInputs = i;
-          
-            return nextInputs;
+             
+             
+            return enfantsToRender;
           }
 
     render(){
@@ -465,8 +487,10 @@ class Administration extends Component {
 </div>
 
 <div className="form-inline">
+    Enfants : 
         {this.renderInputEnfant()}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
+        <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfant.bind()}/>
       </div>
 
 
