@@ -272,6 +272,9 @@ class Administration extends Component {
         document.getElementById('nouveauCadeau').style.display = "none";
         document.getElementById('gererCadeau').style.display = "block";
         document.getElementById('gererContribution').style.display = "none";
+
+        this.componentDidMount()
+        
     }
 
     // Retourner vers la liste des invités
@@ -404,7 +407,7 @@ class Administration extends Component {
             "payement": ""
           })
         postCadeau(body)
-        window.location.reload();
+       this.retourCadeau()
     }
     //Création d'un nouvel invite
     envoieNouvelInvite() {
