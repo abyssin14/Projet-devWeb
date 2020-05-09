@@ -486,19 +486,19 @@ class Administration extends Component {
 
 
 {/* DIV/VUE POUR CREER UN NOUVEAU CADEAU */}
-<div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
+<div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none", fontFamily:"monospace"}}>
 <h1>Nouveau Cadeau
 <span className="btn btn-warning"  style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>
 </h1>
 
 
 <div className="form-group">
-      <label></label><br></br>
-      <input type="text" placeholder="Nom" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
+<br></br><label></label>
+ <input type="text" placeholder="Nom" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
       </div>
       <div className="form-group">
       <label></label><br></br>
-      <input type="text" placeholder="Prix" name="prixNouveauCadeau" className="form-control w-25" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input>
+      <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixNouveauCadeau" className="form-control w-25" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input> € (Prix)
       </div>
       <div className="form-group">
       <label></label><br></br>
@@ -512,13 +512,13 @@ class Administration extends Component {
 
 
 {/* DIV/VUE POUR EDITER UN CADEAU */}
-<div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
+<div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
 <h1 id="cadeauToEdit">
 </h1>
 <label></label><br></br>
-      <input type="text" placeholder="Nom" name="nomEdit" className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input>
-      <input type="text" placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input>
-      <input type="text" placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input>
+      Nom: <input type="text" placeholder="Nom" name="nomEdit" style={{display:"inline-block"}} className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input><br></br><br></br>
+      Prix: <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input> €<br></br><br></br>
+      Description: <input type="text" style={{display:"inline-block"}} placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input><br></br>
       
     
         <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
@@ -530,7 +530,7 @@ class Administration extends Component {
 
 
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
-<div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
+<div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
 <h1 id="nomCadeauContribution">  
 </h1>
       <table className="table table-striped" id="investisseurs"> 
