@@ -5,18 +5,20 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 
 /**
  * @ApiResource(
  *  collectionOperations={
- *         "post"={"path"="/cadeaux"},
- *          "get"={"path"="/cadeaux"}
+ *         "post"={"path"="/cadeaux", "security"="is_granted('ROLE_ADMIN')"},
+ *          "get"={"path"="/cadeaux", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
  *     },
  *     itemOperations={
- *         "get"={"path"="/cadeaux/{id}"},
- *         "delete"={"path"="/cadeaux/{id}"},
- *         "put"={"path"="/cadeaux/{id}"}
+ *         "get"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
+ *         "delete"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_ADMIN')"},
+ *         "put"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"}
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\CadeauRepository")
@@ -27,6 +29,7 @@ class Cadeau
 {
 
     /**
+     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -34,7 +37,9 @@ class Cadeau
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nom;
 
