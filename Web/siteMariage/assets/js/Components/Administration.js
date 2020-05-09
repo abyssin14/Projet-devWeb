@@ -37,6 +37,16 @@ class Administration extends Component {
             prixNouveauCadeau: Number(),
             nomNouveauCadeau: new String(),   
 
+            //State nouvel invite
+            nomNouvelInvite: new String(),
+            prenomNouvelInvite: new String(),
+            accompagneNouvelInvite: false,
+            presentVinDHonneurNouvelInvite: false,
+            presentRepasNouvelInvite: false,
+            presentSoireeNouvelInvite: false,
+            presentCeremonieNouvelInvite: false,
+            enfantsNouvelInvite: [],
+
             //State invite edit
             idInviteToEdit: Number(),
             nomInviteToEdit: new String(),
@@ -55,6 +65,7 @@ class Administration extends Component {
         this.editCadeau = this.editCadeau.bind(this);
         this.supprimerCadeau = this.supprimerCadeau.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleInputChangeNouvelInvite = this.handleInputChangeNouvelInvite.bind(this);
         this.suppInvestisseur = this.suppInvestisseur.bind(this);
         this.updateCadeau = this.updateCadeau.bind(this);
         this.nouveauCadeau = this.nouveauCadeau.bind(this);
@@ -64,6 +75,8 @@ class Administration extends Component {
         this.updateInvite = this.updateInvite.bind(this);
         this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
         this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
+        this.handleClickAddEnfantNouvelInvite = this.handleClickAddEnfantNouvelInvite.bind(this);
+        this.handleClickDeleteEnfantNouvelInvite = this.handleClickDeleteEnfantNouvelInvite.bind(this);
 
     
 
@@ -108,10 +121,13 @@ class Administration extends Component {
     }
 
 
-    // state à jour au changement d'un input text/numer //
+    // state à jour au changement d'un input text/number //
     handleInputChange(event) {
         const target = event.target;
-        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' ||target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
+        const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' || 
+        target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' 
+        || target.name === 'accompagneNouvelInvite' || target.name === 'presentCeremonieNouvelInvite' || target.name === 'presentRepasNouvelInvite'  
+        || target.name === 'presentSoireeNouvelInvite' || target.name === 'presentVinDHonneurNouvelInvite' ? target.checked : target.value;
         const name = target.name;
         console.log(name);
        
@@ -124,6 +140,14 @@ class Administration extends Component {
             });
           }
           
+      }
+
+      handleInputChangeNouvelInvite(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+       
+            this.state.enfantsNouvelInvite[name] = value; 
       }
 
     
@@ -297,7 +321,7 @@ class Administration extends Component {
           window.location.reload();
     }
 
-    //GESTION DES ENFANTS DUN INVITE
+    //GESTION DES ENFANTS  D'UN INVITE EXISTANT
     //Ajoute un enfant
     handleClickAddEnfant(){
         var enfantToEditUpdate = this.state.enfantsInviteToEdit.concat(0);
@@ -321,6 +345,33 @@ class Administration extends Component {
         for ( var i = 0; i < this.state.enfantsInviteToEdit.length; i++){
             var nom = "enfantsInviteToEdit["+i+"]";
             enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChange}></input>;
+         }  
+        return enfantsToRender;
+      }
+
+    //GESTION DES ENFANTS D'UN NOUVEL INVITE
+    //Ajoute un enfant
+    handleClickAddEnfantNouvelInvite(){
+        var enfantToEditUpdate = this.state.enfantsNouvelInvite.concat(0);
+        this.setState({enfantsNouvelInvite: enfantToEditUpdate})
+        this.renderInputEnfantNouvelInvite();
+       console.log(this.state.enfantsNouvelInvite);
+      }
+    //Supprime un enfant
+      handleClickDeleteEnfantNouvelInvite(){
+          var arrayUpdate = this.state.enfantsNouvelInvite;
+          var indexAsupprimer = this.state.enfantsNouvelInvite.length - 1;
+         arrayUpdate.splice(indexAsupprimer,1);
+         this.setState({enfantsNouvelInvite: arrayUpdate})
+        
+      
+       this.renderInputEnfantNouvelInvite();
+      }
+    //Affiche le nombre d'enfants sous form d'input number
+      renderInputEnfantNouvelInvite(){
+        var enfantsToRender = new Array();
+        for ( var i = 0; i < this.state.enfantsNouvelInvite.length; i++){
+            enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsNouvelInvite[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChangeNouvelInvite}></input>;
          }  
         return enfantsToRender;
       }
@@ -545,18 +596,41 @@ class Administration extends Component {
 
 <div className="form-group">
       <label></label><br></br>
-      <input type="text" placeholder="Nom" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Nom" name="nomNouvelInvite" className="form-control w-25" value={this.state.nomNouvelInvite} onChange={this.handleInputChange}></input>
       </div>
       <div className="form-group">
       <label></label><br></br>
-      <input type="text" placeholder="Prix" name="prixNouveauCadeau" className="form-control w-25" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Prenom" name="prenomNouvelInvite" className="form-control w-25" value={this.state.prenomNouvelInvite} onChange={this.handleInputChange}></input>
       </div>
-      <div className="form-group">
-      <label></label><br></br>
-      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-25" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
-      </div>
+      
+      <div className="form-check">
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input className="form-check-input" type="checkbox" name="presentCeremonieNouvelInvite" checked={this.state.presentCeremonieNouvelInvite}  onChange={this.handleInputChange} ></input>Cérémonie
+      </label>
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox" name="presentRepasNouvelInvite" className="form-check-input" checked={this.state.presentRepasNouvelInvite} onChange={this.handleInputChange}></input>Repas
+      </label>
 
-      <input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}} className="form-control btn btn-primary w-25" value="Valider" onClick={this.envoieNouveauCadeau.bind(this)}></input>
+      
+      <label className="form-check-label"  style={{marginRight:"5%"}}>
+      <input type="checkbox" name="presentVinDHonneurNouvelInvite" className="form-check-input" checked={this.state.presentVinDHonneurNouvelInvite} onChange={this.handleInputChange}></input>Vin d'honneur
+      </label>
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox"  className="form-check-input" name="presentSoireeNouvelInvite" checked={this.state.presentSoireeNouvelInvite} onChange={this.handleInputChange}></input>Soirée
+      </label>
+      <label className="form-check-label" style={{marginRight:"5%"}}>
+      <input type="checkbox"  className="form-check-input" name="accompagneNouvelInvite" checked={this.state.accompagneNouvelInvite} onChange={this.handleInputChange}></input>Accompagnant
+      </label>   
+</div>
+
+<div className="form-inline">
+    Enfants : 
+        {this.renderInputEnfantNouvelInvite()}
+        <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfantNouvelInvite.bind()}/>
+        <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfantNouvelInvite.bind()}/>
+      </div>
+    <br></br>
+      <input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}} className="form-control btn btn-primary w-25" value="Valider" onClick={this.envoieNouvelInvite.bind(this)}></input>
 
 </div>
       
