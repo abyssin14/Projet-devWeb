@@ -188,7 +188,11 @@ class Administration extends Component {
           });  
 
         this.state.idEdit = cadeauID;
-        document.getElementById("cadeauToEdit").innerHTML = " Editer le cadeau " + cadeauNom;
+
+        var enteteEditCadeau = [];
+        enteteEditCadeau[0] = <span style={{float:"right"}} className="btn btn-warning" onClick={this.retourCadeau}>&#x21A9;</span>;
+        enteteEditCadeau[1] = "Editer le cadeau " + cadeauNom;
+        ReactDOM.render(enteteEditCadeau, document.getElementById("cadeauToEdit"));
         
         }
 
@@ -204,10 +208,13 @@ class Administration extends Component {
             prixEdit: cadeauPrix,
             descEdit: cadeauDesc
         });  
-    
+        
         this.state.idEdit = cadeauID;
-    
-        document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
+        var enteteContribution = [];
+        enteteContribution[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>;
+        enteteContribution[1] = "Contributions pour le cadeau :" + cadeauNom;
+        ReactDOM.render(enteteContribution, document.getElementById("nomCadeauContribution"));
+       // document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
         this.state.recolteEdit = recoltes;
         this.state.achteurEdit = acheteurs;
      
@@ -475,8 +482,10 @@ class Administration extends Component {
 
 {/* DIV/VUE POUR CREER UN NOUVEAU CADEAU */}
 <div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
-<h1>Nouveau Cadeau</h1>
-<a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
+<h1>Nouveau Cadeau
+<span className="btn btn-warning" style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>
+</h1>
+
 
 <div className="form-group">
       <label></label><br></br>
@@ -499,14 +508,14 @@ class Administration extends Component {
 
 {/* DIV/VUE POUR EDITER UN CADEAU */}
 <div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
-<h1 id="cadeauToEdit"></h1>
+<h1 id="cadeauToEdit">
+</h1>
 <label></label><br></br>
       <input type="text" placeholder="Nom" name="nomEdit" className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input>
       
       <div className="text-right">
-      <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
         <a className="btn btn-primary" onClick={this.updateCadeau.bind(this)}>Confirmer</a>
     </div>
    
@@ -516,11 +525,11 @@ class Administration extends Component {
 
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
-<h1 id="nomCadeauContribution"></h1>
+<h1 id="nomCadeauContribution">  
+</h1>
       <table className="table table-striped" id="investisseurs"> 
       </table>
       <div className="text-right">
-      <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
       <a className="btn btn-primary" onClick={this.updateCadeau.bind(this)}>Confirmer</a>
       </div>
 </div>
@@ -530,7 +539,7 @@ class Administration extends Component {
 {/* DIV/VUE POUR L'AFFICHAGE ET LA GESTION DES INVITES */}
 <div className="container" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right"}}>
 <h1>Gérer les invités
-<span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauInvite.bind(this)}>&#x1F381; New</span>
+<span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauInvite.bind(this)}>&#x1F64B; New</span>
 </h1>
 <table className="table table-striped" id="mesInvites">
     <th>Nom</th>
