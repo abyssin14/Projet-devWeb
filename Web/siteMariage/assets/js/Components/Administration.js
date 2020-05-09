@@ -69,7 +69,7 @@ class Administration extends Component {
 
     }
 
-
+// Chargement des cadeaux et des invités //
     componentDidMount() {
 
         getCadeaux().then(
@@ -108,7 +108,7 @@ class Administration extends Component {
     }
 
 
-    // state à jour au changement d'un input text
+    // state à jour au changement d'un input text/numer //
     handleInputChange(event) {
         const target = event.target;
         const value = target.name === 'invitePresentCeremonieToEdit' || target.name === 'inviteAccompagnantToEdit' ||target.name === 'invitePresentRepasToEdit' || target.name === 'invitePresentSoireeToEdit' || target.name === 'invitePresentVinDHonneurToEdit' ? target.checked : target.value;
@@ -125,7 +125,9 @@ class Administration extends Component {
           }
           
       }
-      
+
+    
+    // Supprimer la contribution à un cadeau  
       suppInvestisseur(indexAsupprimer) {
         var tableauAcheteur = this.state.achteurEdit;
         tableauAcheteur.splice(indexAsupprimer, 1);
@@ -140,65 +142,12 @@ class Administration extends Component {
               }
 
 
-
-    // Vue nouveau cadeau
+// AFFICHAGE DES DIFFERENTES VUES AU CLICK D UN BOUTON
+    // Affichage vue nouveau Cadeau
      nouveauCadeau() {
                 document.getElementById("nouveauCadeau").style.display = "block";
                 document.getElementById("gererCadeau").style.display = "none";
- }
-
-    // Envoie nouveau cadeau
-
-    envoieNouveauCadeau() {
-
-        var body = JSON.stringify({
-            "nom": this.state.nomNouveauCadeau,
-            "prix": parseInt(this.state.prixNouveauCadeau),
-            "description": this.state.descriptionNouveauCadeau,
-            "acheteurs": [],
-            "montantsRecoltes": [],
-            "payement": ""
-          })
-
-
-        postCadeau(body)
-
-        window.location.reload();
-
-    }
-
-
-    editContribution(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
-        ReactDOM.unmountComponentAtNode(document.getElementById('investisseurs'));
-        document.getElementById('editCadeau').style.display = "none";
-        document.getElementById('gererCadeau').style.display = "none";
-        document.getElementById('gererContribution').style.display = "block";
-
-        this.setState({
-            nomEdit: cadeauNom,
-            prixEdit: cadeauPrix,
-            descEdit: cadeauDesc
-          });  
-
-        this.state.idEdit = cadeauID;
-
-        document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
-        this.state.recolteEdit = recoltes;
-        this.state.achteurEdit = acheteurs;
-        console.log(acheteurs,recoltes);
-        document.getElementById("investisseurs").innerHTML = "";
-        const listeInvestisseurs = [];
-        for ( var i = 0; i < acheteurs.length; i++) {
-          
-        listeInvestisseurs.push( <tr id={i}>
-           <td>  {acheteurs[i]}</td> 
-            <td> {recoltes[i]} €</td>
-           <td><button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.suppInvestisseur.bind(this,i)}>Supprimer</button></td>
-           </tr>
-        )
-            }
-            ReactDOM.render(listeInvestisseurs, document.getElementById('investisseurs'));
-    }
+     }
 
     // Vue edit cadeau
     editCadeau(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
@@ -214,18 +163,45 @@ class Administration extends Component {
 
         this.state.idEdit = cadeauID;
         document.getElementById("cadeauToEdit").innerHTML = " Editer le cadeau " + cadeauNom;
-       
+        
         }
 
-       supprimerCadeau(idCadeauToDelete) {
-
-            deleteCadeau(idCadeauToDelete);
-
-            window.location.reload();
-
+    // Vue edit Contribution d'un cadeau    
+    editContribution(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs,recoltes) {
+        ReactDOM.unmountComponentAtNode(document.getElementById('investisseurs'));
+        document.getElementById('editCadeau').style.display = "none";
+        document.getElementById('gererCadeau').style.display = "none";
+        document.getElementById('gererContribution').style.display = "block";
+    
+        this.setState({
+            nomEdit: cadeauNom,
+            prixEdit: cadeauPrix,
+            descEdit: cadeauDesc
+        });  
+    
+        this.state.idEdit = cadeauID;
+    
+        document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
+        this.state.recolteEdit = recoltes;
+        this.state.achteurEdit = acheteurs;
+     
+        document.getElementById("investisseurs").innerHTML = "";
+        const listeInvestisseurs = [];
+        for ( var i = 0; i < acheteurs.length; i++) {
+            
+        listeInvestisseurs.push( <tr id={i}>
+            <td>  {acheteurs[i]}</td> 
+            <td> {recoltes[i]} €</td>
+            <td><button className="btn btn-danger" style={{display: "inline-block"}} onClick={this.suppInvestisseur.bind(this,i)}>Supprimer</button></td>
+            </tr>
+        )
+        }
+        ReactDOM.render(listeInvestisseurs, document.getElementById('investisseurs'));
         }
 
-        editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite,accompagnantInvite,enfantsInvite) {
+
+    // Vue edit invite
+    editInvite(idInvite,nomInvite,prenomInvite,allergieInvite,presentCeremonieInvite,presentVinDHonneurInvite,presentRepasInvite,presentSoireeInvite,accompagnantInvite,enfantsInvite) {
             document.getElementById("gestionInvite").style.display = "none";
             document.getElementById("editInvite").style.display = "block";
             
@@ -245,92 +221,134 @@ class Administration extends Component {
 
         }
 
-        supprimerInvite(idInviteToDelete) {
+    // Vue nouvel invite
+    nouveauInvite() {
+        document.getElementById("nouvelInvite").style.display = "block";
+        document.getElementById("editInvite").style.display = "none";
+        document.getElementById("gestionInvite").style.display = "none";
+    }
 
-            deleteInvite(idInviteToDelete);
+    // Retourner vers la liste des cadeaux
+    retourCadeau() {
+        document.getElementById('editCadeau').style.display = "none";
+        document.getElementById('nouveauCadeau').style.display = "none";
+        document.getElementById('gererCadeau').style.display = "block";
+        document.getElementById('gererContribution').style.display = "none";
+    }
 
-            window.location.reload();
-        }
+    // Retourner vers la liste des invités
+    retourInvite() {
+        document.getElementById("gestionInvite").style.display = "block";
+        document.getElementById("editInvite").style.display = "none";
+        document.getElementById("nouvelInvite").style.display = "none";
+    }
 
 
-        updateCadeau() {
-            console.log(this.state.idEdit);
+    // FONCTION DE SUPPRESSION
+    //Supprimer un cadeau
+    supprimerCadeau(idCadeauToDelete) {
 
-            var body = JSON.stringify({
-                "nom": this.state.nomEdit,
-                "prix": parseInt(this.state.prixEdit),
-                "description": this.state.descEdit,
-                "acheteurs":  this.state.achteurEdit ,
-                "montantsRecoltes": this.state.recolteEdit ,
-                "payement": "enattente"
-              });
-          putCadeau(this.state.idEdit, body);
+        deleteCadeau(idCadeauToDelete);
 
+        window.location.reload();
+
+    }
+    //Supprimer un invite
+    supprimerInvite(idInviteToDelete) {
+
+        deleteInvite(idInviteToDelete);
+
+        window.location.reload();
+    }
+
+    // FONCTION UPDATE 
+    // Modifier un cadeau
+    updateCadeau() {
+        console.log(this.state.idEdit);
+
+        var body = JSON.stringify({
+            "nom": this.state.nomEdit,
+            "prix": parseInt(this.state.prixEdit),
+            "description": this.state.descEdit,
+            "acheteurs":  this.state.achteurEdit ,
+            "montantsRecoltes": this.state.recolteEdit ,
+            "payement": "enattente"
+          });
+      putCadeau(this.state.idEdit, body);
+
+      window.location.reload();
+    }
+   //Modifier un invité
+    updateInvite() {
+
+        var body = JSON.stringify({
+            "allergie": this.state.allergieInviteToEdit,
+            "accompagnant": this.state.inviteAccompagnantToEdit,
+            "presentCeremonie": this.state.invitePresentCeremonieToEdit,
+            "presentVinDHonneur": this.state.invitePresentVinDHonneurToEdit,
+            "presentRepas": this.state.invitePresentRepasToEdit,
+            "presentSoiree": this.state.invitePresentSoireeToEdit,
+            "nom": this.state.nomInviteToEdit,
+            "prenom": this.state.prenomInviteToEdit,
+            "enfants": this.state.enfantsInviteToEdit
+            
+          });
+          putInvite(this.state.idInviteToEdit, body);
           window.location.reload();
-        }
-       
-        retourCadeau() {
-            document.getElementById('editCadeau').style.display = "none";
-            document.getElementById('nouveauCadeau').style.display = "none";
-            document.getElementById('gererCadeau').style.display = "block";
-            document.getElementById('gererContribution').style.display = "none";
-        }
+    }
 
-        updateInvite() {
-
-            var body = JSON.stringify({
-                "allergie": this.state.allergieInviteToEdit,
-                "accompagnant": this.state.inviteAccompagnantToEdit,
-                "presentCeremonie": this.state.invitePresentCeremonieToEdit,
-                "presentVinDHonneur": this.state.invitePresentVinDHonneurToEdit,
-                "presentRepas": this.state.invitePresentRepasToEdit,
-                "presentSoiree": this.state.invitePresentSoireeToEdit,
-                "nom": this.state.nomInviteToEdit,
-                "prenom": this.state.prenomInviteToEdit,
-                "enfants": this.state.enfantsInviteToEdit
-                
-              });
-              putInvite(this.state.idInviteToEdit, body);
-              window.location.reload();
-        }
-
-        retourInvite() {
-            document.getElementById("gestionInvite").style.display = "block";
-            document.getElementById("editInvite").style.display = "none";
-        }
+    //GESTION DES ENFANTS DUN INVITE
+    //Ajoute un enfant
+    handleClickAddEnfant(){
+        var enfantToEditUpdate = this.state.enfantsInviteToEdit.concat(0);
+        this.setState({enfantsInviteToEdit: enfantToEditUpdate})
+       this.renderInputEnfant();
+       console.log(this.state.enfantsInviteToEdit);
+      }
+    //Supprime un enfant
+      handleClickDeleteEnfant(){
+          var arrayUpdate = this.state.enfantsInviteToEdit;
+          var indexAsupprimer = this.state.enfantsInviteToEdit.length - 1;
+         arrayUpdate.splice(indexAsupprimer,1);
+         this.setState({enfantsInviteToEdit: arrayUpdate})
+        
+      
+       this.renderInputEnfant();
+      }
+    //Affiche le nombre d'enfants sous form d'input number
+      renderInputEnfant(){
+        var enfantsToRender = new Array();
+        for ( var i = 0; i < this.state.enfantsInviteToEdit.length; i++){
+            var nom = "enfantsInviteToEdit["+i+"]";
+            enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChange}></input>;
+         }  
+        return enfantsToRender;
+      }
 
 
-        //Gestion enfants
-       
-        handleClickAddEnfant(){
-            var enfantToEditUpdate = this.state.enfantsInviteToEdit.concat(0);
-            this.setState({enfantsInviteToEdit: enfantToEditUpdate})
-           this.renderInputEnfant();
-           console.log(this.state.enfantsInviteToEdit);
-          }
-          handleClickDeleteEnfant(){
-              var arrayUpdate = this.state.enfantsInviteToEdit;
-              var indexAsupprimer = this.state.enfantsInviteToEdit.length - 1;
-             arrayUpdate.splice(indexAsupprimer,1);
-             this.setState({enfantsInviteToEdit: arrayUpdate})
-            
-          
-           this.renderInputEnfant();
-          }
-          
-          renderInputEnfant(){
-            
-         
-            var enfantsToRender = new Array();
-            for ( var i = 0; i < this.state.enfantsInviteToEdit.length; i++){
-                var nom = "enfantsInviteToEdit["+i+"]";
-                enfantsToRender[i]  = <input style={{marginRight:"1%"}} type="number" placeholder={this.state.enfantsInviteToEdit[i]} className="form-control w-10" min="0" max="18" name={i} onChange={this.handleInputChange}></input>;
-             }
-            
-             
-             
-            return enfantsToRender;
-          }
+    // FONCTION D'AJOUT
+    // Création d'un nouveau cadeau
+    envoieNouveauCadeau() {
+
+        var body = JSON.stringify({
+            "nom": this.state.nomNouveauCadeau,
+            "prix": parseInt(this.state.prixNouveauCadeau),
+            "description": this.state.descriptionNouveauCadeau,
+            "acheteurs": [],
+            "montantsRecoltes": [],
+            "payement": ""
+          })
+
+
+        postCadeau(body)
+
+        window.location.reload();
+    }
+
+
+
+
+ 
 
     render(){
 
@@ -343,10 +361,12 @@ class Administration extends Component {
         } else {
 
         return(
-          <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 255, 204)", position:"absolute", top:"10%"}}>
-      
+<div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 255, 204)", position:"absolute", top:"10%"}}>
 
-      <div className="container" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
+
+
+{/* DIV/VUE DE LA LISTE DES CADEAUX, DE LA GESTION DES CADEAUX  */}
+ <div className="container" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
     <h1>Gérer les cadeaux
     <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
     </h1>
@@ -381,11 +401,12 @@ class Administration extends Component {
         ))}
         </tbody>
     </table>
-    
-
 </div>
 
-<div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"50%", float:"left", display:"none"}}>
+
+
+{/* DIV/VUE POUR CREER UN NOUVEAU CADEAU */}
+<div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1>Nouveau Cadeau</h1>
 <a className="btn btn-primary" onClick={this.retourCadeau}>Retour à la liste des cadeaux</a>
 
@@ -406,6 +427,9 @@ class Administration extends Component {
 
 </div>
 
+
+
+{/* DIV/VUE POUR EDITER UN CADEAU */}
 <div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1 id="cadeauToEdit"></h1>
 <label></label><br></br>
@@ -420,6 +444,9 @@ class Administration extends Component {
    
 </div>
 
+
+
+{/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none"}}>
 <h1 id="nomCadeauContribution"></h1>
       <table className="table table-striped" id="investisseurs"> 
@@ -430,8 +457,13 @@ class Administration extends Component {
       </div>
 </div>
 
+
+
+{/* DIV/VUE POUR L'AFFICHAGE ET LA GESTION DES INVITES */}
 <div className="container" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right"}}>
-<h1>Gérer les invités</h1>
+<h1>Gérer les invités
+<span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauInvite.bind(this)}>&#x1F381; New</span>
+</h1>
 <table className="table table-striped" id="mesInvites">
     <th>Nom</th>
     <th>Prénom</th>
@@ -461,6 +493,10 @@ class Administration extends Component {
      ))}
 </table>
 </div>
+
+
+
+{/* DIV/VUE POUR MODIFIER UN INVITE */}
 <div className="container" id="editInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
 <h1 className="nomInviteToModif"></h1>
       <input type="text" placeholder="Nom" name="nomInviteToEdit" className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
@@ -498,7 +534,31 @@ class Administration extends Component {
 <a className="btn btn-primary" onClick={this.updateInvite}>Confirmer</a>   
 <a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
 </div>
+</div>
+
+
+
+{/* DIV/VUE POUR CREER UN INVITE */}
+<div className="container" id="nouvelInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
+<h1>Nouvel Invité</h1>
+<a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
+
+<div className="form-group">
+      <label></label><br></br>
+      <input type="text" placeholder="Nom" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
       </div>
+      <div className="form-group">
+      <label></label><br></br>
+      <input type="text" placeholder="Prix" name="prixNouveauCadeau" className="form-control w-25" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input>
+      </div>
+      <div className="form-group">
+      <label></label><br></br>
+      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-25" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
+      </div>
+
+      <input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}} className="form-control btn btn-primary w-25" value="Valider" onClick={this.envoieNouveauCadeau.bind(this)}></input>
+
+</div>
       
 
 
