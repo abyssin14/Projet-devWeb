@@ -252,6 +252,11 @@ class Administration extends Component {
                 enfantsInviteToEdit: enfantsInvite
               });  
 
+              var ententeEditInvite = [];
+              ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourInvite}> &#x21A9;</span>;
+              ententeEditInvite[1] = "Editer l'invité : " + nomInvite + " " + prenomInvite 
+              ReactDOM.render(ententeEditInvite,document.getElementById("nomInviteToModif"));
+
         }
 
     // Vue nouvel invite
@@ -575,7 +580,7 @@ class Administration extends Component {
 
 {/* DIV/VUE POUR MODIFIER UN INVITE */}
 <div className="container" id="editInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
-<h1 className="nomInviteToModif"></h1>
+<h1 id="nomInviteToModif"></h1>
       <input type="text" placeholder="Nom" name="nomInviteToEdit" className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Prénom" name="prenomInviteToEdit" className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
       <input type="text" placeholder="Allergies" name="allergieInviteToEdit" className="form-control w-25" value={this.state.allergieInviteToEdit} onChange={this.handleInputChange}></input>
@@ -609,7 +614,6 @@ class Administration extends Component {
 
 <div className="text-right">
 <a className="btn btn-primary" onClick={this.updateInvite}>Confirmer</a>   
-<a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
 </div>
 </div>
 
@@ -617,8 +621,10 @@ class Administration extends Component {
 
 {/* DIV/VUE POUR CREER UN INVITE */}
 <div className="container" id="nouvelInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
-<h1>Nouvel Invité</h1>
-<a className="btn btn-primary" onClick={this.retourInvite}>Retour à la liste des invités</a>
+<h1>Nouvel Invité
+<span style={{float:"right"}} className="btn btn-warning" onClick={this.retourInvite}>&#x21A9;</span>
+</h1>
+
 
 <div className="form-group">
       <label></label><br></br>
