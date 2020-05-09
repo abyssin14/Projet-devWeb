@@ -8,7 +8,6 @@ use Cocur\Slugify\Slugify;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-
 /**
  * @ApiResource(
  *  collectionOperations={
