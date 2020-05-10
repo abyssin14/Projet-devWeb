@@ -22,11 +22,23 @@ import app from "../../css/app.css"
         }
 
         handleFormSubmit() {
-            
-            var service_id = "default_service";
-            var template_id = "sitemariage";
-            var user_id = 'user_I5n4Z5pi99TRQVlxXwhck';
-            emailjs.send(service_id, template_id, this.state,user_id);
+          var val = confirm("Etes-vous sûr de vouloir envoyer ce message ?");
+        if( val == true ) {
+               
+          var service_id = "default_service";
+          var template_id = "sitemariage";
+          var user_id = 'user_I5n4Z5pi99TRQVlxXwhck';
+          emailjs.send(service_id, template_id, this.state,user_id);
+
+          this.setState({
+            userSender: "",
+            emailDetails: ""
+          });
+
+        } else {
+                 
+        }
+             
         }
 
         handleInputChange(event) {
@@ -47,18 +59,19 @@ import app from "../../css/app.css"
             return(
 
 <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 221, 221)", position:"absolute", top:"10%"}}>
-<div className="container" id="formContact" style={{margin:"0 auto"}}>
+<div className="container" id="formContact" style={{margin:"0 auto", fontFamily:"serif"}}>
   <h2 style={{textAlign:"center",fontSize:"26px"}}>Une question ? Envoyer nous votre message !</h2>
-  <form>
+  <form style={{height:"80%"}}>
     <div className="form-group">
       <label for="email">Votre mail </label>
       <input type="email" className="form-control w-25" value={this.state.userSender} onChange={this.handleInputChange} placeholder="Entrer votre adresse mail" name="userSender"></input>
     </div>
-    <div className="form-group">
-      <label for="pwd">Votre message</label>
-      <input type="text-area" className="form-control w-75" style={{height: "15%"}} value={this.state.emailDetails} onChange={this.handleInputChange} placeholder="Entrer votre message" name="emailDetails"></input>
+    <div className="form-group h-50">
+      <label for="pwd">Votre message (Maximum 400 caractères)</label>
+      <textarea maxlength="400" className="form-control rounded-0"  value={this.state.emailDetails} onChange={this.handleInputChange} placeholder="Entrer votre message" name="emailDetails" placeholder="Entrer votre message"  rows="3" style={{height: "90%", marginBottom:"1.5rem"}}></textarea>
     </div>
-    <span  className="btn btn-primary" onClick={this.handleFormSubmit}>Envoyer</span>
+    <span  className="btn btn-warning" style={{backgroundColor: "#ffda6996"}} onClick={this.handleFormSubmit}>Envoyer &#x1F48C;</span>
+    <span  style={{float:"right"}}></span>
   </form>
 </div>
       </div>
