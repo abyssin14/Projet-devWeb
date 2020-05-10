@@ -32,7 +32,24 @@ import app from "../../css/app.css"
             return(
 
 <div style={{height:"100%"}}><br></br><br></br><br></br><br></br><br></br>
-    <span onClick={this.handleFormSubmit}>salut ça va</span>
+<div className="container" id="formContact" style={{margin:"0 auto"}}>
+  <h2 style={{textAlign:"center",fontSize:"26px"}}>Une question ? Envoyer nous votre message !</h2>
+  <form action="formulaire.php" method="post">
+    <div className="form-group">
+      <label for="email">Votre mail </label>
+      <input type="email" className="form-control w-100"  placeholder="Entrer votre adresses mail" name="mail"></input>
+    </div>
+    <div className="form-group">
+      <label for="pwd">Votre message</label>
+      <input type="text" className="form-control w-100"   placeholder="Entrer votre message" name="msg"></input>
+    </div>
+    <button type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>Envoyer</button>
+  </form>
+</div>
+
+
+
+
       </div>
 
 
