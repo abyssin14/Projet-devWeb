@@ -24,6 +24,10 @@ formulaire:
     path: /user/Formulaire
     controller: App\Controller\HomeController::index
 
+contact:
+    path: /user/Contact
+    controller: App\Controller\HomeController::index
+
 administration:
     path: /admin
     controller: App\Controller\HomeController::index

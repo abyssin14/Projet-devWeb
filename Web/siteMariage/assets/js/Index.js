@@ -7,6 +7,7 @@ import Cadeau from './Components/Cadeau';
 import Formulaire from './Components/Formulaire';
 import Navigation from './Components/Navigation';
 import Administration from './Components/Administration';
+import Contact from './Components/Contact';
 import couple from '../img/imgCouple.jpg'
 import location from '../img/locationMariage.jpg'
 
@@ -139,6 +140,7 @@ class Index extends Component {
 
     </Route>
     <Route path="/user/Cadeaux" component={Cadeau}></Route>
+    <Route path="/user/Contact" component={Contact}></Route>
     <Route path="/user/Formulaire" component={() => <Formulaire privilege= {this.props.privilege} />}></Route>
     <Route path="/logout" component={() => {
             window.location.reload();

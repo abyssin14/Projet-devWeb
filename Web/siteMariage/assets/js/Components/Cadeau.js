@@ -7,6 +7,7 @@ import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 
+
 class Cadeau extends Component {
 
 /* Définitions des states */
