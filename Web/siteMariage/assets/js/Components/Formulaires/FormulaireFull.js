@@ -90,8 +90,8 @@ renderInputEnfant(){
       <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}>
   <div className="container"  id="monform">
   <h1>Formulaire de participation au mariage</h1>
-  <form  className="form-group"  style={{marginBottom:"1.5rem"}} onSubmit={this.handleSubmit}>
-      <div className="form-group form-inline" >
+  <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
+      <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
       </div>
@@ -120,7 +120,7 @@ renderInputEnfant(){
       </div>
 
 
-      <div className="form-group">
+      <div className="form-group"  style={{marginBottom:"0rem"}}>
       <label></label><br></br>
       <input type="text" placeholder="Allergie(s) ?" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
       </div>
