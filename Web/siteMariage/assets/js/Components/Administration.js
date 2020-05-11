@@ -452,14 +452,14 @@ class Administration extends Component {
 
 
 {/* DIV/VUE DE LA LISTE DES CADEAUX, DE LA GESTION DES CADEAUX  */}
- <div className="container" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
+ <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
     <h1>Gérer les cadeaux
     <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
     </h1>
 
 
 
-    <table className="table table-striped" style={{padding:"0px"}}>
+    <table className="table" style={{padding:"0px"}}>
         <thead><tr style={{padding:"0px"}}>
             <th style={{borderBottom: "0px"}}>Noms</th>
 
