@@ -452,7 +452,7 @@ class Administration extends Component {
 
 
 {/* DIV/VUE DE LA LISTE DES CADEAUX, DE LA GESTION DES CADEAUX  */}
- <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left"}}>
+ <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left", maxHeight:"100%"}}>
     <h1>Gérer les cadeaux
     <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
     </h1>
@@ -551,11 +551,12 @@ class Administration extends Component {
 
 
 {/* DIV/VUE POUR L'AFFICHAGE ET LA GESTION DES INVITES */}
-<div className="container" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right"}}>
+<div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", maxHeight:"100%"}}>
 <h1>Gérer les invités
 <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauInvite.bind(this)}>&#x1F64B; New</span>
 </h1>
-<table className="table table-striped" id="mesInvites">
+
+<table className="table" id="mesInvites">
     <th>Nom</th>
     <th>Prénom</th>
     <th>Cérémonie</th>
@@ -567,14 +568,14 @@ class Administration extends Component {
 {this.state.invites.map(invite => (
 
 <tr>
-                     <td> {invite.nom}</td>
-                     <td>{invite.prenom}</td>
+                     <td> {invite.nom.substr(0,10)}</td>
+                     <td>{invite.prenom.substr(0,10)}</td>
                      <td>{invite.presentCeremonie ? "Oui" : "Non"} </td>
                      <td>{invite.presentVinDHonneur ? "Oui" : "Non"} </td>
                      <td>{invite.presentRepas ? "Oui" : "Non"} </td>
                      <td>{invite.presentSoiree ? "Oui" : "Non"} </td>
                      <td>{invite.enfants.length}</td>
-                     <td>{invite.allergie}</td>
+                     <td>{invite.allergie.substr(0,8)}...</td>
                      <td>
                      <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
