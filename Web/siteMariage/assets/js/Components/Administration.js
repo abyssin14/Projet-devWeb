@@ -61,6 +61,14 @@ class Administration extends Component {
             enfantsInviteToEdit: [],
 
 
+            //State statistiques invités
+            nombrePrésentCérémonie: Number(),
+            nombrePrésentVD: Number(),
+            nombrePrésentRepas: Number(),
+            nombrePrésentSoirée: Number(),
+           
+
+
         };
 
         this.editCadeau = this.editCadeau.bind(this);
@@ -316,8 +324,7 @@ class Administration extends Component {
             "payement": "enattente"
           });
       putCadeau(this.state.idEdit, body);
-
-      window.location.reload();
+      this.retourCadeau()
     }
    //Modifier un invité
     updateInvite() {
