@@ -568,14 +568,29 @@ class Administration extends Component {
 {this.state.invites.map(invite => (
 
 <tr>
-                     <td> {invite.nom.substr(0,10)}</td>
-                     <td>{invite.prenom.substr(0,10)}</td>
+
+{(() =>{
+  if ( invite.nom.length > 10 ) { return <td> {invite.nom.substr(0,10)}...</td>}
+  else { return <td> {invite.nom}</td>}
+})()}
+
+{(() =>{
+  if ( invite.prenom.length > 10 ) { return <td> {invite.prenom.substr(0,10)}...</td>}
+  else { return <td> {invite.prenom}</td>}
+})()}                  
+
+
+
+
                      <td>{invite.presentCeremonie ? "Oui" : "Non"} </td>
                      <td>{invite.presentVinDHonneur ? "Oui" : "Non"} </td>
                      <td>{invite.presentRepas ? "Oui" : "Non"} </td>
                      <td>{invite.presentSoiree ? "Oui" : "Non"} </td>
                      <td>{invite.enfants.length}</td>
-                     <td>{invite.allergie.substr(0,8)}...</td>
+                     {(() =>{
+  if ( invite.allergie.length > 10 ) { return <td> {invite.allergie.substr(0,10)}...</td>}
+  else { return <td> {invite.allergie}</td>}
+})()}    
                      <td>
                      <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
