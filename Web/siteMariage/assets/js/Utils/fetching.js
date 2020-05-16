@@ -1,4 +1,4 @@
-const API_HOST = 'http://127.0.0.1:8001'
+const API_HOST = 'http://localhost:8000'
 
 export async function getCadeaux(){
   const response = await fetch(API_HOST + "/api/cadeaux?page=1");

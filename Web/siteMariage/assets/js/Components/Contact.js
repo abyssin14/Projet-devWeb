@@ -60,7 +60,7 @@ import app from "../../css/app.css"
 
 <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 221, 221)", position:"absolute", top:"10%"}}>
 <div className="container" id="formContact" style={{margin:"0 auto", fontFamily:"serif"}}>
-  <h2 style={{textAlign:"center",fontSize:"26px"}}>Une question ? Envoyer nous votre message !</h2>
+  <h2 style={{textAlign:"center",fontSize:"26px"}}>Une question ? Envoyez nous votre message !</h2>
   <form style={{height:"80%"}}>
     <div className="form-group">
       <label for="email">Votre mail </label>

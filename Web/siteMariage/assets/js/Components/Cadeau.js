@@ -6,6 +6,7 @@ import { number } from 'prop-types';
 import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
+import { COLOR } from "../Utils/Color.js"
 
 
 class Cadeau extends Component {
@@ -18,6 +19,7 @@ class Cadeau extends Component {
             isLoaded: false,
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
+            infoDescCadeau: "",
             montantRecolte: 0,
             invites: [],
             payementMariage : true,
@@ -29,7 +31,9 @@ class Cadeau extends Component {
             acheteurs: '',
             montantsRecoltes: '',
             totalRecolte:  Number(),
-            resteContrib: Number()
+            resteContrib: Number(),
+            prenomAcheteur: new String(),
+            nomAcheteur: new String(),
 
         };
         this.handleClick = this.handleClick.bind(this);
@@ -43,7 +47,6 @@ class Cadeau extends Component {
 
     /* Appele de notre api pour les tables cadeaux et invités */
     componentDidMount() {
-
             getCadeaux().then(
                 (result) => {
 
@@ -79,7 +82,6 @@ class Cadeau extends Component {
 
 
 
-console.log(this.state.invites)
 
     }
 
@@ -87,7 +89,8 @@ console.log(this.state.invites)
     /* Affichage lors d'un clique sur un cadeau*/
     handleClick(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs ,montantsRecoltes) {
         this.setState(state => ({
-          infoCadeau: cadeauNom + " avec un prix de: " + cadeauPrix + " € !"
+          infoCadeau: cadeauNom + " prix estimé : " + cadeauPrix + " €",
+          infoDescCadeau:  "Description : \n" + cadeauDesc
         }));
 
         document.getElementById('imgCadeau').style.display ="none";
@@ -140,7 +143,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         }
 
     else {
-        var nom= document.getElementById("nom").value;
+        var nom= this.state.prenomAcheteur;
 
 
                     this.state.acheteurs.push(nom);
@@ -190,7 +193,8 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         const name = target.name;
 
         this.setState(state => ({
-            montantRecolte:  value
+            [name]: value
+
           }));
 
 
@@ -235,7 +239,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
               <div  style={{height:"100%", filter: "grayscale(50%)"}}>
 
 
-                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: "rgba(255, 255, 204, 0.62)", fontFamily:"sans-serif"}} >
+                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.argente, fontFamily:"sans-serif"}} >
 
 
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
@@ -267,6 +271,11 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         <br></br>
 
         {this.state.infoCadeau}
+        <br></br>
+        <div style={{marginRight: 50, marginLeft: 50}}>
+        {this.state.infoDescCadeau}
+        </div>
+
        <div id="montantRecolte" style={{display:"none"}}><br></br> {this.state.totalRecolte} € déjà recolté !<br></br>
         Il reste {this.state.resteContrib} € à contribuer
        </div>
@@ -274,26 +283,9 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         <div className="form-group formPayement form-inline" id="formPayement" >
         <label> Veuillez choisir la façon dont vous contribuez !</label><br></br>
 
-        <select id="nom" className="custom-select">
-        <option disabled selected>Votre nom</option>
-        {
-          this.state.invites.map(invite => (
-                        <option>
-                          {invite.nom}
-                        </option>
-        ))}
+        <input type="text" placeholder="Nom" name="nomAcheteur" id="nomAcheteur" className="form-control" value={this.state.nomAcheteur}  onChange={this.handleInputChange} style={{marginRight:"2%"}}></input>
 
-        </select> &nbsp;
-        <select className="custom-select">
-     <option disabled selected>votre Prenom</option>
-     {this.state.invites.map(invite => (
-                     <option>
-                       {invite.prenom}
-                     </option>
-     ))}
-
-     </select>
-
+        <input type="text" placeholder="Prénom" name="prenomAcheteur" id="prenomAcheteur" className="form-control" value={this.state.prenomAcheteur} onChange={this.handleInputChange}></input>
         <br></br><br></br>
         <label style={{display:"inline-block"}}>Entrer un montant</label> &nbsp;
         <input type="number" min="0" max={this.state.resteContrib}  className="form-control" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} style={{width:"15%"}}></input> €<br></br>

@@ -13,8 +13,7 @@ class FormulaireSansRepas extends Component {
     this.state = {
       allergie: new String(),
       accompagnant: false,
-      age: 0,
-      enfants: new Array(),
+      enfants: [0],
       presentCeremonie: false,
       presentVinDHonneur: false,
       presentRepas: false,
@@ -26,6 +25,8 @@ class FormulaireSansRepas extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
+    this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
+
 
   }
 
@@ -49,8 +50,15 @@ class FormulaireSansRepas extends Component {
 handleSubmit(event) {
   if(this.state.nom == '' && this.state.prenom == ''){
 
-}else{
-    this.state.enfants.push(this.state.age);
+  }else{
+    //suppression des champs enfants vide
+    for(var i = 0; i < this.state.enfants.length; i++){
+      if(this.state.enfants[i] == 0){
+        var arrayUpdate = this.state.enfants
+        arrayUpdate.splice(i,1)
+        this.setState({enfants: arrayUpdate})
+      }
+    }
      var body = JSON.stringify({
       "allergie": this.state.allergie,
       "accompagnant": this.state.accompagnant,
@@ -68,17 +76,24 @@ handleSubmit(event) {
 }
 
 handleClickAddEnfant(){
-  var nbInputAdd = this.state.nbInput + 1;
-  this.setState(state => ({
-    nbInput: nbInputAdd
-  }));
+  var tabEnfantsAdd = this.state.enfants.concat(0);
+  this.setState({enfants: tabEnfantsAdd})
   this.renderInputEnfant();
+}
+handleClickDeleteEnfant(){
+    var arrayUpdate = this.state.enfants;
+    var indexAsupprimer = this.state.enfants.length - 1;
+   arrayUpdate.splice(indexAsupprimer,1);
+   this.setState({enfants: arrayUpdate})
+
+
+ this.renderInputEnfant();
 }
 
 renderInputEnfant(){
   var nextInputs = new Array();
   nextInputs[0] = <input style={{marginRight:"1%"}} type="number" className="form-control w-10" min="0" max="18" name="0" onChange={this.handleInputChange}></input>;
-  for(let i = 1; i < this.state.nbInput; i++){
+  for(let i = 1; i < this.state.enfants.length; i++){
      nextInputs[i] = React.cloneElement(nextInputs[0],{name:i},null);
   }
 
@@ -91,7 +106,7 @@ renderInputEnfant(){
   <div className="container"  id="monform">
   <h1>Formulaire de participation au mariage</h1>
   <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
-      <div className="form-group form-inline" >
+      <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
       </div>
@@ -117,7 +132,7 @@ renderInputEnfant(){
       </div>
 
 
-      <div className="form-group" style={{marginBottom:"0rem"}}>
+      <div className="form-group"  style={{marginBottom:"0rem"}}>
       <label></label><br></br>
       <input type="text" placeholder="Allergie(s) ?" name="allergie" className="form-control w-25" value={this.state.allergie} onChange={this.handleInputChange}></input>
       </div>
@@ -127,7 +142,12 @@ renderInputEnfant(){
       <label>Serez-vous accompagné d'enfant(s) ?<br></br> Si oui, indiquez ci-dessous son/leur âge.</label><br></br>
       <div className="form-inline">
         {this.renderInputEnfant()}
+        {this.state.enfants.length > 1 &&(
+          <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfant.bind()}/>
+        )}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
+
+
       </div>
 
       <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Valider"></input>

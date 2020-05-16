@@ -66,7 +66,7 @@ class Administration extends Component {
             nombrePrésentVD: Number(),
             nombrePrésentRepas: Number(),
             nombrePrésentSoirée: Number(),
-           
+
 
 
         };
@@ -139,11 +139,9 @@ class Administration extends Component {
         || target.name === 'accompagneNouvelInvite' || target.name === 'presentCeremonieNouvelInvite' || target.name === 'presentRepasNouvelInvite'
         || target.name === 'presentSoireeNouvelInvite' || target.name === 'presentVinDHonneurNouvelInvite' ? target.checked : target.value;
         const name = target.name;
-        console.log(name);
 
         if(!isNaN(parseInt(name))){
             this.state.enfantsInviteToEdit[name] = value;
-            console.log()
           }else{
             this.setState({
               [name]: value
@@ -282,7 +280,7 @@ class Administration extends Component {
         document.getElementById('gererContribution').style.display = "none";
 
         this.componentDidMount()
-        
+
     }
 
     // Retourner vers la liste des invités
@@ -417,7 +415,7 @@ class Administration extends Component {
         postCadeau(body)
        this.retourCadeau()
 
-    
+
     }
     //Création d'un nouvel invite
     envoieNouvelInvite() {
@@ -533,12 +531,12 @@ class Administration extends Component {
       Nom: <input type="text" placeholder="Nom" name="nomEdit" style={{display:"inline-block"}} className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input><br></br><br></br>
       Prix: <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input> €<br></br><br></br>
       Description: <input type="text" style={{display:"inline-block"}} placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input><br></br>
-      
-    
+
+
         <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
-        
- 
-   
+
+
+
 </div>
 
 
@@ -546,13 +544,13 @@ class Administration extends Component {
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
-<h1 id="nomCadeauContribution">  
+<h1 id="nomCadeauContribution">
 </h1>
       <table className="table table-striped" id="investisseurs">
       </table>
-      
+
       <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
-      
+
 </div>
 
 
@@ -584,7 +582,7 @@ class Administration extends Component {
 {(() =>{
   if ( invite.prenom.length > 10 ) { return <td> {invite.prenom.substr(0,10)}...</td>}
   else { return <td> {invite.prenom}</td>}
-})()}                  
+})()}
 
 
 
@@ -597,7 +595,7 @@ class Administration extends Component {
                      {(() =>{
   if ( invite.allergie.length > 10 ) { return <td> {invite.allergie.substr(0,10)}...</td>}
   else { return <td> {invite.allergie}</td>}
-})()}    
+})()}
                      <td>
                      <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
@@ -698,9 +696,9 @@ class Administration extends Component {
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfantNouvelInvite.bind()}/>
         <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfantNouvelInvite.bind()}/>
       </div>
-    <br></br> 
+    <br></br>
       <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"left"}} onClick={this.envoieNouvelInvite.bind(this)}>&#x27A1; Valider </span>
-      
+
 
 </div>
 
