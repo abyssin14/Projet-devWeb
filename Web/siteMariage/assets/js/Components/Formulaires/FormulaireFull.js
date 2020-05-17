@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
 import { postInvite } from "../../Utils/fetching.js"
-
+import {COLOR} from "../../Utils/Color.js"
 
 class FormulaireFull extends Component {
 
@@ -102,7 +102,7 @@ renderInputEnfant(){
 
   render(){
     return(
-      <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%",backgroundColor:"#ffdddd"}}>
+      <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%"}}>
   <div className="container"  id="monform">
   <h1>Formulaire de participation au mariage</h1>
   <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
@@ -153,7 +153,7 @@ renderInputEnfant(){
 
       </div>
 
-      <br></br><input type="submit" style={{backgroundColor: "#07132052",borderColor:"#a4caf3"}}className="form-control btn btn-primary w-25" value="Valider"></input>
+      <br></br><input type="submit" className=" w-25 submitButton" value="Valider"></input>
 
       </div>
 

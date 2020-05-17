@@ -7,6 +7,7 @@ import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau,postInvite, deleteInvite } from "../Utils/fetching.js"
 import ReactDOM from 'react-dom';
+import {COLOR} from "../Utils/Color.js"
 
 
 
@@ -446,13 +447,13 @@ class Administration extends Component {
         const { error, isLoaded, items } = this.state;
 
         if (error) {
-            return <div>Erreur : {error.message}</div>;
+            return <div style={{backgroundColor:COLOR.argente, height:'100%'}}>Erreur : {error.message}</div>;
         } else if (!isLoaded) {
-            return <div><br></br><br></br><br></br>Chargement…</div>;
+            return <div style={{backgroundColor:COLOR.argente, height:'100%'}}><br></br><br></br><br></br>Chargement…</div>;
         } else {
 
         return(
-<div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:"rgb(255, 255, 204)", position:"absolute", top:"10%"}}>
+<div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:COLOR.bleu, position:"absolute", top:"10%"}}>
 
 
 

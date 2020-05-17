@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
 import  '../../../css/app.css';
+import { COLOR } from "../../Utils/Color.js"
+
 
 
 class NavigationHtml extends React.Component{
@@ -20,13 +22,12 @@ class NavigationHtml extends React.Component{
           });
         }
         render(){
-          const bgPink = {backgroundColor: 'rgba(115, 75, 75, 0.74)'}
           const container = {height: 1300}
       return(
 
         <Router>
                 <header>
-                <MDBNavbar style={bgPink}  dark expand="md" scrolling fixed="top">
+                <MDBNavbar style={{backgroundColor: COLOR.bleuNav}}  dark expand="md" scrolling fixed="top">
                 <MDBNavbarToggler onClick={ this.onClick } />
             <MDBCollapse isOpen = { this.state.collapse } navbar>
             <MDBNavbarNav left>

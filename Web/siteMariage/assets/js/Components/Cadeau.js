@@ -231,15 +231,15 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
     const { error, isLoaded, items } = this.state;
 
         if (error) {
-            return <div>Erreur : {error.message}</div>;
+            return <div style={{backgroundColor:COLOR.argente, height:"100%"}}>Erreur : {error.message}</div>;
         } else if (!isLoaded) {
-            return <div><br></br><br></br><br></br>Chargement…</div>;
+            return <div style={{backgroundColor:COLOR.argente, height:"100%"}}><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
               <div  style={{height:"100%", filter: "grayscale(50%)"}}>
 
 
-                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.argente, fontFamily:"sans-serif"}} >
+                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif"}} >
 
 
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
@@ -255,10 +255,10 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
 
 
 
-                <div className="card text-dark listeCadeau" style={{maxHeight:"100%",backgroundColor: "#ffdddd"}}>
-                <ul className="list-group  table-wrapper-scroll-y text-dark" style={{maxHeight:"100%"}}>
+                <div className="card listeCadeau" style={{maxHeight:"100%",backgroundColor: COLOR.argente}}>
+                <ul className="list-group  table-wrapper-scroll-y" style={{maxHeight:"100%"}}>
                 {items.map(item => (
-                        <li id={item.id} style={{backgroundColor:"#f1dfc4"}}  className="list-group-item list-group-item text-dark salut"
+                        <li id={item.id}   className=" list-group-item cadeauItem"
                         key={item.id}
                         onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
                         >
@@ -267,7 +267,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         ))}
         </ul>
         </div>
-        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: "rgba(255, 204, 204, 0.8)"}} >
+        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: COLOR.argente}} >
         <br></br>
 
         {this.state.infoCadeau}

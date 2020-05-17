@@ -1,7 +1,8 @@
 // ./src/js/app.js
 
 import React, { Component } from 'react';
-import '../css/app.css';
+import app from "../css/app.css"
+
 import { BrowserRouter, Route, Switch, Link, HashRouter, NavLink } from 'react-router-dom';
 import Cadeau from './Components/Cadeau';
 import Formulaire from './Components/Formulaire';
@@ -10,6 +11,7 @@ import Administration from './Components/Administration';
 import Contact from './Components/Contact';
 import couple from '../img/imgCouple.jpg'
 import location from '../img/locationMariage.jpg'
+import {COLOR} from './Utils/Color.js'
 
 
 
@@ -36,7 +38,7 @@ class Index extends Component {
    <body>
 
 
-<header className="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+<header className="w3-display-container w3-wide bgimg w3-grayscale-min" id="home" style={{backgroundColor: COLOR.argente}}>
   <div className="w3-display-middle w3-text-black w3-center">
     <h1 className="w3-jumbo">Stéphanie et Nicolas</h1>
     <h2>Vont se marier</h2>
@@ -45,25 +47,16 @@ class Index extends Component {
 </header>
 
 
-<div className="w3-bottom w3-hide-small">
-  <div className="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home" style={{width:"25%"}} className="w3-bar-item w3-button">Bienvenue</a>
-    <a href="#us" style={{width:"25%"}}  className="w3-bar-item w3-button">Stéphanie et Nicolas</a>
-    <a href="#wedding" style={{width:"25%"}}  className="w3-bar-item w3-button">Mariage</a>
-    <a href="#rsvp" style={{width:"25%"}}  className="w3-bar-item w3-button w3-hover-black">Je serais là</a>
-  </div>
-</div>
 
 
-<div className="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
+
+<div className="w3-container w3-padding-64 "id="us" style={{backgroundColor: COLOR.argente}}>
   <div className="w3-content">
-    <h1 className="w3-center w3-text-grey"><b>Stéphanie et Nicolas</b></h1>
     <img className="w3-round w3-grayscale-min" src={couple} style={{width:"100%",margin:"32px 0"}}/>
     <p><i>On va se marier ... blablabla lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
       occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat.</i>
-    </p><br></br>
-    <p className="w3-center"><a href="#wedding" className="w3-button w3-black w3-round w3-padding-large w3-large">Détails mariage</a></p>
+    </p>
   </div>
 </div>
 
@@ -76,7 +69,7 @@ class Index extends Component {
 </div>
 
 
-<div className="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
+<div className="w3-container w3-padding-64 w3-center" id="wedding" style={{backgroundColor: COLOR.argente}}>
   <div className="w3-content">
     <h1 className="w3-text-grey"><b>LE MARIAGE</b></h1>
     <img className="w3-round-large w3-grayscale-min" src={location} style={{width:"100%",margin:"64px 0"}}/>
@@ -96,11 +89,11 @@ class Index extends Component {
 </div>
 
 
-<div className="w3-container w3-padding-64 w3-pale-red w3-center w3-wide" id="rsvp">
-  <h1>EN ESPERANT QUE TU SERAS PRESENT</h1>
+<div className="w3-container w3-padding-64  w3-center w3-wide" id="rsvp" style={{backgroundColor: COLOR.argente}}>
+  <h1>EN ESPERANT QUE VOUS SEREZ PRESENTS</h1>
   <p className="w3-large">Veuillez répondre d'ici janvier 2021</p>
-  <p className="w3-xlarge">
-    <button onClick={this.redirection} className="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style={{padding:"8px 60px"}} >Je confirme ma présence</button>
+  <p className="w3-xlarge" >
+    <button onClick={this.redirection} className="w3-button w3-round" id="confimButton" style={{padding:"8px 60px", backgroundColor: COLOR.bleuNav, color: COLOR.blanc}} >Je confirme ma présence</button>
   </p>
 </div>
 
@@ -164,3 +157,10 @@ class Index extends Component {
 }
 
   export default Index;
+
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous"
+  />

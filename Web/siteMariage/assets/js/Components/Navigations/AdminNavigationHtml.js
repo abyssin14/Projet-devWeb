@@ -2,6 +2,8 @@ import React,{Component} from 'react';
 import { MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import { BrowserRouter, Route as Router } from 'react-router-dom';
 import  '../../../css/app.css';
+import { COLOR } from "../../Utils/Color.js"
+
 
 
 class AdminNavigationHtml extends React.Component{
@@ -26,7 +28,7 @@ class AdminNavigationHtml extends React.Component{
 
         <Router>
                 <header>
-                <MDBNavbar style={bgPink}  dark expand="md" scrolling fixed="top">
+                <MDBNavbar style={{backgroundColor: COLOR.bleuNav}}  dark expand="md" scrolling fixed="top">
                 <MDBNavbarToggler onClick={ this.onClick } />
             <MDBCollapse isOpen = { this.state.collapse } navbar>
             <MDBNavbarNav left>
