@@ -197,7 +197,7 @@ class Administration extends Component {
         this.state.idEdit = cadeauID;
 
         var enteteEditCadeau = [];
-        enteteEditCadeau[0] = <span style={{float:"right"}} className="btn btn-warning" onClick={this.retourCadeau}>&#x21A9;</span>;
+        enteteEditCadeau[0] = <span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={this.retourCadeau}>&#x21A9;</span>;
         enteteEditCadeau[1] = "Editer le cadeau " + cadeauNom;
         ReactDOM.render(enteteEditCadeau, document.getElementById("cadeauToEdit"));
 
@@ -218,8 +218,8 @@ class Administration extends Component {
 
         this.state.idEdit = cadeauID;
         var enteteContribution = [];
-        enteteContribution[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>;
-        enteteContribution[1] = "Contributions pour le cadeau :" + cadeauNom;
+        enteteContribution[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.retourCadeau}> &#x21A9;</span>;
+        enteteContribution[1] = "Contributions du cadeau : " + cadeauNom;
         ReactDOM.render(enteteContribution, document.getElementById("nomCadeauContribution"));
        // document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
         this.state.recolteEdit = recoltes;
@@ -260,7 +260,7 @@ class Administration extends Component {
               });
 
               var ententeEditInvite = [];
-              ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right"}} onClick={this.retourInvite}> &#x21A9;</span>;
+              ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color: COLOR.blanc}} onClick={this.retourInvite}> &#x21A9;</span>;
               ententeEditInvite[1] = "Editer l'invité : " + nomInvite + " " + prenomInvite
               ReactDOM.render(ententeEditInvite,document.getElementById("nomInviteToModif"));
 
@@ -460,7 +460,7 @@ class Administration extends Component {
 {/* DIV/VUE DE LA LISTE DES CADEAUX, DE LA GESTION DES CADEAUX  */}
  <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left", maxHeight:"100%"}}>
     <h1>Gérer les cadeaux
-    <span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; New</span>
+    <span className="btn btn-primary" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; Nouveau</span>
     </h1>
 
 
@@ -500,24 +500,24 @@ class Administration extends Component {
 {/* DIV/VUE POUR CREER UN NOUVEAU CADEAU */}
 <div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none", fontFamily:"monospace"}}>
 <h1>Nouveau Cadeau
-<span className="btn btn-warning"  style={{float:"right"}} onClick={this.retourCadeau}> &#x21A9;</span>
+<span className="btn btn-warning"  style={{float:"right",backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.retourCadeau}> &#x21A9;</span>
 </h1>
-
 
 <div className="form-group">
 <br></br><label></label>
- <input type="text" placeholder="Nom" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
+ <input type="text" placeholder="Nom du cadeau" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
+      </div>
+      <div className="form-group">
+      <br></br>
+      <label>Prix : </label>
+      <input type="text" style={{display:"inline-block", marginLeft: '1%', width: '12%'}} placeholder="Prix" name="prixNouveauCadeau" className="form-control" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input> €
       </div>
       <div className="form-group">
       <label></label><br></br>
-      <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixNouveauCadeau" className="form-control w-25" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input> € (Prix)
-      </div>
-      <div className="form-group">
-      <label></label><br></br>
-      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-25" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-50" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
       </div>
 
-      <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.envoieNouveauCadeau.bind(this)}>&#x27A1; Valider </span>
+      <span className="btn btn-success w-25"  style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouveauCadeau.bind(this)}>Ajouter </span>
 
 </div>
 
@@ -529,12 +529,12 @@ class Administration extends Component {
 </h1>
 <label></label><br></br>
 
-      Nom: <input type="text" placeholder="Nom" name="nomEdit" style={{display:"inline-block"}} className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input><br></br><br></br>
-      Prix: <input type="text" style={{display:"inline-block"}} placeholder="Prix" name="prixEdit" className="form-control w-25" value={this.state.prixEdit} onChange={this.handleInputChange}></input> €<br></br><br></br>
-      Description: <input type="text" style={{display:"inline-block"}} placeholder="Description" name="descEdit" className="form-control w-25" value={this.state.descEdit} onChange={this.handleInputChange}></input><br></br>
+      Nom : <br></br><input type="text" placeholder="Nom" name="nomEdit" style={{display:"inline-block"}} className="form-control w-25" value={this.state.nomEdit} onChange={this.handleInputChange}></input><br></br><br></br>
+      Prix : <br></br><input type="text" style={{display:"inline-block", width:'12%'}} placeholder="Prix" name="prixEdit" className="form-control" value={this.state.prixEdit} onChange={this.handleInputChange}></input> €<br></br><br></br>
+      Description : <br></br><input type="text" style={{display:"inline-block"}} placeholder="Description" name="descEdit" className="form-control w-50" value={this.state.descEdit} onChange={this.handleInputChange}></input><br></br>
 
 
-        <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
+        <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.updateCadeau.bind(this)}>Modifier </span>
 
 
 
@@ -545,13 +545,10 @@ class Administration extends Component {
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
-<h1 id="nomCadeauContribution">
+<h1 id="nomCadeauContribution" style={{padding:20}}>
 </h1>
       <table className="table table-striped" id="investisseurs">
       </table>
-
-      <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"right"}} onClick={this.updateCadeau.bind(this)}>&#x27A1; Valider </span>
-
 </div>
 
 
@@ -559,7 +556,7 @@ class Administration extends Component {
 {/* DIV/VUE POUR L'AFFICHAGE ET LA GESTION DES INVITES */}
 <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", maxHeight:"100%"}}>
 <h1>Gérer les invités
-<span className="btn btn-primary" style={{float:"right"}} onClick={this.nouveauInvite.bind(this)}>&#x1F64B; New</span>
+<span className="btn btn-primary" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.nouveauInvite.bind(this)}>&#x1F64B; Nouveau</span>
 </h1>
 
 <table className="table" id="mesInvites">
@@ -612,9 +609,9 @@ class Administration extends Component {
 {/* DIV/VUE POUR MODIFIER UN INVITE */}
 <div className="container" id="editInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
 <h1 id="nomInviteToModif"></h1>
-      <input type="text" placeholder="Nom" name="nomInviteToEdit" className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
-      <input type="text" placeholder="Prénom" name="prenomInviteToEdit" className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
-      <input type="text" placeholder="Allergies" name="allergieInviteToEdit" className="form-control w-25" value={this.state.allergieInviteToEdit} onChange={this.handleInputChange}></input>
+    Nom : <input type="text" placeholder="Nom" name="nomInviteToEdit" style={{marginBottom:'2%'}} className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
+      Prenom : <input type="text" placeholder="Prénom" name="prenomInviteToEdit" style={{marginBottom:'2%'}} className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
+      Allergie(s) : <input type="text" placeholder="Allergies" name="allergieInviteToEdit" style={{marginBottom:'2%'}} className="form-control w-25" value={this.state.allergieInviteToEdit} onChange={this.handleInputChange}></input>
       <br></br>
       <div className="form-check">
       <label className="form-check-label" style={{marginRight:"5%"}}>
@@ -645,7 +642,7 @@ class Administration extends Component {
 
 
   <br></br>
-<span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"left"}} onClick={this.updateInvite}>&#x27A1; Valider </span>
+<span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.updateInvite}>Modifier</span>
 
 </div>
 
@@ -654,7 +651,7 @@ class Administration extends Component {
 {/* DIV/VUE POUR CREER UN INVITE */}
 <div className="container" id="nouvelInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
 <h1>Nouvel Invité
-<span style={{float:"right"}} className="btn btn-warning" onClick={this.retourInvite}>&#x21A9;</span>
+<span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={this.retourInvite}>&#x21A9;</span>
 </h1>
 
 
@@ -698,7 +695,7 @@ class Administration extends Component {
         <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfantNouvelInvite.bind()}/>
       </div>
     <br></br>
-      <span className="btn btn-success" style={{backgroundColor: "#4f8c2ccc",float:"left"}} onClick={this.envoieNouvelInvite.bind(this)}>&#x27A1; Valider </span>
+      <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouvelInvite.bind(this)}>Ajouer</span>
 
 
 </div>

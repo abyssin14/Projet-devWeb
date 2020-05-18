@@ -42,7 +42,6 @@ html, body {
 .imgCadeau{
 
     width:100px;
-    margin-left: 40%;
     margin-top: 6%;
 }
 
@@ -129,6 +128,7 @@ input:out-of-range{
 body {
     line-height: inherit;
 }
+
 .cadeauItem{
   background-color: var(--bleu);
   color: var(--blanc);
@@ -157,13 +157,24 @@ body {
     background-image: url('../img/FondFleurs.png');
     background-repeat: no-repeat;
     background-size: contain;
-    background-color: whitesmoke;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    border: 2px solid var(--bleu);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+
 
 
 }
 .listeCadeau {
     font-family: Arial, Helvetica, sans-serif;
+    border: 2px solid var(--bleu);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 5px;
+    margin-left: 12px;
+    margin-right: 5px;
+
 
 
 }
@@ -233,6 +244,6 @@ border-radius: 5px;
 }
 
 .submitButton:hover{
-
+  color: var(--blanc);
   opacity: 50%;
 }

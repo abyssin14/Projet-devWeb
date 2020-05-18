@@ -73,7 +73,7 @@ import {COLOR} from "../Utils/Color.js"
       <textarea maxlength="400" className="form-control rounded-0"  value={this.state.emailDetails} onChange={this.handleInputChange} placeholder="Entrer votre message" name="emailDetails" placeholder="Entrer votre message"  rows="3" style={{height: "90%", marginBottom:"1.5rem"}}></textarea>
     </div>
     <div className="form-group">
-    <span  className="btn btn-warning" style={{backgroundColor: COLOR.bleu, color: COLOR.blanc}} onClick={this.handleFormSubmit}>Envoyer &#x1F48C;</span>
+    <span  className="btn btn-warning submitButton" style={{backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color: COLOR.blanc}} onClick={this.handleFormSubmit}>Envoyer &#x1F48C;</span>
     <span  style={{float:"right"}}>&#x1F470; &#x1F935; Nous vous répondrons également par mail dans les plus brefs délais  	&#x1F497;	</span>
     </div>
   </form>

@@ -236,10 +236,10 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
             return <div style={{backgroundColor:COLOR.argente, height:"100%"}}><br></br><br></br><br></br>Chargement…</div>;
         } else {
             return (
-              <div  style={{height:"100%", filter: "grayscale(50%)"}}>
+              <div  style={{height:"100%", filter: "grayscale(50%)", backgroundColor:COLOR.gris}}>
 
 
-                <div className="card description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif"}} >
+                <div className=" description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif"}} >
 
 
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
@@ -250,12 +250,12 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
                     </div>
 
 
-                <div className="card-group "  style={{ height:"65%",marginTop:"0px",  marginBottom:"0px"}} >
+                <div className="card-group"  style={{ height:"64%",marginTop:"0px", backgroundColor:COLOR.gris}} >
 
 
 
 
-                <div className="card listeCadeau" style={{maxHeight:"100%",backgroundColor: COLOR.argente}}>
+                <div className=" listeCadeau" style={{maxHeight:"100%",backgroundColor: COLOR.argente, width:'49%'}}>
                 <ul className="list-group  table-wrapper-scroll-y" style={{maxHeight:"100%"}}>
                 {items.map(item => (
                         <li id={item.id}   className=" list-group-item cadeauItem"
@@ -267,7 +267,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         ))}
         </ul>
         </div>
-        <div className="card  text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: COLOR.argente}} >
+        <div className="text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: COLOR.argente, width:'49%'}} >
         <br></br>
 
         {this.state.infoCadeau}
@@ -291,7 +291,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         <input type="number" min="0" max={this.state.resteContrib}  className="form-control" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} style={{width:"15%"}}></input> €<br></br>
         <br></br><input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label style={{display:"inline-block"}}>Au mariage</label> &nbsp;
         <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label style={{display:"inline-block"}}>Maintenant (payement en ligne)</label><br></br>
-        <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="btn btn-primary mb-2"></input>
+        <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="submitButton" style={{paddingRight: '15%', paddingLeft:'15%'}}></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
 
