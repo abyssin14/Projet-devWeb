@@ -5,6 +5,8 @@ import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
 import { postInvite } from "../../Utils/fetching.js"
 import {COLOR} from "../../Utils/Color.js"
+import { isCheckBox, updateTableauAge } from "../../Utils/functions.js"
+
 
 class FormulaireFull extends Component {
 
@@ -32,7 +34,7 @@ class FormulaireFull extends Component {
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.name === 'presentCeremonie' || target.name === 'accompagnant' || target.name === 'presentVinDHonneur' || target.name === 'presentRepas' || target.name === 'presentSoiree' ? target.checked : target.value;
+    const value = isCheckBox(target.name) ? target.checked : target.value;
     const name = target.name;
 
     if(!isNaN(parseInt(name))){
@@ -42,8 +44,6 @@ class FormulaireFull extends Component {
         [name]: value
       });
     }
-
-    console.log(this.state.enfants)
   }
 
 
@@ -52,13 +52,9 @@ handleSubmit(event) {
 
   }else{
     //suppression des champs enfants vide
-    for(var i = 0; i < this.state.enfants.length; i++){
-      if(this.state.enfants[i] == 0){
-        var arrayUpdate = this.state.enfants
-        arrayUpdate.splice(i,1)
-        this.setState({enfants: arrayUpdate})
-      }
-    }
+    var arrayUpdate = updateTableauAge(this.state.enfants)
+    this.setState({enfants: arrayUpdate})
+
      var body = JSON.stringify({
       "allergie": this.state.allergie,
       "accompagnant": this.state.accompagnant,
@@ -104,7 +100,7 @@ renderInputEnfant(){
     return(
       <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%"}}>
   <div className="container"  id="monform">
-  <h1>Formulaire de participation au mariage</h1>
+  <h1>Formulaire de participation au mariageeeeeee</h1>
   <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>

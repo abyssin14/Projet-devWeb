@@ -7,6 +7,7 @@ import fleur from "../../img/FondFleurs.png"
 import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 import { COLOR } from "../Utils/Color.js"
+import { contributionCadeauValide, calculTotalRecolte } from '../Utils/functions.js'
 
 
 class Cadeau extends Component {
@@ -109,11 +110,7 @@ class Cadeau extends Component {
         montantRecolte: 0
        });
 
-     var totalRecoltee = 0;
-for ( var i = 0; i < montantsRecoltes.length; i++) {
-        totalRecoltee += parseInt(montantsRecoltes[i]);
-}
-
+     var totalRecoltee =  calculTotalRecolte(montantsRecoltes);
 
         this.setState({
         totalRecolte: totalRecoltee,
@@ -135,7 +132,7 @@ for ( var i = 0; i < montantsRecoltes.length; i++) {
         var minCadeau = document.getElementById('montantCadeau').min;
 
 
-        if( parseInt(this.state.montantRecolte) > parseInt(maxCadeau) || parseInt(this.state.montantRecolte) < 1 ) {
+        if(contributionCadeauValide(this.state.montantRecolte, maxCadeau, 1)) {
             alert('Entrer une valeur entre' + 1 + ' et' + maxCadeau +' €');
             this.setState(state => ({
                 montantRecolte:  0
