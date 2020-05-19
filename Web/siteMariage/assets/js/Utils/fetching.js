@@ -94,9 +94,9 @@ export async function postInvite(body){
   });
 
  if(response.ok){
-    alert('success');
+    return true;
   }else{
-    alert('fail');
+    return false;
   }
 }
 

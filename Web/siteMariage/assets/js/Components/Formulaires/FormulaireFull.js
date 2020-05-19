@@ -6,6 +6,8 @@ import  '../../../css/app.css';
 import { postInvite } from "../../Utils/fetching.js"
 import {COLOR} from "../../Utils/Color.js"
 import { isCheckBox, updateTableauAge } from "../../Utils/functions.js"
+import { withAlert } from 'react-alert'
+
 
 
 class FormulaireFull extends Component {
@@ -47,10 +49,7 @@ class FormulaireFull extends Component {
   }
 
 
-handleSubmit(event) {
-  if(this.state.nom == '' && this.state.prenom == ''){
-
-  }else{
+async handleSubmit(event) {
     //suppression des champs enfants vide
     var arrayUpdate = updateTableauAge(this.state.enfants)
     this.setState({enfants: arrayUpdate})
@@ -66,8 +65,15 @@ handleSubmit(event) {
       "nom": this.state.nom,
       "prenom": this.state.prenom
     })
-    postInvite(body)
-  }
+    var request = await  postInvite(body);
+    if(request){
+      this.props.alert.success('Formulaire envoyé !')
+    }else{
+      this.props.alert.error('Echec de l\'envois du formulaire !')
+
+    }
+
+
 
 }
 
@@ -97,10 +103,12 @@ renderInputEnfant(){
 }
 
   render(){
+    const alert = this.props.alert;
+
     return(
       <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%"}}>
   <div className="container"  id="monform">
-  <h1>Formulaire de participation au mariageeeeeee</h1>
+  <h1>Formulaire de participation au mariage</h1>
   <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
       <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
@@ -160,7 +168,7 @@ renderInputEnfant(){
     )
   }
 }
-export default FormulaireFull;
+export default withAlert()(FormulaireFull);
 
 <link
   rel="stylesheet"

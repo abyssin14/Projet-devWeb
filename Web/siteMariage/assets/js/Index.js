@@ -17,6 +17,7 @@ import {COLOR} from './Utils/Color.js'
 
 class Index extends Component {
 
+
   redirection() {
     document.location.href = "/user/Formulaire";
   }
@@ -26,6 +27,7 @@ class Index extends Component {
 }
 
     render() {
+
     return (
 
       <switch>
@@ -53,6 +55,7 @@ class Index extends Component {
 <div className="w3-container w3-padding-64 "id="us" style={{backgroundColor: COLOR.argente}}>
   <div className="w3-content">
     <img className="w3-round w3-grayscale-min" src={couple} style={{width:"100%",margin:"32px 0"}}/>
+
     <p><i>On va se marier ... blablabla lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
       occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
       laboris nisi ut aliquip ex ea commodo consequat.</i>

@@ -6,12 +6,24 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReactOnRails from 'react-on-rails';
 import Navigation from './Components/Navigation.js'
-
+import { Provider as AlertProvider } from 'react-alert'
+import Alert from './Utils/Alert.js'
 var rootElement = document.getElementById('root');
+
+// optional cofiguration
+const options = {
+  position: 'bottom center',
+  timeout: 2000,
+  offset: '30px',
+  transition: 'scale'
+}
+
 
 ReactDOM.render(
 <BrowserRouter>
+<AlertProvider template={Alert} {...options}>
 <Index privilege={rootElement.getAttribute('privilege')} />
+</AlertProvider>
 </BrowserRouter>
     , rootElement
 
