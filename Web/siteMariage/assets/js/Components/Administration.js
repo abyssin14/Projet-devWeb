@@ -271,6 +271,7 @@ class Administration extends Component {
         document.getElementById("nouvelInvite").style.display = "block";
         document.getElementById("editInvite").style.display = "none";
         document.getElementById("gestionInvite").style.display = "none";
+
     }
 
     // Retourner vers la liste des cadeaux
@@ -289,6 +290,8 @@ class Administration extends Component {
         document.getElementById("gestionInvite").style.display = "block";
         document.getElementById("editInvite").style.display = "none";
         document.getElementById("nouvelInvite").style.display = "none";
+
+        this.componentDidMount()
     }
 
 
@@ -298,15 +301,17 @@ class Administration extends Component {
 
         deleteCadeau(idCadeauToDelete);
 
-        window.location.reload();
+        this.retourCadeau()
 
     }
     //Supprimer un invite
     supprimerInvite(idInviteToDelete) {
 
         deleteInvite(idInviteToDelete);
+        this.componentDidMount()
 
-        window.location.reload();
+        this.retourInvite()
+      
     }
 
     // FONCTION UPDATE
@@ -341,7 +346,10 @@ class Administration extends Component {
 
           });
           putInvite(this.state.idInviteToEdit, body);
-          window.location.reload();
+          
+          
+
+          this.retourInvite()
     }
 
     //GESTION DES ENFANTS  D'UN INVITE EXISTANT
@@ -433,8 +441,11 @@ class Administration extends Component {
             "prenom": this.state.prenomNouvelInvite
           })
 
+         
         postInvite(body)
-        window.location.reload();
+        
+        this.retourInvite()
+        
     }
 
 

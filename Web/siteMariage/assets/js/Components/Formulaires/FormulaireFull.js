@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
@@ -25,15 +25,18 @@ class FormulaireFull extends Component {
       nom: new String(),
       prenom: new String(),
       nbInput: 1,
+      redirection: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
     this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
+  
 
 
   }
 
+  
   handleInputChange(event) {
     const target = event.target;
     const value = isCheckBox(target.name) ? target.checked : target.value;
@@ -51,6 +54,7 @@ class FormulaireFull extends Component {
 
 async handleSubmit(event) {
     //suppression des champs enfants vide
+   
     var arrayUpdate = updateTableauAge(this.state.enfants)
     this.setState({enfants: arrayUpdate})
 
@@ -67,13 +71,23 @@ async handleSubmit(event) {
     })
     var request = await  postInvite(body);
     if(request){
-      this.props.alert.success('Formulaire envoyé !')
+      this.props.alert.success('Formulaire envoyé !');
+      
+      
     }else{
       this.props.alert.error('Echec de l\'envois du formulaire !')
 
     }
 
 
+
+
+    
+    location.href = "/user/Accueil"
+    
+   
+
+    
 
 }
 
@@ -109,7 +123,7 @@ renderInputEnfant(){
       <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%"}}>
   <div className="container"  id="monform">
   <h1>Formulaire de participation au mariage</h1>
-  <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
+  <form  className="form-group"  style={{marginBottom:"0rem"}} >
       <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
@@ -157,7 +171,7 @@ renderInputEnfant(){
 
       </div>
 
-      <br></br><input type="submit" className=" w-25 submitButton" value="Valider"></input>
+      <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit}></input>
 
       </div>
 
