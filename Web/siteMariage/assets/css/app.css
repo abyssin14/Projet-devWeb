@@ -138,11 +138,10 @@ body {
 
 }
 .cadeauItem:hover{
-  background-color: var(--argente);
-  color: var(--bleu);
   margin-bottom: 2px;
   margin-top: 2px;
   border: 1px solid var(--bleu);
+  background-color: silver;
 }
 .cadeauItem:active{
   background-color: var(--bleu);
@@ -247,3 +246,16 @@ border-radius: 5px;
   color: var(--blanc);
   opacity: 50%;
 }
+
+/* annimation hover liste cadeaux */
+li,tr {
+  transform: scale(1);
+  transition: transform 300ms;
+  opacity: 1;
+}
+
+li:hover,tr:hover {
+  transform: scale(1.04);
+}
+
+

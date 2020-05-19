@@ -252,8 +252,8 @@ class Cadeau extends Component {
 
 
 
-                <div className=" listeCadeau" style={{maxHeight:"100%",backgroundColor: COLOR.argente, width:'49%'}}>
-                <ul className="list-group  table-wrapper-scroll-y" style={{maxHeight:"100%"}}>
+                <div className="listeCadeau table-wrapper-scroll-y" style={{maxHeight:"100%",backgroundColor: COLOR.argente, width:'49%'}}>
+                <ul className="list-group" style={{maxHeight:"100%"}}>
                 {items.map(item => (
                         <li id={item.id}   className=" list-group-item cadeauItem"
                         key={item.id}
