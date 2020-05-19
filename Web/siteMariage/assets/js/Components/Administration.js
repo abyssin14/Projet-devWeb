@@ -605,7 +605,7 @@ class Administration extends Component {
   if ( invite.allergie.length > 10 ) { return <td> {invite.allergie.substr(0,10)}...</td>}
   else { return <td> {invite.allergie}</td>}
 })()}
-                     <td>
+                     <td style={{display:"flex"}}>
                      <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.editInvite.bind(this,invite.id,invite.nom,invite.prenom,invite.allergie,invite.presentCeremonie,invite.presentVinDHonneur,invite.presentRepas,invite.presentSoiree,invite.accompagnant,invite.enfants)}>&#x270D;</span>
                          <span className="boutonDelete" style={{display: "inline-block"}} onClick={this.supprimerInvite.bind(this,invite.id)}>&#x274C;</span>
                     </td>

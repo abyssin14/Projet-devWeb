@@ -37,6 +37,8 @@ import {COLOR} from "../Utils/Color.js"
             emailDetails: ""
           });
 
+          alert('Message envoyé ! ')
+
         } else {
 
         }
