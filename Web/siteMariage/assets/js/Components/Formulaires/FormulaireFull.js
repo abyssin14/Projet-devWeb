@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
@@ -72,7 +72,7 @@ async handleSubmit(event) {
     var request = await  postInvite(body);
     if(request){
       this.props.alert.success('Formulaire envoyé !');
-      
+      document.getElementById("retourVueAccueil").click();
       
     }else{
       this.props.alert.error('Echec de l\'envois du formulaire !')
@@ -82,8 +82,6 @@ async handleSubmit(event) {
 
 
 
-    
-    location.href = "/user/Accueil"
     
    
 
@@ -172,7 +170,7 @@ renderInputEnfant(){
       </div>
 
       <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit}></input>
-
+      <Link to="/user/Accueil" className="btn btn-primary" id="retourVueAccueil" style={{display:"none"}}></Link>
       </div>
 
       </form>
