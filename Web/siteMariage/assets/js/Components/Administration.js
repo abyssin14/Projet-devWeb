@@ -477,10 +477,10 @@ class Administration extends Component {
 
 
     <table className="table" style={{padding:"0px"}}>
-        <thead><tr style={{padding:"0px"}}>
+        <thead>
             <th style={{borderBottom: "0px"}}>Noms</th>
 
-        </tr></thead>
+        </thead>
         <tbody>
 
 

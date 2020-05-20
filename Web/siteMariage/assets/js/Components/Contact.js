@@ -72,7 +72,7 @@ import {COLOR} from "../Utils/Color.js"
     </div>
     <div className="form-group h-50">
       <label for="pwd">Votre message (Maximum 400 caractères)</label>
-      <textarea maxlength="400" className="form-control rounded-0"  value={this.state.emailDetails} onChange={this.handleInputChange} placeholder="Entrer votre message" name="emailDetails" placeholder="Entrer votre message"  rows="3" style={{height: "90%", marginBottom:"1.5rem"}}></textarea>
+      <textarea maxlength="400" className="form-control rounded-15"  value={this.state.emailDetails} onChange={this.handleInputChange} placeholder="Entrer votre message" name="emailDetails" placeholder="Entrer votre message"  rows="3" style={{height: "90%", marginBottom:"1.5rem", resize:"none"}}></textarea>
     </div>
     <div className="form-group">
     <span  className="btn btn-warning submitButton" style={{backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color: COLOR.blanc}} onClick={this.handleFormSubmit}>Envoyer &#x1F48C;</span>

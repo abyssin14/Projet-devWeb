@@ -248,13 +248,12 @@ border-radius: 5px;
 }
 
 /* annimation hover liste cadeaux */
-li,tr {
+li,tr,th {
   transform: scale(1);
   transition: transform 300ms;
-  opacity: 1;
 }
 
-li:hover,tr:hover {
+li:hover,tr:hover,th:hover {
   transform: scale(1.04);
 }
 
