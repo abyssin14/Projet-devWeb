@@ -31,12 +31,12 @@ class FormulaireFull extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClickAddEnfant = this.handleClickAddEnfant.bind(this);
     this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
-  
+
 
 
   }
 
-  
+
   handleInputChange(event) {
     const target = event.target;
     const value = isCheckBox(target.name) ? target.checked : target.value;
@@ -53,8 +53,11 @@ class FormulaireFull extends Component {
 
 
 async handleSubmit(event) {
+  if(this.state.nom == '' || this.state.prenom == ''){
+    this.props.alert.error('Veuillez introduire votre nom et prénom !')
+
+  }else{
     //suppression des champs enfants vide
-   
     var arrayUpdate = updateTableauAge(this.state.enfants)
     this.setState({enfants: arrayUpdate})
 
@@ -73,20 +76,12 @@ async handleSubmit(event) {
     if(request){
       this.props.alert.success('Formulaire envoyé !');
       document.getElementById("retourVueAccueil").click();
-      
+
     }else{
       this.props.alert.error('Echec de l\'envois du formulaire !')
 
     }
-
-
-
-
-    
-   
-
-    
-
+  }
 }
 
 handleClickAddEnfant(){

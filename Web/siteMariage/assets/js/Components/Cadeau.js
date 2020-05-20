@@ -8,6 +8,9 @@ import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 import { COLOR } from "../Utils/Color.js"
 import { contributionCadeauValide, calculTotalRecolte } from '../Utils/functions.js'
+import { withAlert } from 'react-alert'
+
+
 
 
 class Cadeau extends Component {
@@ -124,39 +127,50 @@ class Cadeau extends Component {
 
 
       /* Condition d'envoie Payement client cadeau*/
-    handleSubmit(event) {
-
-        //acheteurId = findAcheteurId(this.state.nom, this.state.prenom);
-
-        var maxCadeau = document.getElementById('montantCadeau').max;
-        var minCadeau = document.getElementById('montantCadeau').min;
+  async  handleSubmit(event) {
+    if(this.state.nomAcheteur == '' || this.state.prenomAcheteur == ''){
+      this.props.alert.error('Veuillez introduire votre nom et prénom !')
+    }else{
 
 
-        if(contributionCadeauValide(this.state.montantRecolte, maxCadeau, 1)) {
-            alert('Entrer une valeur entre' + 1 + ' et' + maxCadeau +' €');
-            this.setState(state => ({
-                montantRecolte:  0
-              }));
+          //acheteurId = findAcheteurId(this.state.nom, this.state.prenom);
+
+          var maxCadeau = document.getElementById('montantCadeau').max;
+          var minCadeau = document.getElementById('montantCadeau').min;
+
+
+          if(!contributionCadeauValide(this.state.montantRecolte, maxCadeau, 1)) {
+            this.props.alert.error('Entrer une valeur entre ' + 1 + ' et ' + maxCadeau +' €');
+              this.setState(state => ({
+                  montantRecolte:  0
+                }));
+          }
+
+      else {
+          var nom= this.state.prenomAcheteur;
+
+
+                      this.state.acheteurs.push(nom);
+                      this.state.montantsRecoltes.push(this.state.montantRecolte);
+
+
+            var body = JSON.stringify({
+                "nom": this.state.cadeauNom,
+                "prix": parseInt(this.state.cadeauPrix),
+                "description": this.state.cadeauDesc,
+                "acheteurs":  this.state.acheteurs ,
+                "montantsRecoltes": this.state.montantsRecoltes ,
+                "payement": "enattente"
+              });
+        var  request = await  putCadeau(this.state.cadeauID, body);
+        if(request){
+          this.props.alert.success('Merci pour votre contribution !')
+
+        }else{
+          this.props.alert.error('Echec de la contribution !')
+
         }
-
-    else {
-        var nom= this.state.prenomAcheteur;
-
-
-                    this.state.acheteurs.push(nom);
-                    this.state.montantsRecoltes.push(this.state.montantRecolte);
-
-
-          var body = JSON.stringify({
-              "nom": this.state.cadeauNom,
-              "prix": parseInt(this.state.cadeauPrix),
-              "description": this.state.cadeauDesc,
-              "acheteurs":  this.state.acheteurs ,
-              "montantsRecoltes": this.state.montantsRecoltes ,
-              "payement": "enattente"
-            });
-        putCadeau(this.state.cadeauID, body);
-
+      }
 
 
 
@@ -225,6 +239,7 @@ class Cadeau extends Component {
 /*Rendu de notre page cadeau */
 
   render() {
+    const alert = this.props.alert;
     const { error, isLoaded, items } = this.state;
 
         if (error) {
@@ -307,7 +322,7 @@ class Cadeau extends Component {
 
 
 
-export default Cadeau;
+export default withAlert()(Cadeau);
 
 <link
   rel="stylesheet"

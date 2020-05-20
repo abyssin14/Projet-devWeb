@@ -55,7 +55,7 @@ handleSubmit(event) {
     //suppression des champs enfants vide
     var arrayUpdate = updateTableauAge(this.state.enfants)
     this.setState({enfants: arrayUpdate})
-    
+
      var body = JSON.stringify({
       "allergie": this.state.allergie,
       "accompagnant": this.state.accompagnant,
@@ -72,7 +72,7 @@ handleSubmit(event) {
     document.getElementById("retourVueAccueil").click();
   }
 
- 
+
 
 
 
@@ -149,7 +149,7 @@ renderInputEnfant(){
           <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfant.bind()}/>
         )}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
-       
+
 
       </div>
 
