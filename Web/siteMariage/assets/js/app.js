@@ -13,7 +13,7 @@ var rootElement = document.getElementById('root');
 // optional cofiguration
 const options = {
   position: 'bottom center',
-  timeout: 2000,
+  timeout: 3000,
   offset: '30px',
   transition: 'scale'
 }

@@ -9,6 +9,12 @@ import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 import { COLOR } from "../Utils/Color.js"
 import { contributionCadeauValide, calculTotalRecolte } from '../Utils/functions.js'
 import { withAlert } from 'react-alert'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
+import RingLoader from "react-spinners/RingLoader";
+
+
 
 
 
@@ -20,7 +26,7 @@ class Cadeau extends Component {
         super(props);
         this.state = {
             error: null,
-            isLoaded: false,
+            isLoading: true,
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
             infoDescCadeau: "",
@@ -55,38 +61,18 @@ class Cadeau extends Component {
                 (result) => {
 
                     this.setState({
-                        isLoaded: true,
-                        items: result
+                        items: result,
+                        isLoading: false
+
+
                     });
                 },
                 (error) => {
                     this.setState({
-                        isLoaded: true,
                         error
                     });
                 }
             )
-            getInvites().then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        invites: result
-                    });
-                },
-                // Remarque : il est important de traiter les erreurs ici
-                // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
-                // des exceptions provenant de réels bugs du composant.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-
-
-
-
     }
 
 
@@ -129,7 +115,7 @@ class Cadeau extends Component {
       /* Condition d'envoie Payement client cadeau*/
   async  handleSubmit(event) {
     if(this.state.nomAcheteur == '' || this.state.prenomAcheteur == ''){
-      this.props.alert.error('Veuillez introduire votre nom et prénom !')
+      this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
     }else{
 
 
@@ -179,7 +165,7 @@ class Cadeau extends Component {
           getCadeaux().then(
               (result) => {
                   this.setState({
-                      isLoaded: true,
+                      isLoading: false,
                       items: result
                   });
               },
@@ -188,7 +174,7 @@ class Cadeau extends Component {
               // des exceptions provenant de réels bugs du composant.
               (error) => {
                   this.setState({
-                      isLoaded: true,
+                      isLoading: false,
                       error
                   });
               }
@@ -236,16 +222,33 @@ class Cadeau extends Component {
 
     }
 
+    renderLoader(){
+      console.log(this.state.isLoading)
+      if (this.state.isLoading) {
+         return <div className="sweet-loading" style={{marginTop:'20%'}}>
+     <HashLoader
+       css={ css`
+         display: block;
+         margin: 0 auto;
+         border-color: #040e60;
+       `}
+       size={50}
+       color={COLOR.bleu}
+       loading={this.state.loading}
+     />
+   </div>
+    }
+  }
+
 /*Rendu de notre page cadeau */
 
   render() {
     const alert = this.props.alert;
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoading, items } = this.state;
 
         if (error) {
             return <div style={{backgroundColor:COLOR.argente, height:"100%"}}>Erreur : {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div style={{backgroundColor:COLOR.argente, height:"100%"}}><br></br><br></br><br></br>Chargement…</div>;
+
         } else {
             return (
               <div  style={{height:"100%", filter: "grayscale(50%)", backgroundColor:COLOR.gris}}>
@@ -266,8 +269,9 @@ class Cadeau extends Component {
 
 
 
-
                 <div className="listeCadeau" style={{maxHeight:"100%",backgroundColor: COLOR.argente, width:'49%'}}>
+                {this.renderLoader()}
+
                 <ul className="list-group table-wrapper-scroll-y" style={{maxHeight:"100%", overflowX:"hidden"}}>
                 {items.map(item => (
                         <li id={item.id}   className=" list-group-item cadeauItem"

@@ -54,7 +54,7 @@ class FormulaireFull extends Component {
 
 async handleSubmit(event) {
   if(this.state.nom == '' || this.state.prenom == ''){
-    this.props.alert.error('Veuillez introduire votre nom et prénom !')
+    this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
 
   }else{
     //suppression des champs enfants vide

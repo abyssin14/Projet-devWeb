@@ -6,6 +6,8 @@ import  '../../../css/app.css';
 import { postInvite } from "../../Utils/fetching.js"
 import {COLOR} from "../../Utils/Color.js"
 import { isCheckBox, updateTableauAge } from "../../Utils/functions.js"
+import { withAlert } from 'react-alert'
+
 
 class FormulaireSansRepas extends Component {
 
@@ -48,8 +50,9 @@ class FormulaireSansRepas extends Component {
   }
 
 
-handleSubmit(event) {
+async handleSubmit(event) {
   if(this.state.nom == '' || this.state.prenom == ''){
+    this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
 
   }else{
     //suppression des champs enfants vide
@@ -67,15 +70,16 @@ handleSubmit(event) {
       "nom": this.state.nom,
       "prenom": this.state.prenom
     })
-    postInvite(body)
-    alert("Merci de votre inscription au mariage");
-    document.getElementById("retourVueAccueil").click();
+    var request = await  postInvite(body);
+    if(request){
+      this.props.alert.success('Formulaire envoyé !');
+      document.getElementById("retourVueAccueil").click();
+
+    }else{
+      this.props.alert.error('Echec de l\'envois du formulaire !')
+
+    }
   }
-
-
-
-
-
 }
 
 handleClickAddEnfant(){
@@ -164,7 +168,7 @@ renderInputEnfant(){
     )
   }
 }
-export default FormulaireSansRepas;
+export default withAlert()(FormulaireSansRepas);
 
 <link
   rel="stylesheet"

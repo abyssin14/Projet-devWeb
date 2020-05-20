@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import app from "../../css/app.css"
 import {COLOR} from "../Utils/Color.js"
+import { withAlert } from 'react-alert'
+
 
 
 
@@ -24,26 +26,30 @@ import {COLOR} from "../Utils/Color.js"
         }
 
         handleFormSubmit() {
-          var val = confirm("Etes-vous sûr de vouloir envoyer ce message ?");
-        if( val == true ) {
+          if(this.state.userSender == ''){
+            this.props.alert.error('Veuillez introduire votre adresse mail !');
 
-          var service_id = "default_service";
-          var template_id = "sitemariage";
-          var user_id = 'user_I5n4Z5pi99TRQVlxXwhck';
-          emailjs.send(service_id, template_id, this.state,user_id);
+          }else{
 
-          this.setState({
-            userSender: "",
-            emailDetails: ""
-          });
+            var val = confirm("Etes-vous sûr de vouloir envoyer ce message ?");
+          if( val == true ) {
 
-          alert('Message envoyé ! ')
+            var service_id = "default_service";
+            var template_id = "sitemariage";
+            var user_id = 'user_I5n4Z5pi99TRQVlxXwhck';
+            emailjs.send(service_id, template_id, this.state,user_id);
+            this.setState({
+              userSender: "",
+              emailDetails: ""
+            });
 
-        } else {
+            this.props.alert.success('Message envoyé ! ')
 
+          } else {
+
+          }
         }
-
-        }
+      }
 
         handleInputChange(event) {
 
@@ -91,7 +97,7 @@ import {COLOR} from "../Utils/Color.js"
 
 
 
-    export default Contact;
+    export default withAlert()(Contact);
 
 <link
   rel="stylesheet"

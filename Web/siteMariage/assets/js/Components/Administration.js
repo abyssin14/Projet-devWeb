@@ -8,6 +8,8 @@ import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau,postInvite, deleteInvite } from "../Utils/fetching.js"
 import ReactDOM from 'react-dom';
 import {COLOR} from "../Utils/Color.js"
+import { withAlert } from 'react-alert'
+
 
 
 
@@ -161,7 +163,7 @@ class Administration extends Component {
 
 
     // Supprimer la contribution à un cadeau
-      suppInvestisseur(indexAsupprimer) {
+      async suppInvestisseur(indexAsupprimer) {
         var tableauAcheteur = this.state.achteurEdit;
         tableauAcheteur.splice(indexAsupprimer, 1);
         this.state.achteurEdit = tableauAcheteur;
@@ -170,9 +172,24 @@ class Administration extends Component {
         tableauRecolte.splice(indexAsupprimer,1);
         this.state.recolteEdit = tableauRecolte;
 
-        document.getElementById(indexAsupprimer).style.display = "none";
 
-              }
+        var body = JSON.stringify({
+            "nom": this.state.nomEdit,
+            "prix": parseInt(this.state.prixEdit),
+            "description": this.state.descEdit,
+            "acheteurs":  this.state.achteurEdit ,
+            "montantsRecoltes": this.state.recolteEdit ,
+            "payement": "enattente"
+          });
+           var request = await putCadeau(this.state.idEdit, body);
+           if(request){
+             this.props.alert.success('Contribution supprimée ! ')
+             document.getElementById(indexAsupprimer).style.display = "none";
+           }else{
+             this.props.alert.error('Echec de suppression de la contribution ! ')
+           }
+
+        }
 
 
 // AFFICHAGE DES DIFFERENTES VUES AU CLICK D UN BOUTON
@@ -297,26 +314,38 @@ class Administration extends Component {
 
     // FONCTION DE SUPPRESSION
     //Supprimer un cadeau
-    supprimerCadeau(idCadeauToDelete) {
+    async supprimerCadeau(idCadeauToDelete) {
 
-        deleteCadeau(idCadeauToDelete);
+        var request = await deleteCadeau(idCadeauToDelete);
+        if(request){
+          this.retourCadeau()
+          this.props.alert.success('Cadeau supprimé ! ')
 
-        this.retourCadeau()
+        }else{
+          this.props.alert.error('Echec de la suppression du cadeau ! ')
+
+        }
 
     }
     //Supprimer un invite
-    supprimerInvite(idInviteToDelete) {
+    async supprimerInvite(idInviteToDelete) {
 
-        deleteInvite(idInviteToDelete);
-        this.componentDidMount()
+        var request = await deleteInvite(idInviteToDelete);
+        if(request){
+          this.componentDidMount()
+          this.retourInvite()
+          this.props.alert.success('Invité supprimé ! ')
+        }else{
+          this.props.alert.error('Echec de la suppression de l\'invité ! ')
 
-        this.retourInvite()
-      
+        }
+
+
     }
 
     // FONCTION UPDATE
     // Modifier un cadeau
-    updateCadeau() {
+    async updateCadeau() {
         console.log(this.state.idEdit);
 
         var body = JSON.stringify({
@@ -327,11 +356,16 @@ class Administration extends Component {
             "montantsRecoltes": this.state.recolteEdit ,
             "payement": "enattente"
           });
-      putCadeau(this.state.idEdit, body);
-      this.retourCadeau()
+       var request = await putCadeau(this.state.idEdit, body);
+       if(request){
+         this.retourCadeau()
+         this.props.alert.success('Cadeau Modifié ! ')
+       }else{
+         this.props.alert.error('Echec de la modification du cadeau ! ')
+       }
     }
    //Modifier un invité
-    updateInvite() {
+  async updateInvite() {
 
         var body = JSON.stringify({
             "allergie": this.state.allergieInviteToEdit,
@@ -345,11 +379,17 @@ class Administration extends Component {
             "enfants": this.state.enfantsInviteToEdit
 
           });
-          putInvite(this.state.idInviteToEdit, body);
-          
-          
 
-          this.retourInvite()
+          var request = await putInvite(this.state.idInviteToEdit, body);
+          if(request){
+            this.retourInvite()
+            this.props.alert.success('Invité Modifié ! ')
+          }else{
+            this.props.alert.error('Echec de la modification de l\'invité ! ')
+          }
+
+
+
     }
 
     //GESTION DES ENFANTS  D'UN INVITE EXISTANT
@@ -410,25 +450,34 @@ class Administration extends Component {
 
     // FONCTION D'AJOUT
     // Création d'un nouveau cadeau
-   envoieNouveauCadeau() {
+   async envoieNouveauCadeau() {
+     if(parseInt(this.state.prixNouveauCadeau) == 0 || this.state.nomNouveauCadeau == ''){
+       this.props.alert.error('Veuillez indiquer le prix et le nom du cadeau ! ')
+     }else{
+       var body = JSON.stringify({
+           "nom": this.state.nomNouveauCadeau,
+           "prix": parseInt(this.state.prixNouveauCadeau),
+           "description": this.state.descriptionNouveauCadeau,
+           "acheteurs": [],
+           "montantsRecoltes": [],
+           "payement": ""
+         })
 
-        var body = JSON.stringify({
-            "nom": this.state.nomNouveauCadeau,
-            "prix": parseInt(this.state.prixNouveauCadeau),
-            "description": this.state.descriptionNouveauCadeau,
-            "acheteurs": [],
-            "montantsRecoltes": [],
-            "payement": ""
-          })
+      var request = await postCadeau(body)
+      if(request){
+        this.retourCadeau()
+        this.props.alert.success('Cadeau ajouté ! ')
+      }else{
+        this.props.alert.error('Echec de l\'ajout du cadeau ! ')
 
-        postCadeau(body)
-       this.retourCadeau()
-
-
+      }
+     }
     }
     //Création d'un nouvel invite
-    envoieNouvelInvite() {
-
+    async envoieNouvelInvite() {
+      if(parseInt(this.state.prenomNouvelInvite) == '' || this.state.nomNouvelInvite == ''){
+        this.props.alert.error('Veuillez indiquer le nom et le prénom de l\'invité ! ')
+      }else{
         var body = JSON.stringify({
             "allergie": this.state.allergieNouvelInvite,
             "accompagnant": this.state.accompagneNouvelInvite,
@@ -440,12 +489,15 @@ class Administration extends Component {
             "nom": this.state.nomNouvelInvite,
             "prenom": this.state.prenomNouvelInvite
           })
+        var request = await postInvite(body)
+        if(request){
+          this.retourInvite()
+          this.props.alert.success('Invité ajouté ! ')
+        }else{
+          this.props.alert.error('Echec de l\'ajout de l\'invité ! ')
+        }
 
-         
-        postInvite(body)
-        
-        this.retourInvite()
-        
+      }
     }
 
 
@@ -559,6 +611,7 @@ class Administration extends Component {
 <h1 id="nomCadeauContribution" style={{padding:20}}>
 </h1>
       <table className="table table-striped" id="investisseurs">
+
       </table>
 </div>
 
@@ -706,7 +759,7 @@ class Administration extends Component {
         <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfantNouvelInvite.bind()}/>
       </div>
     <br></br>
-      <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouvelInvite.bind(this)}>Ajouer</span>
+      <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouvelInvite.bind(this)}>Ajouter</span>
 
 
 </div>
@@ -719,7 +772,7 @@ class Administration extends Component {
       }
     }
 
-export default Administration;
+export default withAlert()(Administration);
 
 <link
   rel="stylesheet"

@@ -45,9 +45,9 @@ export async function putInvite(idInvite, body){
   });
 
   if(response.ok){
-     alert('success');
+    return true;
    }else{
-     alert('fail');
+     return false;
    }
   }
 
@@ -61,9 +61,9 @@ export async function deleteCadeau(idCadeau){
   });
 
   if(response.ok){
-     alert('success');
+     return true;
    }else{
-     alert('fail');
+     return false
    }
   }
 
@@ -78,9 +78,9 @@ export async function deleteInvite(idInvite){
   });
 
   if(response.ok){
-     alert('success');
+     return true;
    }else{
-     alert('fail');
+     return false;
    }
   }
 
@@ -111,11 +111,11 @@ export async function postCadeau(body){
     body: body
   });
 
- if(response.ok){
-    alert('success');
-  }else{
-    alert('fail');
-  }
+  if(response.ok){
+    return true;
+   }else{
+     return false;
+   }
 }
 
 /*export function findAcheteurId(nom, prenom){
