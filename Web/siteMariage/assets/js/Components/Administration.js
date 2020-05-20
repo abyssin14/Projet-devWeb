@@ -516,16 +516,16 @@ class Administration extends Component {
 
 <div className="form-group">
 <br></br><label></label>
- <input type="text" placeholder="Nom du cadeau" name="nomNouveauCadeau" className="form-control w-25" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
+ <input type="text" placeholder="Nom du cadeau" name="nomNouveauCadeau" className="form-control w-50" value={this.state.nomNouveauCadeau} onChange={this.handleInputChange}></input>
       </div>
       <div className="form-group">
       <br></br>
       <label>Prix : </label>
       <input type="text" style={{display:"inline-block", marginLeft: '1%', width: '12%'}} placeholder="Prix" name="prixNouveauCadeau" className="form-control" value={this.state.prixNouveauCadeau} onChange={this.handleInputChange}></input> €
       </div>
-      <div className="form-group">
+      <div className="form-group h-25">
       <label></label><br></br>
-      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-50" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
+      <input type="text" placeholder="Description" name="descriptionNouveauCadeau" className="form-control w-100 h-75" value={this.state.descriptionNouveauCadeau} onChange={this.handleInputChange}></input>
       </div>
 
       <span className="btn btn-success w-25"  style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouveauCadeau.bind(this)}>Ajouter </span>

@@ -41,7 +41,7 @@ class NavigationHtml extends React.Component{
                 <MDBNavLink to="/user/Formulaire">Formulaire</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                <MDBNavLink to="">Contact</MDBNavLink>
+                <MDBNavLink to="/user/Contact">Contact</MDBNavLink>
                 </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>

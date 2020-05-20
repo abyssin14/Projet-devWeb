@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
@@ -49,7 +49,7 @@ class FormulaireSansRepas extends Component {
 
 
 handleSubmit(event) {
-  if(this.state.nom == '' && this.state.prenom == ''){
+  if(this.state.nom == '' || this.state.prenom == ''){
 
   }else{
     //suppression des champs enfants vide
@@ -68,7 +68,13 @@ handleSubmit(event) {
       "prenom": this.state.prenom
     })
     postInvite(body)
+    alert("Merci de votre inscription au mariage");
+    document.getElementById("retourVueAccueil").click();
   }
+
+ 
+
+
 
 }
 
@@ -143,12 +149,12 @@ renderInputEnfant(){
           <input type="button" className="bouton-add" value="-" onClick={this.handleClickDeleteEnfant.bind()}/>
         )}
         <input type="button" className="bouton-add" value="+" onClick={this.handleClickAddEnfant.bind()}/>
-
+       
 
       </div>
 
-      <br></br><input type="submit" className=" w-25 submitButton" value="Valider"></input>
-
+      <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit.bind()}></input>
+      <Link to="/user/Accueil" className="btn btn-primary" id="retourVueAccueil" style={{display:"none"}}></Link>
       </div>
 
       </form>
