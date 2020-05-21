@@ -9,6 +9,10 @@ import { getCadeaux, getInvites, putCadeau,putInvite, deleteCadeau, postCadeau,p
 import ReactDOM from 'react-dom';
 import {COLOR} from "../Utils/Color.js"
 import { withAlert } from 'react-alert'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
+import RingLoader from "react-spinners/RingLoader";
 
 
 
@@ -21,7 +25,11 @@ class Administration extends Component {
         this.state = {
             //State load cadeau/invite
             error: null,
-            isLoaded: false,
+            isLoadingCadeaux: true,
+            isLoadingInvites: true,
+            opacityCadeaux: '100%',
+            opacityInvites: '100%',
+
             items: [],
             invites: [],
             nbEnfants: Number(),
@@ -102,13 +110,13 @@ class Administration extends Component {
             (result) => {
 
                 this.setState({
-                    isLoaded: true,
+                    isLoadingCadeaux: false,
                     items: result
                 });
             },
             (error) => {
                 this.setState({
-                    isLoaded: true,
+                    isLoadingCadeaux: false,
                     error
                 });
             }
@@ -117,7 +125,7 @@ class Administration extends Component {
         getInvites().then(
             (result) => {
                 this.setState({
-                    isLoaded: true,
+                    isLoadingInvites: false,
                     invites: result
                 });
             },
@@ -126,7 +134,7 @@ class Administration extends Component {
             // des exceptions provenant de réels bugs du composant.
             (error) => {
                 this.setState({
-                    isLoaded: true,
+                    isLoadingInvites: false,
                     error
                 });
             }
@@ -164,6 +172,10 @@ class Administration extends Component {
 
     // Supprimer la contribution à un cadeau
       async suppInvestisseur(indexAsupprimer) {
+        this.setState({
+          isLoadingCadeaux: true,
+          opacityCadeaux: '50%'
+        })
         var tableauAcheteur = this.state.achteurEdit;
         tableauAcheteur.splice(indexAsupprimer, 1);
         this.state.achteurEdit = tableauAcheteur;
@@ -183,9 +195,17 @@ class Administration extends Component {
           });
            var request = await putCadeau(this.state.idEdit, body);
            if(request){
+             this.setState({
+               isLoadingCadeaux: false,
+               opacityCadeaux: '100%'
+             })
              this.props.alert.success('Contribution supprimée ! ')
              document.getElementById(indexAsupprimer).style.display = "none";
            }else{
+             this.setState({
+               isLoadingCadeaux: false,
+               opacityCadeaux: '100%'
+             })
              this.props.alert.error('Echec de suppression de la contribution ! ')
            }
 
@@ -214,7 +234,7 @@ class Administration extends Component {
         this.state.idEdit = cadeauID;
 
         var enteteEditCadeau = [];
-        enteteEditCadeau[0] = <span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={this.retourCadeau}>&#x21A9;</span>;
+        enteteEditCadeau[0] = <span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={()=>this.retourCadeau(false)}>&#x21A9;</span>;
         enteteEditCadeau[1] = "Editer le cadeau " + cadeauNom;
         ReactDOM.render(enteteEditCadeau, document.getElementById("cadeauToEdit"));
 
@@ -235,7 +255,7 @@ class Administration extends Component {
 
         this.state.idEdit = cadeauID;
         var enteteContribution = [];
-        enteteContribution[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.retourCadeau}> &#x21A9;</span>;
+        enteteContribution[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={()=>this.retourCadeau(false)}> &#x21A9;</span>;
         enteteContribution[1] = "Contributions du cadeau : " + cadeauNom;
         ReactDOM.render(enteteContribution, document.getElementById("nomCadeauContribution"));
        // document.getElementById("nomCadeauContribution").innerHTML = "Contributions pour le cadeau :" + cadeauNom;
@@ -277,7 +297,7 @@ class Administration extends Component {
               });
 
               var ententeEditInvite = [];
-              ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color: COLOR.blanc}} onClick={this.retourInvite}> &#x21A9;</span>;
+              ententeEditInvite[0] = <span className="btn btn-warning" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color: COLOR.blanc}} onClick={() => this.retourInvite(false)}> &#x21A9;</span>;
               ententeEditInvite[1] = "Editer l'invité : " + nomInvite + " " + prenomInvite
               ReactDOM.render(ententeEditInvite,document.getElementById("nomInviteToModif"));
 
@@ -292,51 +312,111 @@ class Administration extends Component {
     }
 
     // Retourner vers la liste des cadeaux
-    retourCadeau() {
-        document.getElementById('editCadeau').style.display = "none";
-        document.getElementById('nouveauCadeau').style.display = "none";
-        document.getElementById('gererCadeau').style.display = "block";
-        document.getElementById('gererContribution').style.display = "none";
-
-        this.componentDidMount()
+    retourCadeau(isRequest) {
+      if(isRequest){
+        getCadeaux().then(
+            (result) => {
+              document.getElementById('editCadeau').style.display = "none";
+              document.getElementById('nouveauCadeau').style.display = "none";
+              document.getElementById('gererCadeau').style.display = "block";
+              document.getElementById('gererContribution').style.display = "none";
+                this.setState({
+                    isLoadingCadeaux: false,
+                    opacityCadeaux: '100%',
+                    items: result
+                });
+            },
+            (error) => {
+                this.setState({
+                    isLoadingCadeaux: false,
+                    opacityCadeaux: '100%',
+                    error
+                });
+            }
+        )
+      }else{
+          document.getElementById('editCadeau').style.display = "none";
+          document.getElementById('nouveauCadeau').style.display = "none";
+          document.getElementById('gererCadeau').style.display = "block";
+          document.getElementById('gererContribution').style.display = "none";
+      }
 
     }
 
     // Retourner vers la liste des invités
-    retourInvite() {
+    retourInvite(isRequest) {
+
+if(isRequest){
+  getInvites().then(
+      (result) => {
         document.getElementById("gestionInvite").style.display = "block";
         document.getElementById("editInvite").style.display = "none";
         document.getElementById("nouvelInvite").style.display = "none";
+          this.setState({
+              isLoadingInvites: false,
+              opacityInvites: '100%',
+              invites: result
+          });
+      },
+      // Remarque : il est important de traiter les erreurs ici
+      // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+      // des exceptions provenant de réels bugs du composant.
+      (error) => {
+          this.setState({
+              isLoadingInvites: false,
+              opacityInvites: '100%',
+              error
+          });
+      }
+  )
+}else{
+  document.getElementById("gestionInvite").style.display = "block";
+  document.getElementById("editInvite").style.display = "none";
+  document.getElementById("nouvelInvite").style.display = "none";
+}
 
-        this.componentDidMount()
     }
 
 
     // FONCTION DE SUPPRESSION
     //Supprimer un cadeau
     async supprimerCadeau(idCadeauToDelete) {
-
+        this.setState({
+          isLoadingCadeaux: true,
+          opacityCadeaux: '50%'
+        })
         var request = await deleteCadeau(idCadeauToDelete);
         if(request){
-          this.retourCadeau()
+          this.retourCadeau(true)
           this.props.alert.success('Cadeau supprimé ! ')
 
         }else{
           this.props.alert.error('Echec de la suppression du cadeau ! ')
+          this.setState({
+            isLoadingCadeaux: false,
+            opacityCadeaux: '100%'
+          })
 
         }
 
     }
     //Supprimer un invite
     async supprimerInvite(idInviteToDelete) {
-
+      this.setState({
+        isLoadingInvites: true,
+        opacityInvites: '50%'
+      })
         var request = await deleteInvite(idInviteToDelete);
         if(request){
-          this.componentDidMount()
-          this.retourInvite()
+          this.retourInvite(true)
           this.props.alert.success('Invité supprimé ! ')
+
         }else{
           this.props.alert.error('Echec de la suppression de l\'invité ! ')
+          this.setState({
+            isLoadingInvites: false,
+            opacityInvites: '100%'
+          })
 
         }
 
@@ -346,8 +426,10 @@ class Administration extends Component {
     // FONCTION UPDATE
     // Modifier un cadeau
     async updateCadeau() {
-        console.log(this.state.idEdit);
-
+      this.setState({
+        isLoadingCadeaux: true,
+        opacityCadeaux: '50%'
+      })
         var body = JSON.stringify({
             "nom": this.state.nomEdit,
             "prix": parseInt(this.state.prixEdit),
@@ -358,15 +440,23 @@ class Administration extends Component {
           });
        var request = await putCadeau(this.state.idEdit, body);
        if(request){
-         this.retourCadeau()
+         this.retourCadeau(true)
          this.props.alert.success('Cadeau Modifié ! ')
+
        }else{
          this.props.alert.error('Echec de la modification du cadeau ! ')
+         this.setState({
+           isLoadingCadeaux: false,
+           opacityCadeaux: '100%'
+         })
        }
     }
    //Modifier un invité
   async updateInvite() {
-
+    this.setState({
+      isLoadingInvites: true,
+      opacityInvites: '50%'
+    })
         var body = JSON.stringify({
             "allergie": this.state.allergieInviteToEdit,
             "accompagnant": this.state.inviteAccompagnantToEdit,
@@ -382,10 +472,14 @@ class Administration extends Component {
 
           var request = await putInvite(this.state.idInviteToEdit, body);
           if(request){
-            this.retourInvite()
+            this.retourInvite(true)
             this.props.alert.success('Invité Modifié ! ')
           }else{
             this.props.alert.error('Echec de la modification de l\'invité ! ')
+            this.setState({
+              isLoadingInvites: false,
+              opacityInvites: '100%'
+            })
           }
 
 
@@ -454,6 +548,10 @@ class Administration extends Component {
      if(parseInt(this.state.prixNouveauCadeau) == 0 || this.state.nomNouveauCadeau == ''){
        this.props.alert.error('Veuillez indiquer le prix et le nom du cadeau ! ')
      }else{
+       this.setState({
+         isLoadingCadeaux: true,
+         opacityCadeaux: '50%'
+       })
        var body = JSON.stringify({
            "nom": this.state.nomNouveauCadeau,
            "prix": parseInt(this.state.prixNouveauCadeau),
@@ -465,9 +563,13 @@ class Administration extends Component {
 
       var request = await postCadeau(body)
       if(request){
-        this.retourCadeau()
+        this.retourCadeau(true)
         this.props.alert.success('Cadeau ajouté ! ')
       }else{
+        this.setState({
+          isLoadingCadeaux: false,
+          opacityCadeaux: '100%'
+        })
         this.props.alert.error('Echec de l\'ajout du cadeau ! ')
 
       }
@@ -478,6 +580,10 @@ class Administration extends Component {
       if(parseInt(this.state.prenomNouvelInvite) == '' || this.state.nomNouvelInvite == ''){
         this.props.alert.error('Veuillez indiquer le nom et le prénom de l\'invité ! ')
       }else{
+        this.setState({
+          isLoadingInvites: true,
+          opacityInvites: '50%'
+        })
         var body = JSON.stringify({
             "allergie": this.state.allergieNouvelInvite,
             "accompagnant": this.state.accompagneNouvelInvite,
@@ -491,14 +597,50 @@ class Administration extends Component {
           })
         var request = await postInvite(body)
         if(request){
-          this.retourInvite()
+          this.retourInvite(true)
           this.props.alert.success('Invité ajouté ! ')
         }else{
           this.props.alert.error('Echec de l\'ajout de l\'invité ! ')
+          this.setState({
+            isLoadingInvites: false,
+            opacityInvites: '100%'
+          })
         }
 
       }
     }
+
+    renderLoaderCadeaux(){
+      if (this.state.isLoadingCadeaux) {
+         return <div className="sweet-loading" style={{position:'absolute', top:'36%', left:'45%'}}>
+     <HashLoader
+       css={ css`
+         display: block;
+         margin: 0 auto;
+         border-color: #040e60;
+       `}
+       size={50}
+       color={COLOR.bleu}
+     />
+   </div>
+    }
+  }
+  renderLoaderInvites(){
+    if (this.state.isLoadingInvites) {
+       return <div className="sweet-loading" style={{position:'absolute', top:'36%', right:'45%'}}>
+   <HashLoader
+     css={ css`
+       display: block;
+       margin: 0 auto;
+       border-color: #040e60;
+     `}
+     size={50}
+     color={COLOR.bleu}
+   />
+ </div>
+  }
+}
+
 
 
 
@@ -507,13 +649,11 @@ class Administration extends Component {
 
     render(){
 
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoadingCadeaux, items } = this.state;
 
         if (error) {
             return <div style={{backgroundColor:COLOR.argente, height:'100%'}}>Erreur : {error.message}</div>;
-        } else if (!isLoaded) {
-            return <div style={{backgroundColor:COLOR.argente, height:'100%'}}><br></br><br></br><br></br>Chargement…</div>;
-        } else {
+        }else {
 
         return(
 <div className="w3-grayscale-min fondFormulaire" style={{width:"100%",height:"90%", backgroundColor:COLOR.bleu, position:"absolute", top:"10%"}}>
@@ -522,6 +662,11 @@ class Administration extends Component {
 
 {/* DIV/VUE DE LA LISTE DES CADEAUX, DE LA GESTION DES CADEAUX  */}
  <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererCadeau" style={{ position:"relative",marginTop:"0px",height:"100%",width:"40%", float:"left", maxHeight:"100%"}}>
+
+ <div style={{ opacity:this.state.opacityCadeaux}}>
+ {this.renderLoaderCadeaux()}
+
+
     <h1>Gérer les cadeaux
     <span className="btn btn-primary" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.nouveauCadeau.bind(this)}>&#x1F381; Nouveau</span>
     </h1>
@@ -556,14 +701,17 @@ class Administration extends Component {
         ))}
         </tbody>
     </table>
+    </div>
 </div>
 
 
 
 {/* DIV/VUE POUR CREER UN NOUVEAU CADEAU */}
 <div className="container" id="nouveauCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none", fontFamily:"monospace"}}>
+<div style={{ opacity:this.state.opacityCadeaux}}>
+{this.renderLoaderCadeaux()}
 <h1>Nouveau Cadeau
-<span className="btn btn-warning"  style={{float:"right",backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.retourCadeau}> &#x21A9;</span>
+<span className="btn btn-warning"  style={{float:"right",backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={()=>this.retourCadeau(false)}> &#x21A9;</span>
 </h1>
 
 <div className="form-group">
@@ -581,13 +729,17 @@ class Administration extends Component {
       </div>
 
       <span className="btn btn-success w-25"  style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouveauCadeau.bind(this)}>Ajouter </span>
-
+ </div>
 </div>
 
 
 
 {/* DIV/VUE POUR EDITER UN CADEAU */}
 <div className="container" id="editCadeau" style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
+<div style={{ opacity:this.state.opacityCadeaux}}>
+{this.renderLoaderCadeaux()}
+
+
 <h1 id="cadeauToEdit">
 </h1>
 <label></label><br></br>
@@ -600,7 +752,7 @@ class Administration extends Component {
         <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.updateCadeau.bind(this)}>Modifier </span>
 
 
-
+ </div>
 </div>
 
 
@@ -608,22 +760,28 @@ class Administration extends Component {
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 
 <div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
+<div style={{ opacity:this.state.opacityCadeaux}}>
+{this.renderLoaderCadeaux()}
 <h1 id="nomCadeauContribution" style={{padding:20}}>
 </h1>
       <table className="table table-striped" id="investisseurs">
 
       </table>
+      </div>
 </div>
 
 
 
 {/* DIV/VUE POUR L'AFFICHAGE ET LA GESTION DES INVITES */}
 <div className="container table-wrapper-scroll-y my-custom-scrollbar" id="gestionInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", maxHeight:"100%"}}>
+<div style={{ opacity:this.state.opacityInvites}}>
+{this.renderLoaderInvites()}
 <h1>Gérer les invités
 <span className="btn btn-primary" style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} onClick={this.nouveauInvite.bind(this)}>&#x1F64B; Nouveau</span>
 </h1>
 
 <table className="table" id="mesInvites">
+  <thead>
     <th>Nom</th>
     <th>Prénom</th>
     <th>Cérémonie</th>
@@ -632,6 +790,11 @@ class Administration extends Component {
     <th>Soirée</th>
     <th>Enfants</th>
     <th>Allergie(s)</th>
+  </thead>
+  <tbody>
+
+
+
 {this.state.invites.map(invite => (
 
 <tr>
@@ -665,13 +828,17 @@ class Administration extends Component {
 
                        </tr>
      ))}
+     </tbody>
 </table>
+</div>
 </div>
 
 
 
 {/* DIV/VUE POUR MODIFIER UN INVITE */}
 <div className="container" id="editInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
+<div style={{ opacity:this.state.opacityInvites}}>
+{this.renderLoaderInvites()}
 <h1 id="nomInviteToModif"></h1>
     Nom : <input type="text" placeholder="Nom" name="nomInviteToEdit" style={{marginBottom:'2%'}} className="form-control w-25" value={this.state.nomInviteToEdit} onChange={this.handleInputChange}></input>
       Prenom : <input type="text" placeholder="Prénom" name="prenomInviteToEdit" style={{marginBottom:'2%'}} className="form-control w-25" value={this.state.prenomInviteToEdit} onChange={this.handleInputChange}></input>
@@ -707,15 +874,17 @@ class Administration extends Component {
 
   <br></br>
 <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.updateInvite}>Modifier</span>
-
+ </div>
 </div>
 
 
 
 {/* DIV/VUE POUR CREER UN INVITE */}
 <div className="container" id="nouvelInvite" style={{ position:"relative",marginTop:"none",height:"100%",width:"60%", float:"right", display:"none"}}>
+<div style={{ opacity:this.state.opacityInvites}}>
+{this.renderLoaderInvites()}
 <h1>Nouvel Invité
-<span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={this.retourInvite}>&#x21A9;</span>
+<span style={{float:"right", backgroundColor: COLOR.gris, borderColor: COLOR.gris, color:COLOR.blanc}} className="btn btn-warning" onClick={() => this.retourInvite(false)}>&#x21A9;</span>
 </h1>
 
 
@@ -761,7 +930,7 @@ class Administration extends Component {
     <br></br>
       <span className="btn btn-success w-25" style={{float:"left", backgroundColor: COLOR.bleu, borderColor: COLOR.bleu, color:COLOR.blanc, marginTop: '2%'}} onClick={this.envoieNouvelInvite.bind(this)}>Ajouter</span>
 
-
+ </div>
 </div>
 
 

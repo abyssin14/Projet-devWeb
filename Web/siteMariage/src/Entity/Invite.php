@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ApiResource(
  *  collectionOperations={
- *         "post"={"path"="/invites", "security"="is_granted('ROLE_ADMIN')"},
+ *         "post"={"path"="/invites", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
  *          "get"={"path"="/invites", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"}
  *     },
  *     itemOperations={

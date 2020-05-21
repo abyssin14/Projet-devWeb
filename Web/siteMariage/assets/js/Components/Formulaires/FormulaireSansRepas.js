@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { number,Integer } from 'prop-types';
 import  '../../../css/app.css';
@@ -7,6 +7,12 @@ import { postInvite } from "../../Utils/fetching.js"
 import {COLOR} from "../../Utils/Color.js"
 import { isCheckBox, updateTableauAge } from "../../Utils/functions.js"
 import { withAlert } from 'react-alert'
+import { css } from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
+import RingLoader from "react-spinners/RingLoader";
+
+
 
 
 class FormulaireSansRepas extends Component {
@@ -24,6 +30,9 @@ class FormulaireSansRepas extends Component {
       nom: new String(),
       prenom: new String(),
       nbInput: 1,
+      redirection: false,
+      isLoadingSubmit: false,
+      opacity:'100%',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,7 +40,9 @@ class FormulaireSansRepas extends Component {
     this.handleClickDeleteEnfant = this.handleClickDeleteEnfant.bind(this);
 
 
+
   }
+
 
   handleInputChange(event) {
     const target = event.target;
@@ -45,8 +56,6 @@ class FormulaireSansRepas extends Component {
         [name]: value
       });
     }
-
-    console.log(this.state.enfants)
   }
 
 
@@ -55,6 +64,10 @@ async handleSubmit(event) {
     this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
 
   }else{
+    this.setState({
+      isLoadingSubmit: true,
+      opacity: '50%'
+    })
     //suppression des champs enfants vide
     var arrayUpdate = updateTableauAge(this.state.enfants)
     this.setState({enfants: arrayUpdate})
@@ -72,10 +85,18 @@ async handleSubmit(event) {
     })
     var request = await  postInvite(body);
     if(request){
+      this.setState({
+        isLoadingSubmit: false,
+        opacity: '100%'
+      })
       this.props.alert.success('Formulaire envoyé !');
       document.getElementById("retourVueAccueil").click();
 
     }else{
+      this.setState({
+        isLoadingSubmit: false,
+        opacity: '100%'
+      })
       this.props.alert.error('Echec de l\'envois du formulaire !')
 
     }
@@ -107,12 +128,30 @@ renderInputEnfant(){
   return nextInputs;
 }
 
+renderSubmitLoader(){
+  if (this.state.isLoadingSubmit) {
+     return <div className="sweet-loading" style={{position:'absolute', right:'50%', top: '50%', zIndex : 5}}>
+ <HashLoader
+   css={ css`
+     display: block;
+     margin: 0 auto;
+     border-color: #040e60;
+   `}
+   size={50}
+   color={COLOR.bleu}
+ />
+</div>
+}
+}
+
   render(){
+
     return(
       <div className="w3-grayscale-min fondFormulaire" style={{width:"100%", height:"100%"}}>
-  <div className="container"  id="monform">
+  <div className="container"  id="monform" style={{opacity: this.state.opacity}}>
+  {this.renderSubmitLoader()}
   <h1>Formulaire de participation au mariage</h1>
-  <form  className="form-group"  style={{marginBottom:"0rem"}} onSubmit={this.handleSubmit}>
+  <form  className="form-group"  style={{marginBottom:"0rem"}} >
       <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
@@ -157,7 +196,7 @@ renderInputEnfant(){
 
       </div>
 
-      <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit.bind()}></input>
+      <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit}></input>
       <Link to="/user/Accueil" className="btn btn-primary" id="retourVueAccueil" style={{display:"none"}}></Link>
       </div>
 

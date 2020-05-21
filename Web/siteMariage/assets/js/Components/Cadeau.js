@@ -27,6 +27,8 @@ class Cadeau extends Component {
         this.state = {
             error: null,
             isLoading: true,
+            isLoadingSubmit: false,
+            opacity:'100%',
             items: [],
             infoCadeau: "Cliquer sur un cadeau pour obtenir plus d'informations",
             infoDescCadeau: "",
@@ -44,7 +46,6 @@ class Cadeau extends Component {
             resteContrib: Number(),
             prenomAcheteur: new String(),
             nomAcheteur: new String(),
-
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -116,6 +117,7 @@ class Cadeau extends Component {
   async  handleSubmit(event) {
     if(this.state.nomAcheteur == '' || this.state.prenomAcheteur == ''){
       this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
+
     }else{
 
 
@@ -133,12 +135,15 @@ class Cadeau extends Component {
           }
 
       else {
-          var nom= this.state.prenomAcheteur;
+        this.setState({
+          isLoadingSubmit: true,
+          opacity: '50%'
+        })
+        var nom= this.state.prenomAcheteur;
 
 
-                      this.state.acheteurs.push(nom);
-                      this.state.montantsRecoltes.push(this.state.montantRecolte);
-
+        this.state.acheteurs.push(nom);
+        this.state.montantsRecoltes.push(this.state.montantRecolte);
 
             var body = JSON.stringify({
                 "nom": this.state.cadeauNom,
@@ -151,9 +156,20 @@ class Cadeau extends Component {
         var  request = await  putCadeau(this.state.cadeauID, body);
         if(request){
           this.props.alert.success('Merci pour votre contribution !')
+          this.setState({
+            isLoadingSubmit: false,
+            opacity: '100%',
+            montantRecolte:  0
 
+          })
         }else{
           this.props.alert.error('Echec de la contribution !')
+          this.setState({
+            isLoadingSubmit: false,
+            opacity: '100%',
+            montantRecolte:  0
+          })
+
 
         }
       }
@@ -223,7 +239,6 @@ class Cadeau extends Component {
     }
 
     renderLoader(){
-      console.log(this.state.isLoading)
       if (this.state.isLoading) {
          return <div className="sweet-loading" style={{marginTop:'20%'}}>
      <HashLoader
@@ -234,11 +249,26 @@ class Cadeau extends Component {
        `}
        size={50}
        color={COLOR.bleu}
-       loading={this.state.loading}
      />
    </div>
     }
   }
+
+  renderSubmitLoader(){
+    if (this.state.isLoadingSubmit) {
+       return <div className="sweet-loading" style={{marginTop:'10%', position:'absolute', right:'24%', zIndex : 5}}>
+   <HashLoader
+     css={ css`
+       display: block;
+       margin: 0 auto;
+       border-color: #040e60;
+     `}
+     size={50}
+     color={COLOR.bleu}
+   />
+ </div>
+  }
+}
 
 /*Rendu de notre page cadeau */
 
@@ -284,6 +314,8 @@ class Cadeau extends Component {
         </ul>
         </div>
         <div className="text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: COLOR.argente, width:'49%'}} >
+        {this.renderSubmitLoader()}
+        <div style={{ opacity: this.state.opacity}}>
         <br></br>
 
         {this.state.infoCadeau}
@@ -310,7 +342,7 @@ class Cadeau extends Component {
         <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="submitButton" style={{paddingRight: '15%', paddingLeft:'15%'}}></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
-
+        </div>
 
         </div>
         </div>
