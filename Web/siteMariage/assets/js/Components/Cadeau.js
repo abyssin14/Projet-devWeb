@@ -284,12 +284,13 @@ class Cadeau extends Component {
               <div  style={{height:"100%", filter: "grayscale(50%)", backgroundColor:COLOR.gris}}>
 
 
-                <div className=" description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif"}} >
+                <div className=" description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif", paddingLeft:'15%', paddingRight:'15%'}} >
 
 
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
-                    Avant de pouvoir contribuer à un cadeau, il faut signaler votre présence au mariage. <br></br>
-                    Si ce n'est pas déjà fais, <a href="/user/Formulaire">cliquer ici.</a></span>
+                    Sur cette page figure la liste des cadeaux que nous aimerions acheter avec l'argent récolté lors de notre mariage.<br></br>
+                    Si vous souhaitez contribuer à l'achat d'un des cadeaux de la liste, merci de remplir le formulaire de contribution. Une urne sera disponible le jour-J pour récolter vos dons.
+                    N'oubliez pas de confirmer votre présence au mariage. Si ce n'est pas déjà fait, <a href="/user/Formulaire" style={{color:COLOR.bleu, fontWeight:'bold'}}>cliquez ici.</a></span>
 
 
                     </div>
@@ -337,8 +338,6 @@ class Cadeau extends Component {
         <br></br><br></br>
         <label style={{display:"inline-block"}}>Entrer un montant</label> &nbsp;
         <input type="number" min="0" max={this.state.resteContrib}  className="form-control" id="montantCadeau" name="montantRecolte" value={this.state.montantRecolte} onChange={this.handleInputChange} style={{width:"15%"}}></input> €<br></br>
-        <br></br><input type="checkbox" name='payementMariage' checked={this.state.payementMariage} onChange={this.conditionCheck} ></input> <label style={{display:"inline-block"}}>Au mariage</label> &nbsp;
-        <input type="checkbox" name='payementEnLigne' checked={this.state.payementEnLigne}    onChange={this.conditionCheck}></input> <label style={{display:"inline-block"}}>Maintenant (payement en ligne)</label><br></br>
         <br></br><input type="button" value="Valider" onClick={this.handleSubmit} className="submitButton" style={{paddingRight: '15%', paddingLeft:'15%'}}></input>
         </div>
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
