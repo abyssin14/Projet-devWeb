@@ -27,7 +27,6 @@ class Index extends Component {
 }
 
     render() {
-
     return (
 
       <switch>
@@ -160,6 +159,8 @@ class Index extends Component {
 }
 
   export default Index;
+  console.log = console.warn = console.error = () => {};
+
 
   <link
     rel="stylesheet"
