@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1590241318243" clover="3.2.0">
-  <project timestamp="1590241318243" name="All files">
+<coverage generated="1590330756344" clover="3.2.0">
+  <project timestamp="1590330756344" name="All files">
     <metrics statements="15" coveredstatements="13" conditionals="13" coveredconditionals="7" methods="4" coveredmethods="4" elements="32" coveredelements="24" complexity="0" loc="15" ncloc="15" packages="1" files="1" classes="1"/>
     <file name="functions.js" path="C:\Users\Tristan\Documents\Cours TI\deuxième_Ephec_2TL1\Q2\Projet-devWeb\Web\siteMariage\assets\js\Utils\functions.js">
       <metrics statements="15" coveredstatements="13" conditionals="13" coveredconditionals="7" methods="4" coveredmethods="4"/>
