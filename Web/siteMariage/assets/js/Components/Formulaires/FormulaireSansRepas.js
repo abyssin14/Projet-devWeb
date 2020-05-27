@@ -67,7 +67,7 @@ async handleSubmit(event) {
     }else{
       var tabEnfantsValid = true
       for(var e = 0; e < this.state.enfants.length; e++){
-        if(this.state.enfants[e] < 1 || this.state.enfants[e] > 18){
+        if(this.state.enfants[e] < 0 || this.state.enfants[e] > 18){
           tabEnfantsValid = false
         }
       }
