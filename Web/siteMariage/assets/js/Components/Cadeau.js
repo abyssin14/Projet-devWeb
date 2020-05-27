@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import app from "../../css/app.css"
 import cadeau from "../../img/cadeau.png"
 import { number } from 'prop-types';
@@ -51,6 +51,7 @@ class Cadeau extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.conditionCheck = this.conditionCheck.bind(this);
+        this.retourVueParticiper = this.retourVueParticiper.bind(this);
     }
 
 
@@ -270,6 +271,10 @@ class Cadeau extends Component {
   }
 }
 
+retourVueParticiper(){
+  document.getElementById("retourVueFormulaire").click();
+}
+
 /*Rendu de notre page cadeau */
 
   render() {
@@ -290,7 +295,7 @@ class Cadeau extends Component {
                     <span className="texteDescriptionVueCadeau" >Bienvenue ! <br></br>
                     Sur cette page figure la liste des cadeaux que nous aimerions acheter avec l'argent récolté lors de notre mariage.<br></br>
                     Si vous souhaitez contribuer à l'achat d'un des cadeaux de la liste, merci de remplir le formulaire de contribution. Une urne sera disponible le jour-J pour récolter vos dons.
-                    N'oubliez pas de confirmer votre présence au mariage. Si ce n'est pas déjà fait, <a href="/user/Formulaire" style={{color:COLOR.bleu, fontWeight:'bold'}}>cliquez ici.</a></span>
+                    N'oubliez pas de confirmer votre présence au mariage. Si ce n'est pas déjà fait, <a onClick={this.retourVueParticiper} style={{color:COLOR.bleu, fontWeight:'bold',cursor:"pointer"}}>cliquez ici.</a></span>
 
 
                     </div>
@@ -343,11 +348,13 @@ class Cadeau extends Component {
         <input type="image" src={cadeau} id="imgCadeau" className="imgCadeau" ></input>
         </div>
 
+        <Link to="/user/Formulaire" className="btn btn-primary" id="retourVueFormulaire" style={{display:"none"}}></Link>
+
         </div>
         </div>
         </div>
 
-
+                  
         );
         }
     }
