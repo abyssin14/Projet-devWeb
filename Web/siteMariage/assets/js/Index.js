@@ -19,7 +19,7 @@ class Index extends Component {
 
 
   redirection() {
-    document.location.href = "/user/Formulaire";
+    document.getElementById("retourVueFormulaire").click();
   }
 
   componentDidMount() {
@@ -146,6 +146,8 @@ class Index extends Component {
                 }}>
     </Route>
     <Route path="/admin" component={Administration}></Route>
+    <Link to="/user/Formulaire" className="btn btn-primary" id="retourVueFormulaire" style={{display:"none"}}></Link>
+
                 </switch>
 
 
