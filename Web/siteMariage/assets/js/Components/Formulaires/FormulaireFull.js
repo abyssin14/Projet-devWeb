@@ -152,6 +152,7 @@ renderSubmitLoader(){
   {this.renderSubmitLoader()}
   <h1>Formulaire de participation au mariage</h1>
   <form  className="form-group"  style={{marginBottom:"0rem"}} >
+  
       <div className="form-group form-inline"  style={{marginBottom:"0.5rem"}}>
      <label> </label>
       <input type="text" name="nom" placeholder="Nom" className="form-control w-25" value={this.state.nom} onChange={this.handleInputChange}></input>
@@ -198,8 +199,9 @@ renderSubmitLoader(){
 
 
       </div>
-
+      <div className="form-inline">
       <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit}></input>
+      </div>
       <Link to="/user/Accueil" className="btn btn-primary" id="retourVueAccueil" style={{display:"none"}}></Link>
       </div>
 

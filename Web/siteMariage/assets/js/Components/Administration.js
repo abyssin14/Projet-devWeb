@@ -759,7 +759,7 @@ if(isRequest){
 
 {/* DIV/VUE POUR GESTION DES CONTRIBUTIONS D'UN CADEAU */}
 
-<div  className="container" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace"}}>
+<div  className="container table-wrapper-scroll-y my-custom-scrollbar" id="gererContribution"  style={{ position:"relative",marginTop:"none",height:"100%",width:"40%", float:"left", display:"none",fontFamily:"monospace",maxHeight:"100%"}}>
 <div style={{ opacity:this.state.opacityCadeaux}}>
 {this.renderLoaderCadeaux()}
 <h1 id="nomCadeauContribution" style={{padding:20}}>
