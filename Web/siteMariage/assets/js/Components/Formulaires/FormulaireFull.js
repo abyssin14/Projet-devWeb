@@ -60,46 +60,59 @@ class FormulaireFull extends Component {
 
 
 async handleSubmit(event) {
+
   if(this.state.nom == '' || this.state.prenom == ''){
     this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
 
   }else{
-    this.setState({
-      isLoadingSubmit: true,
-      opacity: '50%'
-    })
-    //suppression des champs enfants vide
-    var arrayUpdate = updateTableauAge(this.state.enfants)
-    this.setState({enfants: arrayUpdate})
-
-     var body = JSON.stringify({
-      "allergie": this.state.allergie,
-      "accompagnant": this.state.accompagnant,
-      "enfants": this.state.enfants,
-      "presentCeremonie": this.state.presentCeremonie,
-      "presentVinDHonneur": this.state.presentVinDHonneur,
-      "presentRepas": this.state.presentRepas,
-      "presentSoiree": this.state.presentSoiree,
-      "nom": this.state.nom,
-      "prenom": this.state.prenom
-    })
-    var request = await  postInvite(body);
-    if(request){
-      this.setState({
-        isLoadingSubmit: false,
-        opacity: '100%'
-      })
-      this.props.alert.success('Formulaire envoyé !');
-      document.getElementById("retourVueAccueil").click();
+    var tabEnfantsValid = true
+    for(var e = 0; e < this.state.enfants.length; e++){
+      if(this.state.enfants[e] < 1 || this.state.enfants[e] > 18){
+        tabEnfantsValid = false
+      }
+    }
+    if(!tabEnfantsValid){
+      this.props.alert.error('Age d\'enfant incorrect, entrez une valeur entre 1 et 18')
 
     }else{
       this.setState({
-        isLoadingSubmit: false,
-        opacity: '100%'
+        isLoadingSubmit: true,
+        opacity: '50%'
       })
-      this.props.alert.error('Echec de l\'envois du formulaire !')
+      //suppression des champs enfants vide
+      var arrayUpdate = updateTableauAge(this.state.enfants)
+      this.setState({enfants: arrayUpdate})
 
+       var body = JSON.stringify({
+        "allergie": this.state.allergie,
+        "accompagnant": this.state.accompagnant,
+        "enfants": this.state.enfants,
+        "presentCeremonie": this.state.presentCeremonie,
+        "presentVinDHonneur": this.state.presentVinDHonneur,
+        "presentRepas": this.state.presentRepas,
+        "presentSoiree": this.state.presentSoiree,
+        "nom": this.state.nom,
+        "prenom": this.state.prenom
+      })
+      var request = await  postInvite(body);
+      if(request){
+        this.setState({
+          isLoadingSubmit: false,
+          opacity: '100%'
+        })
+        this.props.alert.success('Formulaire envoyé !');
+        document.getElementById("retourVueAccueil").click();
+
+      }else{
+        this.setState({
+          isLoadingSubmit: false,
+          opacity: '100%'
+        })
+        this.props.alert.error('Echec de l\'envois du formulaire !')
+
+      }
     }
+
   }
 }
 
