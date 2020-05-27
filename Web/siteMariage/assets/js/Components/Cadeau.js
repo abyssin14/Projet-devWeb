@@ -140,11 +140,15 @@ class Cadeau extends Component {
           isLoadingSubmit: true,
           opacity: '50%'
         })
-        var nom= this.state.prenomAcheteur;
-
+        var nom= this.state.prenomAcheteur + ' ' + this.state.nomAcheteur;
 
         this.state.acheteurs.push(nom);
+        var tabAcheteursUpdate = this.state.acheteurs;
+
         this.state.montantsRecoltes.push(this.state.montantRecolte);
+        var tabMontantsRecoltes = this.state.montantRecolte;
+
+
 
             var body = JSON.stringify({
                 "nom": this.state.cadeauNom,
@@ -160,9 +164,12 @@ class Cadeau extends Component {
           this.setState({
             isLoadingSubmit: false,
             opacity: '100%',
-            montantRecolte:  0
+            montantRecolte:  0,
+            acheteurs: tabAcheteursUpdate,
+            montantsRecoltes: tabMontantsRecoltes,
 
           })
+
         }else{
           this.props.alert.error('Echec de la contribution !')
           this.setState({
@@ -178,13 +185,19 @@ class Cadeau extends Component {
 
 
         }
-          document.getElementById(this.state.cadeauID).click();
+        document.getElementById(this.state.cadeauID).click();
+
           getCadeaux().then(
               (result) => {
+
                   this.setState({
                       isLoading: false,
-                      items: result
+                      items: result,
+
                   });
+                  document.getElementById(this.state.cadeauID).click();
+
+
               },
               // Remarque : il est important de traiter les erreurs ici
               // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
@@ -309,14 +322,33 @@ retourVueParticiper(){
                 {this.renderLoader()}
 
                 <ul className="list-group table-wrapper-scroll-y" style={{maxHeight:"100%", overflowX:"hidden"}}>
-                {items.map(item => (
-                        <li id={item.id}   className=" list-group-item cadeauItem"
-                        key={item.id}
-                        onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
-                        >
-                          {item.nom}  {item.prix} €
-                        </li>
-        ))}
+                {items.map(item => {
+                  var totalRecolte = calculTotalRecolte(item.montantsRecoltes)
+                  var resteContrib = item.prix - totalRecolte
+                  if(resteContrib > 0){
+                    return (
+                      <li id={item.id}   className=" list-group-item cadeauItem"
+                      key={item.id}
+                      onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
+                      >
+                        {item.nom}  {item.prix} €
+                      </li>
+                    )
+                  }else{
+                    return (
+                      <li id={item.id}   className=" list-group-item cadeauItem"
+                      key={item.id}
+                      onClick={this.handleClick.bind(this, item.nom, item.prix, item.id, item.description, item.acheteurs, item.montantsRecoltes)}
+
+                      style={{backgroundColor: 'green', opacity:'20%'}}
+                      >
+                        {item.nom}  {item.prix} €
+                      </li>
+                    )
+                  }
+                }
+              )
+            }
         </ul>
         </div>
         <div className="text-dark cadeauDiv" style={{textAlign:"center",backgroundColor: COLOR.argente, width:'49%'}} >
@@ -354,7 +386,7 @@ retourVueParticiper(){
         </div>
         </div>
 
-                  
+
         );
         }
     }

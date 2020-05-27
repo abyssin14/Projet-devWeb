@@ -195,8 +195,9 @@ renderSubmitLoader(){
 
 
       </div>
-
+      <div className="form-inline" style={{marginTop:'2%'}}>
       <br></br><input type="button" className=" w-25 submitButton" value="Valider" onClick={this.handleSubmit}></input>
+      </div>
       <Link to="/user/Accueil" className="btn btn-primary" id="retourVueAccueil" style={{display:"none"}}></Link>
       </div>
 
