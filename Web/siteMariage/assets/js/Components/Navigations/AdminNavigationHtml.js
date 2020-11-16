@@ -51,7 +51,7 @@ class AdminNavigationHtml extends React.Component{
                   <MDBNavLink to="/admin">Administration</MDBNavLink>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink to="/logout">Deconnexion</MDBNavLink>
+                  <MDBNavLink to="/logout">Déconnexion</MDBNavLink>
                 </MDBNavItem>
                 </MDBNavbarNav>
                 </MDBCollapse>

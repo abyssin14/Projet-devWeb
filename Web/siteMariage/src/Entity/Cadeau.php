@@ -11,13 +11,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ApiResource(
  *  collectionOperations={
- *         "post"={"path"="/cadeaux", "security"="is_granted('ROLE_ADMIN')"},
- *          "get"={"path"="/cadeaux", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
+ *         "post"={"path"="/cadeaux"},
+ *          "get"={"path"="/cadeaux"},
  *     },
  *     itemOperations={
- *         "get"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
- *         "delete"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_ADMIN')"},
- *         "put"={"path"="/cadeaux/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"}
+ *         "get"={"path"="/cadeaux/{id}"},
+ *         "delete"={"path"="/cadeaux/{id}"},
+ *         "put"={"path"="/cadeaux/{id}"}
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\CadeauRepository")
@@ -66,6 +66,11 @@ class Cadeau
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $payement;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $payements = [];
 
     public function getId(): ?int
     {
@@ -146,6 +151,18 @@ class Cadeau
     public function setPayement(?string $payement): self
     {
         $this->payement = $payement;
+
+        return $this;
+    }
+
+    public function getPayements(): ?array
+    {
+        return $this->payements;
+    }
+
+    public function setPayements(?array $payements): self
+    {
+        $this->payements = $payements;
 
         return $this;
     }

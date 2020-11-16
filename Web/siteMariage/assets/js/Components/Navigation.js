@@ -18,7 +18,7 @@ class Navigation extends React.Component {
 
 
   displayNavBar(){
-    if(this.props.privilege == 'admin'){
+    if(this.props.privilege == 'sterckx'){
       return <AdminNavigationHtml />
     }else{
       return <NavigationHtml />

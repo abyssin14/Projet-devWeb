@@ -14,7 +14,7 @@ class Formulaire extends React.Component {
 
 
   displayFormulaire(){
-    if(this.props.privilege == 'compte2nr'){
+    if(this.props.privilege == 'nicoetsteph'){
       return <FormulaireSansRepas /> 
     }else{
       return <FormulaireFull />

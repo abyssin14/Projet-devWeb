@@ -5,7 +5,8 @@ import app from "../../css/app.css"
 import {COLOR} from "../Utils/Color.js"
 import { withAlert } from 'react-alert'
 
-
+import{ init } from 'emailjs-com';
+init("user_cwyq6D7hLHkVVJH6zA3Uq");
 
 
 
@@ -16,9 +17,9 @@ import { withAlert } from 'react-alert'
         constructor(props) {
             super(props)
             this.state = {
-                userReceiver: "extraaaludo@gmail.com",
+                userReceiver: "stephy-delwiche@hotmail.com",
                 userSender: new String(),
-                emailTitle: "Mariage",
+                emailTitle: "Message site mariage",
                 emailDetails: new String()
             }
             this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -33,18 +34,20 @@ import { withAlert } from 'react-alert'
 
             var val = confirm("Etes-vous sûr de vouloir envoyer ce message ?");
           if( val == true ) {
-
-            var service_id = "default_service";
-            var template_id = "sitemariage";
-            var user_id = 'user_I5n4Z5pi99TRQVlxXwhck';
-            emailjs.send(service_id, template_id, this.state,user_id);
-            this.setState({
+            var service_id = "service_sz8mahq";
+            var template_id = "template_eqbtjee";
+            var user_id = 'user_Otb5XypzrV1IFpJ6zCWZ3';
+            console.log(this.state)
+            emailjs.send(service_id, template_id, this.state,user_id).then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function(err) {
+                console.log('FAILED...', err);
+            });
+              this.props.alert.success('Message envoyé ! ')
+              this.setState({
               userSender: "",
               emailDetails: ""
             });
-
-            this.props.alert.success('Message envoyé ! ')
-
           } else {
 
           }
@@ -52,12 +55,9 @@ import { withAlert } from 'react-alert'
       }
 
         handleInputChange(event) {
-
-
             const target = event.target;
             const value = target.value;
             const name = target.name;
-
             this.setState(state => ({
                 [name]:  value
               }));

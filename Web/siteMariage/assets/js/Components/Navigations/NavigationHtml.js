@@ -46,7 +46,7 @@ class NavigationHtml extends React.Component{
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
             <MDBNavItem>
-            <MDBNavLink to="/logout">Deconnexion</MDBNavLink>
+            <MDBNavLink to="/logout">Déconnexion</MDBNavLink>
                 </MDBNavItem>
                 </MDBNavbarNav>
                 </MDBCollapse>

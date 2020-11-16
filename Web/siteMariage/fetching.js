@@ -27,6 +27,7 @@ const response = await fetch(API_HOST + '/api/cadeaux/' + idCadeau, {
   },
   body: body
 });
+
 if(response.ok){
   return true;
  }else{

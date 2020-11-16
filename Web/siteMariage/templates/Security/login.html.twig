@@ -2,35 +2,42 @@
 {% block title 'Se connecter'%}
 
 {% block body %}
-   <div class="container mt-4">
-
-      {% if error %}
-         <div class="alert alert-danger">
-            Nom d'utilisateur ou mot de passe incorrect.
-         </div>
-      {% endif %}
-
-
-
-
-      <form action="{{ path('login') }}" method="post">
-         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="_username" class="form-control" value={{ user }}>
-
-         </div>
-         <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="_password" class="form-control">
-         </div>
-
-         <input type="hidden" name="back_to" value="{{ path('login') }}"/>
-
-         <button type="submit" class="btn btn-primary">Se connecter</button>
-      </form>
-
-      
+   <style>
+      body{
+         overflow: hidden;
+      }
+   </style>
+   <div style="position:absolute; top:0;z-index: -1;">
+      <img class="w3-round w3-grayscale-min" src="/build/images/bgLogin.jpg" style="width:100vw; height:100vh;  "/>
    </div>
+   <div style="width:500px; margin-left:auto; margin-right:auto;">
+      <div class="container mt-4">
+         {% if error %}
+            <div class="alert alert-danger">
+               Nom d'utilisateur ou mot de passe incorrect.
+            </div>
+         {% endif %}
+         <form action="{{ path('login') }}" method="post">
+            <div class="form-group">
+               <label for="username">Nom d'utilisateur</label>
+               <input type="text" id="username" name="_username" class="form-control" value={{ user }}>
+
+            </div>
+            <div class="form-group">
+               <label for="password">Mot de passe</label>
+               <input type="password" id="password" name="_password" class="form-control">
+            </div>
+
+            <input type="hidden" name="back_to" value="{{ path('login') }}"/>
+            <div style="justify-content: center; display: flex">
+               <button type="submit" class="btn btn-primary"">Se connecter</button>
+            </div>
+         </form>
+
+
+      </div>
+   </div>
+
 
 
 {% endblock %}

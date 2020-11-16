@@ -10,13 +10,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ApiResource(
  *  collectionOperations={
- *         "post"={"path"="/invites", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
- *          "get"={"path"="/invites", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"}
+ *         "post"={"path"="/invites"},
+ *          "get"={"path"="/invites"}
  *     },
  *     itemOperations={
- *         "get"={"path"="/invites/{id}", "security"="is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')"},
- *         "delete"={"path"="/invites/{id}", "security"="is_granted('ROLE_ADMIN')"},
- *         "put"={"path"="/invites/{id}", "security"="is_granted('ROLE_ADMIN')"}
+ *         "get"={"path"="/invites/{id}"},
+ *         "delete"={"path"="/invites/{id}"},
+ *         "put"={"path"="/invites/{id}"}
  *     }
  * )
  * @ORM\Entity(repositoryClass="App\Repository\InviteRepository")

@@ -1,23 +1,13 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
-import app from "../../css/app.css"
 import cadeau from "../../img/cadeau.png"
-import { number } from 'prop-types';
-import fleur from "../../img/FondFleurs.png"
-import fleurs from "../../img/Fleurs.png"
 import { getCadeaux, getInvites, putCadeau } from "../Utils/fetching.js"
 import { COLOR } from "../Utils/Color.js"
 import { contributionCadeauValide, calculTotalRecolte } from '../Utils/functions.js'
 import { withAlert } from 'react-alert'
 import { css } from "@emotion/core";
-import ClipLoader from "react-spinners/ClipLoader";
 import HashLoader from "react-spinners/HashLoader";
-import RingLoader from "react-spinners/RingLoader";
-
-
-
-
-
+import Modal from 'react-modal';
 
 class Cadeau extends Component {
 
@@ -46,12 +36,19 @@ class Cadeau extends Component {
             resteContrib: Number(),
             prenomAcheteur: new String(),
             nomAcheteur: new String(),
+            showModal: false,
+            showModal2: false,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.conditionCheck = this.conditionCheck.bind(this);
         this.retourVueParticiper = this.retourVueParticiper.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.postContribution = this.postContribution.bind(this);
+        this.handleOpenModal2 = this.handleOpenModal2.bind(this);
+        this.handleCloseModal2 = this.handleCloseModal2.bind(this);
     }
 
 
@@ -77,7 +74,21 @@ class Cadeau extends Component {
             )
     }
 
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
 
+    handleCloseModal () {
+        this.setState({ showModal: false });
+    }
+    handleOpenModal2 () {
+        this.handleCloseModal();
+        this.setState({ showModal2: true });
+    }
+
+    handleCloseModal2 () {
+        this.setState({ showModal2: false });
+    }
     /* Affichage lors d'un clique sur un cadeau*/
     handleClick(cadeauNom, cadeauPrix, cadeauID, cadeauDesc, acheteurs ,montantsRecoltes) {
         this.setState(state => ({
@@ -118,97 +129,83 @@ class Cadeau extends Component {
   async  handleSubmit(event) {
     if(this.state.nomAcheteur == '' || this.state.prenomAcheteur == ''){
       this.props.alert.error('Veuillez introduire votre nom et votre prénom !')
-
     }else{
-
-
-          //acheteurId = findAcheteurId(this.state.nom, this.state.prenom);
-
           var maxCadeau = document.getElementById('montantCadeau').max;
           var minCadeau = document.getElementById('montantCadeau').min;
-
-
           if(!contributionCadeauValide(this.state.montantRecolte, maxCadeau, 1)) {
             this.props.alert.error('Entrer une valeur entre ' + 1 + ' et ' + maxCadeau +' €');
               this.setState(state => ({
                   montantRecolte:  0
                 }));
           }
-
       else {
+          this.handleOpenModal();
+      }
+    }
+  }
+    async postContribution(isVirement){
         this.setState({
-          isLoadingSubmit: true,
-          opacity: '50%'
-        })
-        var nom= this.state.prenomAcheteur + ' ' + this.state.nomAcheteur;
-
+            isLoadingSubmit: true,
+            opacity: '50%'
+        });
+        if(isVirement){
+            var nom= this.state.prenomAcheteur + ' ' + this.state.nomAcheteur + ' (Virement)';
+        }else{
+            var nom= this.state.prenomAcheteur + ' ' + this.state.nomAcheteur + ' (Au mariage)';
+        }
         this.state.acheteurs.push(nom);
         var tabAcheteursUpdate = this.state.acheteurs;
-
         this.state.montantsRecoltes.push(this.state.montantRecolte);
         var tabMontantsRecoltes = this.state.montantRecolte;
+        var payement = 'auMariage';
 
-
-
-            var body = JSON.stringify({
-                "nom": this.state.cadeauNom,
-                "prix": parseInt(this.state.cadeauPrix),
-                "description": this.state.cadeauDesc,
-                "acheteurs":  this.state.acheteurs ,
-                "montantsRecoltes": this.state.montantsRecoltes ,
-                "payement": "enattente"
-              });
+        var body = JSON.stringify({
+            "nom": this.state.cadeauNom,
+            "prix": parseInt(this.state.cadeauPrix),
+            "description": this.state.cadeauDesc,
+            "acheteurs":  this.state.acheteurs ,
+            "montantsRecoltes": this.state.montantsRecoltes ,
+        });
+        console.log(body)
         var  request = await  putCadeau(this.state.cadeauID, body);
         if(request){
-          this.props.alert.success('Merci pour votre contribution !')
-          this.setState({
-            isLoadingSubmit: false,
-            opacity: '100%',
-            montantRecolte:  0,
-            acheteurs: tabAcheteursUpdate,
-            montantsRecoltes: tabMontantsRecoltes,
-
-          })
-
+            this.props.alert.success('Merci pour votre contribution !')
+            this.setState({
+                isLoadingSubmit: false,
+                opacity: '100%',
+                montantRecolte:  0,
+                acheteurs: tabAcheteursUpdate,
+                montantsRecoltes: tabMontantsRecoltes,
+            })
         }else{
-          this.props.alert.error('Echec de la contribution !')
-          this.setState({
-            isLoadingSubmit: false,
-            opacity: '100%',
-            montantRecolte:  0
-          })
-
-
-        }
-      }
-
-
-
+            this.props.alert.error('Echec de la contribution !')
+            this.setState({
+                isLoadingSubmit: false,
+                opacity: '100%',
+                montantRecolte:  0
+            })
         }
         document.getElementById(this.state.cadeauID).click();
-
-          getCadeaux().then(
-              (result) => {
-
-                  this.setState({
-                      isLoading: false,
-                      items: result,
-
-                  });
-                  document.getElementById(this.state.cadeauID).click();
-
-
-              },
-              // Remarque : il est important de traiter les erreurs ici
-              // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
-              // des exceptions provenant de réels bugs du composant.
-              (error) => {
-                  this.setState({
-                      isLoading: false,
-                      error
-                  });
-              }
-          )
+        getCadeaux().then(
+            (result) => {
+                this.setState({
+                    isLoading: false,
+                    items: result,
+                });
+                document.getElementById(this.state.cadeauID).click();
+            },
+            // Remarque : il est important de traiter les erreurs ici
+            // au lieu d'utiliser un bloc catch(), pour ne pas passer à la trappe
+            // des exceptions provenant de réels bugs du composant.
+            (error) => {
+                this.setState({
+                    isLoading: false,
+                    error
+                });
+            }
+        )
+        this.handleCloseModal();
+        this.handleCloseModal2()
 
     }
   /* Définis le montant investi que le client encodre au sein du formulaire payement */
@@ -291,7 +288,19 @@ retourVueParticiper(){
 /*Rendu de notre page cadeau */
 
   render() {
-    const alert = this.props.alert;
+      const customStyles = {
+          content : {
+              top                   : '50%',
+              left                  : '50%',
+              right                 : 'auto',
+              bottom                : 'auto',
+              marginRight           : '-50%',
+              transform             : 'translate(-50%, -50%)'
+          }
+      };
+      Modal.setAppElement('#root')
+
+      const alert = this.props.alert;
     const { error, isLoading, items } = this.state;
 
         if (error) {
@@ -299,8 +308,28 @@ retourVueParticiper(){
 
         } else {
             return (
-              <div  style={{height:"100%", filter: "grayscale(50%)", backgroundColor:COLOR.gris}}>
 
+              <div style={{height:"100%", filter: "grayscale(50%)", backgroundColor:COLOR.gris}}>
+
+                  <Modal
+                      isOpen={this.state.showModal}
+                      style={customStyles}
+                  >
+                      <span className="boutonDelete" style={{position: 'absolute', top:'10px', right: '10px'}} onClick={this.handleCloseModal}>❌</span>
+                      <h4>Indiquez votre moyen de payement</h4>
+                      <br></br><input type="button" className=" w-100 submitButton" value="Je fais le virement maintenant" onClick={this.handleOpenModal2} style={{marginBottom: '10px'}}></input>
+                      <br></br><input type="button" className=" w-100 submitButton" value="Je mettrai l'argent dans l'urne lors du mariage" onClick={this.postContribution.bind(this,false)}></input>
+
+                  </Modal>
+                  <Modal
+                      isOpen={this.state.showModal2}
+                      style={customStyles}
+                  >
+                      <span className="boutonDelete" style={{position: 'absolute', top:'10px', right: '10px'}} onClick={this.handleCloseModal2}>❌</span>
+                      <h4>Voici mon numéro de compte : </h4>
+                      <p style={{fontFamily: 'arial'}}>BE63 3101 7811 3308</p>
+                      <br></br><input type="button" className=" w-100 submitButton" value="J'ai fait le virement" onClick={this.postContribution.bind(this,true)}></input>
+                  </Modal>
 
                 <div className=" description" style={{height:"35%",width:"100%",textAlign:"center",backgroundColor: COLOR.gris, fontFamily:"sans-serif", paddingLeft:'15%', paddingRight:'15%'}} >
 
