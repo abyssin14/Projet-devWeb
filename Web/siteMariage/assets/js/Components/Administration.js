@@ -784,6 +784,7 @@ if(isRequest){
   <thead>
     <th>Nom</th>
     <th>Prénom</th>
+    <th>Accompagné</th>
     <th>Cérémonie</th>
     <th>Vin d'honneur</th>
     <th>Repas</th>
@@ -811,6 +812,7 @@ if(isRequest){
 
 
 
+                    <td>{invite.accompagnant ? "Oui" : "Non"} </td>
 
                      <td>{invite.presentCeremonie ? "Oui" : "Non"} </td>
                      <td>{invite.presentVinDHonneur ? "Oui" : "Non"} </td>
